@@ -1,0 +1,286 @@
+{
+  "version": 1,
+  "foundation": {
+    "strategy": "preserve",
+    "existingAssets": [
+      "design/sbj-logo.png (logo Joie d'Être par Sabrina)",
+      "design-system.html (tokens : palette forest, cream, sand, gold, encre ; rayons 8, 14, 24 px et pilule ; échelle d'espacement 4 à 128 px ; ombres soft et dark)",
+      "src/styles.css (tokens Tailwind et shadcn : background #f7ead3, card #fff9ec, accent #d4af37, border rgb(138 104 19 / 0.26))",
+      "@fontsource-variable/bodoni-moda et @fontsource-variable/manrope (package.json)",
+      "src/components/landing/embossed-cta.tsx (CTA embossé, tons dark, light et gold, majuscules espacées de 0.18em, bordure or)",
+      "src/components/landing/section-ornaments.tsx (GoldDivider avec divider-ornament.png, SectionEyebrow avec l'ornement lotus massage-wellness.png)",
+      "src/assets/about-icons, formation-icons, prestations-icons, navigation, testimonials (icônes et photos du projet)",
+      "lucide-react (bibliothèque d'icônes installée)",
+      "design/section hero, prestations, a propos, formation, guides, temoignages, faq, cta + footer, massage, soins, epilations (maquettes de section du projet)",
+      "src/components/landing/floating-actions.tsx (actions flottantes)"
+    ],
+    "assetActions": [
+      {
+        "asset": "design/sbj-logo.png",
+        "action": "protect",
+        "reason": "Logo officiel vérifié, la contrainte du brief impose de le préserver"
+      },
+      {
+        "asset": "Palette forest, cream, sand et gold de design-system.html",
+        "action": "protect",
+        "reason": "Identité existante explicitement verrouillée par le brief. Seuls les rôles de deux teintes changent pour l'accessibilité (texte atténué, anneau de focus), les valeurs restent intactes"
+      },
+      {
+        "asset": "Bodoni Moda Variable et Manrope Variable",
+        "action": "protect",
+        "reason": "Typographies déjà installées et définies dans le design system, à préserver selon le brief"
+      },
+      {
+        "asset": "EmbossedCta (dark, light, gold)",
+        "action": "preserve",
+        "reason": "Traitement de CTA propre à la marque et déjà câblé. On garde sa forme, on fiabilise seulement ses états hover, focus et pressé"
+      },
+      {
+        "asset": "GoldDivider et SectionEyebrow (ornements lotus et filet or)",
+        "action": "evolve",
+        "reason": "Signature existante, mais répétée en tête de chaque section elle se dilue. On réduit son usage aux transitions clés au lieu de la retirer"
+      },
+      {
+        "asset": "Maquettes de section dans /design",
+        "action": "preserve",
+        "reason": "Le brief en fait la base de composition desktop et mobile. Les références sélectionnées n'en affinent que le rythme et la densité"
+      },
+      {
+        "asset": "Dégradé or métallique",
+        "action": "preserve",
+        "reason": "Traitement de marque existant, réservé au CTA gold et aux ornements, jamais aux fonds de section"
+      },
+      {
+        "asset": "Icônes PNG du projet et lucide-react",
+        "action": "preserve",
+        "reason": "Système d'icônes établi : PNG ornementaux pour les prestations, lucide pour les contrôles fonctionnels"
+      },
+      {
+        "asset": "Photos de témoignages et avis existants",
+        "action": "preserve",
+        "reason": "Seule preuve sociale vérifiée. Aucun avis ne doit être ajouté ou inventé"
+      }
+    ],
+    "lockedDecisions": [
+      "Palette : forest 950 #061c17, 900 #082b23, 800 #0d3a2f, 700 #185343, 100 #dbe7df ; cream 50 #fff9ec, 100 #f7ead3, 200 #ead5ac ; sand 300 #d9c7ad ; gold 300 #f4df86, 500 #d4af37, 700 #8a6813 ; encre #14221e ; atténué #66736d",
+      "Bodoni Moda Variable pour les titres, Manrope Variable pour le texte courant et l'interface (remplace le tirage aléatoire, l'identité existante prime)",
+      "Logo design/sbj-logo.png inchangé",
+      "Rayons 8, 14, 24 px et pilule ; échelle d'espacement 4, 8, 12, 16, 24, 32, 48, 64, 96, 128 px",
+      "CTA embossés à bordure or, libellés en majuscules espacées",
+      "Stack TanStack Start, Tailwind et shadcn ; structure des routes inchangée",
+      "Copy en français ; aucun témoignage, certification, chiffre ou affiliation inventé"
+    ],
+    "assumptions": [
+      "Les références sélectionnées guident le rythme, la densité, les surfaces et le mouvement, pas l'identité : leurs couleurs (jaune, orange, noir pur) et leurs polices sont remplacées par celles de la marque",
+      "Le site n'a pas besoin d'un thème sombre complet : les sections forest sont des surfaces sombres dans un thème clair, pas un mode dark",
+      "Contrainte d'accessibilité : l'atténué existant #66736d n'atteint que 4.17:1 sur le crème #f7ead3 et 3.45:1 sur cream 200. Le rôle textMuted n'est donc pas verrouillé ; le runtime dérive une variante plus foncée de la même teinte vert-gris. #66736d reste permis pour les textes de 18 px et plus ou pour le texte secondaire posé sur #fff9ec",
+      "Contrainte d'accessibilité : gold 300 #f4df86 ne dépasse pas 1.3:1 sur les surfaces claires. L'anneau de focus du thème clair passe donc à forest 700 #185343, une couleur de marque existante. Gold 300 reste l'anneau de focus sur les blocs forêt, où il contraste fortement",
+      "Le texte or #8a6813 sur crème #f7ead3 atteint environ 4.3:1. Pour le texte courant on utilise forest 700 ou l'encre, et l'or 700 reste réservé aux libellés de 14 px gras ou plus et aux grands titres",
+      "La police monospace des références (labels en capitales) est rendue en Manrope majuscule à espacement 0.18em, pour ne pas ajouter une troisième famille"
+    ]
+  },
+  "creativeDirection": {
+    "summary": "Un luxe naturel calme : vert forêt profond, crème chaude et touches d'or, une typographie Bodoni éditoriale contre un Manrope net. Les sections alternent fonds crème et blocs forêt arrondis, avec des photos de soin cadrées comme des tirages. L'or signale l'action et le seuil, il n'est jamais du décor partout.",
+    "traits": [
+      {
+        "quality": "Éditorial et posé : grands titres Bodoni avec un mot en italique pour l'accent, comme dans les références FAQ et CTA",
+        "boundary": "pas une affiche de magazine de mode, pas de titres en capitales monumentales"
+      },
+      {
+        "quality": "Chaleureux et tactile : crème, papier, lumière de bougie, peau, serviettes",
+        "boundary": "pas le beige wellness générique sans contraste ni profondeur forest"
+      },
+      {
+        "quality": "Précieux mais sobre : l'or réservé aux CTA, aux ornements de seuil et aux états actifs",
+        "boundary": "pas de noir et or bling, pas de dégradés métalliques en fond de section"
+      },
+      {
+        "quality": "Rassurant et clair : questions, étapes et tarifs lisibles en un coup d'œil",
+        "boundary": "pas de jargon spa, pas de promesses de résultats"
+      }
+    ],
+    "productiveTension": "La rigueur de la Bodoni à fort contraste et des blocs forêt arrondis face à la douceur organique des photos de soin et du lotus : structure exigeante, contenu enveloppant.",
+    "signatureDevice": {
+      "description": "Le seuil or : un ornement lotus ou le filet GoldDivider, puis un titre Bodoni avec un mot en italique, au-dessus d'un bloc forêt à rayon 24 px posé sur le crème. On le retrouve sur le CTA final, les témoignages et le hero des pages service.",
+      "status": "existing",
+      "invariants": [
+        "L'ornement vient d'un PNG du projet (lotus ou divider-ornament), jamais d'un SVG improvisé",
+        "Un seul mot ou une seule expression en italique Bodoni par titre de seuil",
+        "Le bloc forêt (#082b23 à #0d3a2f) arrondi à 24 px laisse une marge crème visible de 16 à 32 px autour",
+        "L'or apparaît en filet de 1 px ou en ornement, jamais en aplat de fond",
+        "Trois sections au plus portent l'ornement lotus sur la landing"
+      ]
+    },
+    "restraint": "Une section sur deux au plus ouvre avec l'ornement lotus ou le GoldDivider. Les autres ouvrent avec un simple label en petites capitales. Les cartes restent crème ou blanches sur fond crème, et forêt sur fond forêt : jamais une couleur par carte.",
+    "avoid": [
+      "Répéter le SectionEyebrow lotus en tête de chaque section",
+      "Fonds dégradés or ou forêt-or",
+      "Cartes multicolores à la manière de la référence services pastel",
+      "Icônes dessinées à la main en SVG",
+      "Capitales monumentales de type Archivo Black ou Bebas",
+      "Témoignages, logos clients ou chiffres inventés",
+      "transition: all",
+      "Texte or 700 ou atténué #66736d en petit corps sur crème",
+      "Anneau de focus or clair sur fond clair"
+    ]
+  },
+  "colorPalette": [
+    {
+      "name": "Light Canvas",
+      "value": "#F7EAD3",
+      "usage": "Dominant. canvas token in the light theme."
+    },
+    {
+      "name": "Light Surface",
+      "value": "#FFF9EC",
+      "usage": "Dominant. surface token in the light theme."
+    },
+    {
+      "name": "Light Surface alt",
+      "value": "#EAD5AC",
+      "usage": "Supporting. surface alt token in the light theme."
+    },
+    {
+      "name": "Light Text",
+      "value": "#14221E",
+      "usage": "Semantic. text token in the light theme."
+    },
+    {
+      "name": "Light Text muted",
+      "value": "#45504C",
+      "usage": "Semantic. text muted token in the light theme."
+    },
+    {
+      "name": "Light Divider",
+      "value": "#B8C9C3",
+      "usage": "Semantic. divider token in the light theme."
+    },
+    {
+      "name": "Light Control border",
+      "value": "#5B6E67",
+      "usage": "Semantic. control border token in the light theme."
+    },
+    {
+      "name": "Light Accent",
+      "value": "#D4AF37",
+      "usage": "Sparse accent. accent token in the light theme."
+    },
+    {
+      "name": "Light Accent hover",
+      "value": "#BD9913",
+      "usage": "Semantic. accent hover token in the light theme."
+    },
+    {
+      "name": "Light On accent",
+      "value": "#14221E",
+      "usage": "Semantic. on accent token in the light theme."
+    },
+    {
+      "name": "Light Accent text",
+      "value": "#524000",
+      "usage": "Sparse accent. accent text token in the light theme."
+    },
+    {
+      "name": "Light Focus ring",
+      "value": "#185343",
+      "usage": "Semantic. focus ring token in the light theme."
+    }
+  ],
+  "typefaces": [
+    {
+      "family": "Bodoni Moda Variable",
+      "source": "@fontsource-variable/bodoni-moda (installé, fichiers latin wght normal et italique, OFL)",
+      "roles": [
+        "titres de section et hero",
+        "italique d'accent dans les titres",
+        "questions de FAQ",
+        "noms des prestations et des guides",
+        "citations des témoignages"
+      ],
+      "weights": [
+        400,
+        500,
+        600,
+        700
+      ]
+    },
+    {
+      "family": "Manrope Variable",
+      "source": "@fontsource-variable/manrope (installé, latin wght, OFL)",
+      "roles": [
+        "texte courant",
+        "labels en petites capitales espacées de 0.18em",
+        "boutons et CTA embossés",
+        "navigation",
+        "champs de formulaire",
+        "métadonnées (durée, tarif, niveau)"
+      ],
+      "weights": [
+        400,
+        500,
+        600,
+        700,
+        800
+      ]
+    }
+  ],
+  "interfaceDirection": "Rythme vertical de 96 à 128 px entre sections sur desktop, 64 à 72 px sur mobile ; 48 px entre le titre et le contenu, 24 px dans les groupes. Le contenu tient sur 1200 à 1280 px, la prose sur 60 à 68 caractères et les titres centrés sur 760 px. Les surfaces suivent la référence : canvas crème #f7ead3, cartes #fff9ec ou blanches à rayon 14 px, panneaux d'aide cream 200 à rayon 14 px (comme le bloc « Not sure where to begin » de la FAQ), grands blocs forêt à rayon 24 px insérés dans le crème pour les témoignages, le CTA final et le footer. Cela donne l'alternance clair, clair, sombre, clair, sombre des références. Le texte secondaire sur cream 100 et cream 200 utilise le rôle textMuted dérivé (plus foncé que #66736d) ; sur forêt, il utilise cream 100 à 78 % d'opacité visuelle, rendu en couleur opaque. Une ombre douce unique (shadow-soft) sur les cartes média, pas de bordure en plus ; les bordures or à 38 % restent réservées aux CTA et à la carte active. Les cartes ne regroupent que des unités comparables ou interactives : prestations avec photo, étiquette pilule et lien ; guides ; témoignages avec portrait ; questions de FAQ ; étapes de formation. La prose d'À propos reste nue à côté de la photo cadrée. Les cartes média suivent la référence expertise : photo pleine hauteur, étiquette pilule crème ou or 300 en bas à gauche, panneau texte #fff9ec en bas avec un titre Bodoni de 24 à 28 px. Sur la carte prestation, le hover remonte le panneau de 6 px et révèle un lien. Contrôles : CTA embossé primaire (dark sur crème, gold sur forêt) de 52 px de haut ; secondaire en pilule crème bordée ; contrôles ronds de 44 px (flèches de carrousel, plus et moins de FAQ) en fond cream 200. États : hover avec bordure or #e5bd42 et ombre élevée, pressé en translateY(1px) avec ombre réduite, focus en anneau de 3 px décalé de 4 px (forest 700 #185343 sur les surfaces claires, gold 300 #f4df86 sur les blocs forêt), actif en fond forest 900 avec texte crème. Icônes : PNG ornementaux du projet pour les catégories, lucide-react en trait de 1.5 px pour les flèches, le plus et moins, le téléphone et la fermeture.",
+  "imageDirection": {
+    "summary": "Les photos de soin et de transmission sont les héroïnes : lumière chaude et naturelle, matières (serviettes, huile, fleurs de frangipanier, bois, plantes), Sabrina au travail. Chaque image est cadrée comme un tirage dans un cadre arrondi, jamais en fond plein écran derrière du texte, sauf pour le hero.",
+    "subjects": [
+      "Sabrina dans son espace de soin (photo existante)",
+      "Mains en geste de massage, huile, pierres et serviettes",
+      "Rituels du visage et matières cosmétiques",
+      "Épilation dans un cadre propre et lumineux, sans gros plan clinique",
+      "Sabrina qui transmet une technique à un groupe en formation (photo existante)",
+      "Les trois guides Joie d'Être en objet (couvertures existantes)",
+      "Serviettes, frangipanier et bougie (photo existante)",
+      "Portraits des témoignages existants uniquement"
+    ],
+    "treatment": "Étalonnage chaud, hautes lumières crème, ombres tirées vers le vert forêt. Cadres arrondis à 14 px pour les cartes et 24 px pour les grands médias. Ratio 4:5 pour les portraits, 3:2 ou 16:10 pour les scènes. Aucune image ne porte un voile coloré supérieur à 30 % ; quand du texte se pose dessus, il est dans un panneau crème.",
+    "avoid": [
+      "Photos stock froides et bleutées ou décor de spa générique",
+      "Galets empilés et orchidées clichés",
+      "Visages générés présentés comme de vraies clientes",
+      "Diagrammes ou illustrations SVG à la place des photos",
+      "Gros plans cliniques d'épilation",
+      "Image de fond plein écran avec texte sans panneau, sauf dans le hero"
+    ]
+  },
+  "motionDirection": {
+    "summary": "Un mouvement qui respire, comme un geste de soin : entrées lentes et enveloppantes, révélations des photos à travers leur cadre, retours d'interaction nets et courts. Tout se joue une seule fois, en natif CSS, Web Animations et IntersectionObserver, avec un état final visible par défaut.",
+    "principles": [
+      "Entrée du hero au chargement : le logo et le label apparaissent, puis le titre Bodoni ligne par ligne et le CTA ; titre et média se répondent en opacité 0 à 1 et translateY 16 à 0 px avec 80 ms de décalage entre lignes (240 ms au total) ; 600-750ms ; ease-out doux cubic-bezier(0.22, 1, 0.36, 1)",
+      "Révélation des photos au scroll (À propos, Formation) quand le groupe image approche du viewport (IntersectionObserver threshold 0, rootMargin bas positif, une seule fois) ; la photo glisse dans son cadre fixe (scale 1.06 à 1, opacité 0.6 à 1) tandis que le texte voisin suit à 80 ms ; 650-800ms ; ease-out ample",
+      "Séquence des cartes Prestations et Guides au scroll, une fois par groupe ; les cartes d'une même rangée entrent l'une après l'autre en opacité et translateY 20 à 0 px, 70 ms d'écart et 240 ms de décalage maximum, pour lire la collection comme un ensemble ; 500-600ms ; ease-out",
+      "Arrivée des blocs forêt (Témoignages, CTA final) à l'entrée du bloc ; le panneau arrondi passe de translateY 24 px à 0 et d'opacité 0 à 1, puis le titre et l'ornement or suivent 100 ms après ; 550-700ms ; ease-out doux",
+      "Retour d'interaction des CTA embossés et boutons ronds au hover, au focus et à l'appui ; la bordure or et l'ombre s'élèvent au hover, translateY 1 px à l'appui ; 140-200ms ; ease-out net",
+      "Ouverture de la FAQ au clic ou au clavier sur la question ; la réponse se déplie en grid-template-rows 0fr à 1fr avec fondu, et l'icône plus pivote en moins ; 220-280ms ; ease-in-out",
+      "Carte prestation au hover ou au focus-within ; le panneau texte monte de 6 px et le lien apparaît, le lien restant toujours visible au clavier et sur mobile ; 180-240ms ; ease-out",
+      "Navigation et actions flottantes au scroll et au clic ; l'état actif et l'apparition des actions flottantes se font en opacité et translateY 8 px, sans transform sur les ancêtres des éléments fixes ; 160-220ms ; ease-out",
+      "Mouvement réduit (prefers-reduced-motion) dès le chargement et en cours de lecture : toutes les animations possédées sont annulées, les observers déconnectés, les états finaux affichés immédiatement ; 0ms ; aucune"
+    ],
+    "avoid": [
+      "transition: all",
+      "Entrées en scale depuis zéro",
+      "Information visible seulement au hover",
+      "Le même fade-up appliqué à chaque section",
+      "Classe globale opacity:0 ou masquage d'éléments déjà visibles au chargement",
+      "Révélations qui se rejouent en sortie, au changement de direction ou au redimensionnement",
+      "Scroll-jacking, flottement perpétuel ou parallaxe lourde",
+      "Animations de blur, de filter ou de grands clip-path",
+      "Transforms sur les ancêtres des éléments sticky ou fixed"
+    ]
+  },
+  "voice": {
+    "summary": "Français chaleureux et précis, au vouvoiement, avec la voix d'une praticienne qui accueille et transmet. Phrases courtes, verbes concrets (masser, apaiser, apprendre, pratiquer), une image sensorielle par paragraphe au plus. Les CTA disent l'action : « Réserver un soin », « Découvrir la formation », « Voir le guide ». Les informations pratiques (durée, déroulé, pour qui) passent avant la poésie.",
+    "avoid": [
+      "Superlatifs creux (« le meilleur », « unique », « révolutionnaire »)",
+      "Promesses de résultats thérapeutiques ou médicaux",
+      "Jargon spa en anglais (« glow », « self-care journey »)",
+      "Certifications, chiffres ou avis non vérifiés",
+      "Tutoiement",
+      "Points d'exclamation en série"
+    ]
+  }
+}

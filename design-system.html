@@ -1,0 +1,1482 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Design system de Joie d'Être par Sabrina, construit à partir des maquettes de la landing page."
+    />
+    <title>Design System | Joie d'Être par Sabrina</title>
+    <style>
+      @font-face {
+        font-family: "Bodoni Moda Variable";
+        src: url("./node_modules/@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-normal.woff2")
+          format("woff2");
+        font-style: normal;
+        font-weight: 400 900;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Bodoni Moda Variable";
+        src: url("./node_modules/@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-italic.woff2")
+          format("woff2");
+        font-style: italic;
+        font-weight: 400 900;
+        font-display: swap;
+      }
+
+      @font-face {
+        font-family: "Manrope Variable";
+        src: url("./node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2")
+          format("woff2");
+        font-style: normal;
+        font-weight: 200 800;
+        font-display: swap;
+      }
+
+      :root {
+        --forest-950: #061c17;
+        --forest-900: #082b23;
+        --forest-800: #0d3a2f;
+        --forest-700: #185343;
+        --forest-100: #dbe7df;
+        --cream-50: #fff9ec;
+        --cream-100: #f7ead3;
+        --cream-200: #ead5ac;
+        --sand-300: #d9c7ad;
+        --gold-300: #f4df86;
+        --gold-500: #d4af37;
+        --gold-700: #8a6813;
+        --gold-metallic: linear-gradient(135deg, #8a6813 0%, #f4df86 34%, #d4af37 64%, #9b7415 100%);
+        --ink: #14221e;
+        --muted: #66736d;
+        --white: #fff9ec;
+        --border-light: rgb(212 175 55 / 0.38);
+        --border-dark: rgb(244 223 134 / 0.42);
+        --shadow-soft: 0 24px 70px rgb(62 45 22 / 0.11);
+        --shadow-dark: 0 24px 70px rgb(0 0 0 / 0.24);
+        --font-display: "Bodoni Moda Variable", "Bodoni Moda", "Iowan Old Style", Georgia, serif;
+        --font-body: "Manrope Variable", Manrope, "Avenir Next", sans-serif;
+        --radius-sm: 8px;
+        --radius-md: 14px;
+        --radius-lg: 24px;
+        --radius-pill: 999px;
+        --space-1: 4px;
+        --space-2: 8px;
+        --space-3: 12px;
+        --space-4: 16px;
+        --space-5: 24px;
+        --space-6: 32px;
+        --space-7: 48px;
+        --space-8: 64px;
+        --space-9: 96px;
+        --space-10: 128px;
+        color-scheme: light;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--cream-100);
+        color: var(--ink);
+        font-family: var(--font-body);
+        font-size: 16px;
+        line-height: 1.6;
+        text-rendering: optimizeLegibility;
+      }
+
+      img {
+        display: block;
+        max-width: 100%;
+      }
+
+      button,
+      input,
+      textarea {
+        font: inherit;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      :focus-visible {
+        outline: 3px solid var(--gold-300);
+        outline-offset: 4px;
+      }
+
+      .shell {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        min-height: 100dvh;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        height: 100dvh;
+        overflow-y: auto;
+        padding: 34px 28px;
+        border-right: 1px solid var(--border-dark);
+        background:
+          radial-gradient(circle at 0 0, rgb(29 84 65 / 0.62), transparent 42%),
+          var(--forest-950);
+        color: var(--cream-100);
+        min-width: 0;
+        max-width: 100vw;
+      }
+
+      .sidebar-logo {
+        width: 202px;
+        margin: 0 auto 32px;
+      }
+
+      .sidebar-kicker,
+      .eyebrow,
+      .token-label {
+        margin: 0;
+        color: var(--gold-700);
+        font-size: 11px;
+        font-weight: 650;
+        letter-spacing: 0.18em;
+        line-height: 1.35;
+        text-transform: uppercase;
+      }
+
+      .sidebar h1 {
+        max-width: 10ch;
+        margin: 10px 0 10px;
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 400;
+        line-height: 1.02;
+      }
+
+      .sidebar .sidebar-kicker,
+      .hero .eyebrow,
+      .surface-dark .token-label {
+        color: var(--gold-300);
+      }
+
+      .sidebar-copy {
+        margin: 0 0 28px;
+        color: rgb(255 253 248 / 0.66);
+        font-size: 13px;
+        line-height: 1.55;
+      }
+
+      .sidebar nav {
+        display: grid;
+        gap: 3px;
+        min-width: 0;
+        max-width: 100%;
+      }
+
+      .sidebar nav a {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        min-height: 42px;
+        padding: 8px 12px;
+        border-radius: var(--radius-sm);
+        color: rgb(255 253 248 / 0.72);
+        font-size: 13px;
+        text-decoration: none;
+        transition:
+          color 180ms ease,
+          background-color 180ms ease,
+          transform 180ms ease;
+      }
+
+      .sidebar nav a::after {
+        content: attr(data-index);
+        color: rgb(225 187 114 / 0.55);
+        font-size: 10px;
+        letter-spacing: 0.08em;
+      }
+
+      .sidebar nav a:hover {
+        color: var(--cream-50);
+        background: rgb(255 255 255 / 0.07);
+        transform: translateX(2px);
+      }
+
+      main {
+        min-width: 0;
+      }
+
+      .hero {
+        position: relative;
+        isolation: isolate;
+        min-height: 700px;
+        overflow: hidden;
+        display: grid;
+        align-items: end;
+        padding: clamp(36px, 7vw, 96px);
+        background: var(--forest-950);
+        color: var(--cream-50);
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -2;
+        background:
+          linear-gradient(90deg, rgb(5 28 23 / 0.96) 0%, rgb(5 28 23 / 0.72) 44%, rgb(5 28 23 / 0.18) 75%),
+          url("./design/section hero/ChatGPT Image 1 août 2026, 15_34_49.png") center / cover;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        background: linear-gradient(180deg, transparent 58%, rgb(5 28 23 / 0.78));
+        pointer-events: none;
+      }
+
+      .hero-content {
+        max-width: 700px;
+      }
+
+      .hero h2 {
+        max-width: 11ch;
+        margin: 18px 0 24px;
+        font-family: var(--font-display);
+        font-size: clamp(54px, 7vw, 102px);
+        font-weight: 400;
+        letter-spacing: -0.04em;
+        line-height: 0.93;
+      }
+
+      .hero h2 em,
+      .display em {
+        color: var(--gold-300);
+        font-weight: inherit;
+      }
+
+      .hero p:not(.eyebrow) {
+        max-width: 56ch;
+        margin: 0;
+        color: rgb(255 253 248 / 0.78);
+        font-size: 18px;
+      }
+
+      .dial-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        margin-top: 30px;
+      }
+
+      .dial {
+        padding: 9px 13px;
+        border: 1px solid rgb(225 187 114 / 0.35);
+        border-radius: var(--radius-pill);
+        background: rgb(5 28 23 / 0.58);
+        color: var(--cream-100);
+        font-size: 12px;
+        letter-spacing: 0.04em;
+        backdrop-filter: blur(12px);
+      }
+
+      .section {
+        padding: clamp(72px, 9vw, 132px) clamp(24px, 7vw, 96px);
+      }
+
+      .section + .section {
+        border-top: 1px solid rgb(20 34 30 / 0.09);
+      }
+
+      .section-inner {
+        width: 100%;
+        min-width: 0;
+        max-width: 1280px;
+        margin: 0 auto;
+      }
+
+      .section-heading {
+        max-width: 760px;
+        margin-bottom: 52px;
+      }
+
+      .section-heading h2,
+      .display {
+        margin: 12px 0 18px;
+        font-family: var(--font-display);
+        font-size: clamp(42px, 5vw, 70px);
+        font-weight: 400;
+        letter-spacing: -0.035em;
+        line-height: 1;
+      }
+
+      .section-heading p {
+        max-width: 62ch;
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .section-heading .eyebrow {
+        color: var(--gold-700);
+      }
+
+      .grid {
+        display: grid;
+        gap: 20px;
+      }
+
+      .grid > * {
+        min-width: 0;
+      }
+
+      .grid-2 {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .grid-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .panel {
+        width: 100%;
+        min-width: 0;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        background: rgb(255 253 248 / 0.68);
+        box-shadow: 0 1px 0 rgb(255 255 255 / 0.9) inset;
+      }
+
+      .panel-pad {
+        padding: 28px;
+      }
+
+      .palette-card {
+        overflow: hidden;
+      }
+
+      .swatch {
+        min-height: 150px;
+        padding: 18px;
+        display: flex;
+        align-items: end;
+        justify-content: space-between;
+        color: var(--cream-50);
+      }
+
+      .swatch-light {
+        color: var(--ink);
+      }
+
+      .swatch strong {
+        font-size: 14px;
+      }
+
+      .swatch code,
+      code {
+        font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+        font-size: 11px;
+      }
+
+      .palette-meta {
+        padding: 18px;
+      }
+
+      .palette-meta p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .color-chips {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        overflow: hidden;
+        border-radius: var(--radius-sm);
+      }
+
+      .color-chips span {
+        min-height: 50px;
+      }
+
+      .type-stack {
+        display: grid;
+        gap: 20px;
+      }
+
+      .type-specimen {
+        padding: clamp(24px, 4vw, 48px);
+      }
+
+      .type-specimen p {
+        margin: 0;
+      }
+
+      .type-display {
+        max-width: 16ch;
+        margin-top: 12px !important;
+        font-family: var(--font-display);
+        font-size: clamp(48px, 7vw, 92px);
+        letter-spacing: -0.045em;
+        line-height: 0.96;
+      }
+
+      .type-body {
+        max-width: 62ch;
+        margin-top: 16px !important;
+        font-size: 18px;
+        line-height: 1.65;
+      }
+
+      .type-caption {
+        margin-top: 16px !important;
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .scale-list {
+        display: grid;
+        gap: 18px;
+      }
+
+      .scale-line {
+        display: grid;
+        grid-template-columns: 100px 1fr;
+        align-items: baseline;
+        gap: 20px;
+        padding-bottom: 18px;
+        border-bottom: 1px solid rgb(20 34 30 / 0.1);
+      }
+
+      .scale-line:last-child {
+        border-bottom: 0;
+      }
+
+      .scale-line code {
+        color: var(--gold-700);
+      }
+
+      .spacing-demo {
+        display: flex;
+        align-items: end;
+        gap: 12px;
+        min-height: 150px;
+        overflow-x: auto;
+      }
+
+      .space-block {
+        flex: 0 0 auto;
+        display: grid;
+        place-items: center;
+        border: 1px solid var(--gold-500);
+        border-radius: 4px;
+        background: rgb(212 175 55 / 0.16);
+        color: var(--gold-700);
+        font-size: 10px;
+      }
+
+      .radius-card {
+        min-height: 150px;
+        padding: 18px;
+        display: flex;
+        align-items: end;
+        border: 1px solid var(--border-light);
+        background: var(--cream-50);
+      }
+
+      .surface {
+        position: relative;
+        overflow: hidden;
+        min-height: 360px;
+        padding: 42px;
+        border-radius: var(--radius-lg);
+      }
+
+      .surface h3 {
+        max-width: 9ch;
+        margin: 14px 0;
+        font-family: var(--font-display);
+        font-size: 48px;
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .surface p:last-child {
+        max-width: 42ch;
+        margin: 0;
+      }
+
+      .surface-light {
+        border: 1px solid var(--border-light);
+        background:
+          radial-gradient(circle at 85% 0, rgb(212 175 55 / 0.14), transparent 36%),
+          var(--cream-50);
+        color: var(--ink);
+      }
+
+      .surface-dark {
+        border: 1px solid var(--border-dark);
+        background:
+          radial-gradient(circle at 100% 40%, rgb(24 83 67 / 0.86), transparent 42%),
+          var(--forest-950);
+        color: var(--cream-50);
+      }
+
+      .surface-dark p:last-child {
+        color: rgb(255 253 248 / 0.7);
+      }
+
+      .button-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        align-items: center;
+      }
+
+      .button {
+        min-height: 50px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 13px 22px;
+        border: 1px solid transparent;
+        border-radius: var(--radius-sm);
+        font-size: 12px;
+        font-weight: 700;
+        letter-spacing: 0.13em;
+        line-height: 1;
+        text-decoration: none;
+        text-transform: uppercase;
+        white-space: nowrap;
+        box-shadow:
+          inset 0 1px 0 rgb(255 255 255 / 0.28),
+          inset 0 -1px 0 rgb(6 28 23 / 0.18),
+          0 3px 0 rgb(6 28 23 / 0.28),
+          0 7px 14px rgb(6 28 23 / 0.14);
+        transition:
+          transform 140ms cubic-bezier(0.23, 1, 0.32, 1),
+          box-shadow 140ms cubic-bezier(0.23, 1, 0.32, 1),
+          background-color 140ms ease,
+          border-color 140ms ease,
+          color 140ms ease,
+          filter 140ms ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .button:hover:not(:active) {
+          box-shadow:
+            inset 0 1px 0 rgb(255 255 255 / 0.34),
+            inset 0 -1px 0 rgb(6 28 23 / 0.16),
+            0 4px 0 rgb(6 28 23 / 0.28),
+            0 9px 18px rgb(6 28 23 / 0.16);
+        }
+      }
+
+      .button:active {
+        transform: translateY(2px) scale(0.97);
+        box-shadow:
+          inset 0 1px 2px rgb(6 28 23 / 0.16),
+          0 1px 0 rgb(6 28 23 / 0.24),
+          0 3px 7px rgb(6 28 23 / 0.12);
+      }
+
+      .button-primary {
+        border-color: var(--forest-900);
+        background: linear-gradient(180deg, var(--forest-700), var(--forest-900));
+        color: var(--cream-50);
+      }
+
+      .button-primary:hover {
+        filter: brightness(1.06);
+      }
+
+      .button-gold {
+        border-color: var(--gold-500);
+        background: var(--gold-metallic);
+        color: var(--forest-950);
+      }
+
+      .button-gold:hover {
+        filter: brightness(1.05);
+      }
+
+      .button-outline {
+        border-color: var(--gold-500);
+        background: linear-gradient(180deg, rgb(255 255 255 / 0.32), rgb(255 255 255 / 0.05));
+        color: var(--forest-900);
+      }
+
+      .button-outline:hover {
+        background: rgb(212 175 55 / 0.1);
+      }
+
+      .button-dark-outline {
+        border-color: var(--border-dark);
+        background: rgb(6 28 23 / 0.35);
+        color: var(--cream-50);
+      }
+
+      .button[aria-disabled="true"] {
+        opacity: 0.46;
+        pointer-events: none;
+        box-shadow: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .button {
+          transition-duration: 0ms;
+        }
+
+        .button:hover,
+        .button:active {
+          transform: none;
+        }
+      }
+
+      .component-canvas {
+        padding: clamp(24px, 4vw, 44px);
+      }
+
+      .component-canvas h3 {
+        margin: 0 0 6px;
+        font-family: var(--font-display);
+        font-size: 32px;
+        font-weight: 400;
+      }
+
+      .component-description {
+        margin: 0 0 28px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .service-card {
+        overflow: hidden;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        background: var(--cream-50);
+        transition:
+          transform 220ms cubic-bezier(0.16, 1, 0.3, 1),
+          box-shadow 220ms ease;
+      }
+
+      .service-card:hover {
+        transform: translateY(-4px);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .service-card img {
+        width: 100%;
+        aspect-ratio: 4 / 3;
+        object-fit: cover;
+      }
+
+      .service-card-content {
+        padding: 24px;
+      }
+
+      .service-card h4 {
+        margin: 0 0 8px;
+        font-family: var(--font-display);
+        font-size: 30px;
+        font-weight: 400;
+      }
+
+      .service-card p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .quote-card {
+        position: relative;
+        padding: 30px;
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-md);
+        background: var(--cream-50);
+      }
+
+      .quote-mark {
+        color: var(--gold-500);
+        font-family: var(--font-display);
+        font-size: 54px;
+        line-height: 0.7;
+      }
+
+      .quote-card blockquote {
+        margin: 22px 0 24px;
+        font-family: var(--font-display);
+        font-size: 23px;
+        line-height: 1.35;
+      }
+
+      .quote-card footer {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+
+      .avatar {
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .quote-card footer strong,
+      .quote-card footer span {
+        display: block;
+      }
+
+      .quote-card footer span {
+        color: var(--muted);
+        font-size: 12px;
+      }
+
+      .accordion {
+        display: grid;
+        gap: 10px;
+      }
+
+      .accordion details {
+        border: 1px solid var(--border-light);
+        border-radius: var(--radius-sm);
+        background: var(--cream-50);
+      }
+
+      .accordion summary {
+        min-height: 62px;
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        padding: 14px 18px;
+        cursor: pointer;
+        font-family: var(--font-display);
+        font-size: 20px;
+        list-style: none;
+      }
+
+      .accordion summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .accordion summary::before {
+        content: "+";
+        width: 30px;
+        height: 30px;
+        flex: 0 0 30px;
+        display: grid;
+        place-items: center;
+        border-radius: 50%;
+        background: var(--forest-900);
+        color: var(--gold-300);
+        font-family: var(--font-body);
+        font-size: 20px;
+        line-height: 1;
+      }
+
+      .accordion details[open] summary::before {
+        content: "-";
+      }
+
+      .accordion details p {
+        margin: 0;
+        padding: 0 24px 22px 62px;
+        color: var(--muted);
+      }
+
+      .field {
+        display: grid;
+        gap: 8px;
+      }
+
+      .field label {
+        font-size: 13px;
+        font-weight: 650;
+      }
+
+      .field input,
+      .field textarea {
+        width: 100%;
+        border: 1px solid rgb(20 34 30 / 0.24);
+        border-radius: var(--radius-sm);
+        background: var(--cream-50);
+        color: var(--ink);
+        padding: 13px 14px;
+        outline: none;
+        transition:
+          border-color 160ms ease,
+          box-shadow 160ms ease;
+      }
+
+      .field input:focus,
+      .field textarea:focus {
+        border-color: var(--gold-500);
+        box-shadow: 0 0 0 3px rgb(187 129 47 / 0.14);
+      }
+
+      .field small {
+        color: var(--muted);
+      }
+
+      .image-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr 0.8fr;
+        grid-template-rows: 230px 230px;
+        gap: 16px;
+      }
+
+      .image-frame {
+        position: relative;
+        overflow: hidden;
+        border-radius: var(--radius-md);
+        background: var(--forest-900);
+      }
+
+      .image-frame:first-child {
+        grid-row: 1 / 3;
+      }
+
+      .image-frame:nth-child(2) {
+        grid-column: 2 / 4;
+      }
+
+      .image-frame img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+
+      .image-frame:hover img {
+        transform: scale(1.025);
+      }
+
+      .image-frame figcaption {
+        position: absolute;
+        inset: auto 14px 14px;
+        padding: 9px 11px;
+        border-radius: var(--radius-sm);
+        background: rgb(6 28 23 / 0.76);
+        color: var(--cream-50);
+        font-size: 11px;
+        backdrop-filter: blur(10px);
+      }
+
+      .rules {
+        display: grid;
+        gap: 0;
+      }
+
+      .rule {
+        display: grid;
+        grid-template-columns: minmax(160px, 0.42fr) 1fr;
+        gap: 32px;
+        padding: 24px 0;
+        border-bottom: 1px solid rgb(20 34 30 / 0.12);
+      }
+
+      .rule:last-child {
+        border-bottom: 0;
+      }
+
+      .rule h3 {
+        margin: 0;
+        font-size: 14px;
+      }
+
+      .rule p {
+        margin: 0;
+        color: var(--muted);
+      }
+
+      .blueprint {
+        width: 100%;
+        max-width: 100%;
+        overflow-x: auto;
+      }
+
+      table {
+        width: 100%;
+        min-width: 760px;
+        border-collapse: collapse;
+      }
+
+      th,
+      td {
+        padding: 17px 14px;
+        border-bottom: 1px solid rgb(20 34 30 / 0.12);
+        text-align: left;
+        vertical-align: top;
+      }
+
+      th {
+        color: var(--gold-700);
+        font-size: 10px;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+      }
+
+      td {
+        font-size: 14px;
+      }
+
+      td:first-child {
+        font-family: var(--font-display);
+        font-size: 20px;
+      }
+
+      .final-note {
+        padding: clamp(64px, 9vw, 120px) clamp(24px, 7vw, 96px);
+        background:
+          radial-gradient(circle at 90% 20%, rgb(24 83 67 / 0.74), transparent 38%),
+          var(--forest-950);
+        color: var(--cream-50);
+      }
+
+      .final-note-inner {
+        max-width: 920px;
+        margin: 0 auto;
+        text-align: center;
+      }
+
+      .final-note img {
+        width: min(460px, 84vw);
+        margin: 0 auto 34px;
+      }
+
+      .final-note h2 {
+        margin: 0 0 18px;
+        font-family: var(--font-display);
+        font-size: clamp(44px, 6vw, 74px);
+        font-weight: 400;
+        line-height: 1;
+      }
+
+      .final-note p {
+        max-width: 60ch;
+        margin: 0 auto;
+        color: rgb(255 253 248 / 0.7);
+      }
+
+      @media (max-width: 1100px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          position: relative;
+          height: auto;
+          padding: 24px;
+        }
+
+        .sidebar-logo {
+          width: 180px;
+          margin-left: 0;
+        }
+
+        .sidebar h1,
+        .sidebar-copy {
+          max-width: 600px;
+        }
+
+        .sidebar nav {
+          display: flex;
+          width: 100%;
+          overflow-x: auto;
+          padding-bottom: 6px;
+        }
+
+        .sidebar nav a {
+          flex: 0 0 auto;
+        }
+
+        .sidebar nav a::after {
+          display: none;
+        }
+
+        .grid-4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .grid-3 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+      }
+
+      @media (max-width: 760px) {
+        .hero {
+          min-height: 620px;
+          align-items: end;
+        }
+
+        .hero::before {
+          background:
+            linear-gradient(180deg, rgb(5 28 23 / 0.34), rgb(5 28 23 / 0.96) 72%),
+            url("./design/section hero/ChatGPT Image 1 août 2026, 15_34_49.png") 68% center / cover;
+        }
+
+        .hero h2 {
+          font-size: clamp(48px, 15vw, 68px);
+        }
+
+        .grid-2,
+        .grid-3,
+        .grid-4 {
+          grid-template-columns: 1fr;
+        }
+
+        .color-chips {
+          grid-template-columns: 1fr;
+        }
+
+        .color-chips span {
+          min-height: 34px;
+        }
+
+        .scale-line,
+        .rule {
+          grid-template-columns: 1fr;
+          gap: 8px;
+        }
+
+        .image-grid {
+          grid-template-columns: 1fr;
+          grid-template-rows: repeat(4, 280px);
+        }
+
+        .image-frame:first-child,
+        .image-frame:nth-child(2) {
+          grid-column: auto;
+          grid-row: auto;
+        }
+
+        .surface {
+          min-height: 300px;
+          padding: 28px;
+        }
+
+        .surface h3 {
+          font-size: 40px;
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        *,
+        *::before,
+        *::after {
+          scroll-behavior: auto !important;
+          transition-duration: 0.01ms !important;
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="shell">
+      <aside class="sidebar">
+        <img class="sidebar-logo" src="./design/sbj-logo.png" alt="Joie d'Être par Sabrina" />
+        <p class="sidebar-kicker">Design system 1.0</p>
+        <h1>Une identité tropicale, experte et humaine</h1>
+        <p class="sidebar-copy">
+          Référence commune pour concevoir la landing page sans perdre la personnalité présente dans les maquettes.
+        </p>
+        <nav aria-label="Sommaire du design system">
+          <a href="#direction" data-index="01">Direction</a>
+          <a href="#couleurs" data-index="02">Couleurs</a>
+          <a href="#typographie" data-index="03">Typographie</a>
+          <a href="#rythme" data-index="04">Rythme</a>
+          <a href="#surfaces" data-index="05">Surfaces</a>
+          <a href="#actions" data-index="06">Actions</a>
+          <a href="#composants" data-index="07">Composants</a>
+          <a href="#images" data-index="08">Images</a>
+          <a href="#regles" data-index="09">Règles</a>
+          <a href="#sections" data-index="10">Sections</a>
+        </nav>
+      </aside>
+
+      <main>
+        <header class="hero" id="direction">
+          <div class="hero-content">
+            <p class="eyebrow">Direction créative</p>
+            <h2>Le soin comme <em>art vivant</em></h2>
+            <p>
+              Une expression premium et chaleureuse où l'expertise française rencontre une nature tropicale généreuse.
+            </p>
+            <div class="dial-row" aria-label="Réglages de la direction visuelle">
+              <span class="dial">Variance 7/10</span>
+              <span class="dial">Mouvement 4/10</span>
+              <span class="dial">Densité 3/10</span>
+            </div>
+          </div>
+        </header>
+
+        <section class="section" id="couleurs">
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow">Fondations chromatiques</p>
+              <h2>Une palette ancrée dans la forêt</h2>
+              <p>
+                Le vert porte la confiance et l'expertise. Le crème apporte une respiration chaleureuse. L'or signe les moments précieux, sans devenir une surface dominante.
+              </p>
+            </div>
+
+            <div class="grid grid-4">
+              <article class="panel palette-card">
+                <div class="swatch" style="background:#061c17">
+                  <strong>Forêt nuit</strong><code>#061C17</code>
+                </div>
+                <div class="palette-meta">
+                  <p class="token-label">Surface immersive</p>
+                  <p>Hero, CTA final, footer.</p>
+                </div>
+              </article>
+              <article class="panel palette-card">
+                <div class="swatch" style="background:#0d3a2f">
+                  <strong>Forêt profonde</strong><code>#0D3A2F</code>
+                </div>
+                <div class="palette-meta">
+                  <p class="token-label">Action primaire</p>
+                  <p>Boutons, encarts, éléments actifs.</p>
+                </div>
+              </article>
+              <article class="panel palette-card">
+                <div class="swatch swatch-light" style="background:#f7ead3">
+                  <strong>Crème</strong><code>#F7EAD3</code>
+                </div>
+                <div class="palette-meta">
+                  <p class="token-label">Surface éditoriale</p>
+                  <p>Sections de lecture et cartes.</p>
+                </div>
+              </article>
+              <article class="panel palette-card">
+                <div class="swatch" style="background:var(--gold-metallic)">
+                  <strong>Or signature</strong><code>#D4AF37</code>
+                </div>
+                <div class="palette-meta">
+                  <p class="token-label">Accent unique</p>
+                  <p>Filets, mots clés, focus et détails.</p>
+                </div>
+              </article>
+            </div>
+
+            <div class="panel panel-pad" style="margin-top:20px">
+              <p class="token-label">Échelle complète</p>
+              <div class="color-chips" aria-label="Échelle de couleurs" style="margin-top:16px">
+                <span style="background:#061c17" title="Forêt 950"></span>
+                <span style="background:#082b23" title="Forêt 900"></span>
+                <span style="background:#185343" title="Forêt 700"></span>
+                <span style="background:#d4af37" title="Or 500"></span>
+                <span style="background:#f4df86" title="Or 300"></span>
+                <span style="background:#d9c7ad" title="Sable 300"></span>
+                <span style="background:#ead5ac" title="Crème 200"></span>
+                <span style="background:#f7ead3" title="Crème 100"></span>
+                <span style="background:#fff9ec" title="Crème 50"></span>
+                <span style="background:#14221e" title="Encre"></span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="typographie">
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow">Voix typographique</p>
+              <h2>Élégante dans les titres, directe dans le texte</h2>
+              <p>
+                Bodoni Moda donne aux titres une élégance éditoriale expressive. Manrope garde les contenus, la navigation et les interfaces nets et très lisibles.
+              </p>
+            </div>
+
+            <div class="type-stack">
+              <article class="panel type-specimen">
+                <p class="token-label">Display serif</p>
+                <p class="type-display">Prendre soin, <em style="color:var(--gold-500)">transmettre</em> avec justesse.</p>
+                <p class="type-caption">Bodoni Moda Variable. Graisses 400 à 600, avec italique réservé aux accents éditoriaux.</p>
+              </article>
+              <article class="panel type-specimen">
+                <p class="token-label">Corps et interface</p>
+                <p class="type-body">
+                  Chaque soin est guidé par une écoute attentive, une technique précise et le respect du rythme de chaque personne.
+                </p>
+                <p class="type-caption">Manrope Variable. 16 à 18 px, interligne 1.55 à 1.7, largeur maximale 65 caractères.</p>
+              </article>
+              <article class="panel panel-pad">
+                <div class="scale-list">
+                  <div class="scale-line"><code>Display XL</code><span style="font:400 64px/1 var(--font-display)">Joie d'Être</span></div>
+                  <div class="scale-line"><code>Heading L</code><span style="font:400 44px/1.05 var(--font-display)">Une approche humaine</span></div>
+                  <div class="scale-line"><code>Heading M</code><span style="font:400 30px/1.1 var(--font-display)">Soins du visage</span></div>
+                  <div class="scale-line"><code>Body L</code><span style="font-size:18px">Un accompagnement pensé avec attention.</span></div>
+                  <div class="scale-line"><code>Body</code><span style="font-size:16px">Expertise, écoute et résultats naturels.</span></div>
+                  <div class="scale-line"><code>Label</code><span class="token-label">Découvrir les formations</span></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="rythme">
+          <div class="section-inner">
+            <div class="section-heading">
+              <h2>Rythme, formes et profondeur</h2>
+              <p>
+                L'espace crée la sensation premium. Les courbes restent mesurées et les ombres ne servent qu'à détacher un élément interactif.
+              </p>
+            </div>
+
+            <div class="grid grid-2">
+              <article class="panel panel-pad">
+                <p class="token-label">Échelle d'espacement</p>
+                <div class="spacing-demo" style="margin-top:24px">
+                  <span class="space-block" style="width:16px;height:16px">4</span>
+                  <span class="space-block" style="width:24px;height:24px">8</span>
+                  <span class="space-block" style="width:32px;height:32px">12</span>
+                  <span class="space-block" style="width:48px;height:48px">16</span>
+                  <span class="space-block" style="width:64px;height:64px">24</span>
+                  <span class="space-block" style="width:86px;height:86px">32</span>
+                  <span class="space-block" style="width:112px;height:112px">48</span>
+                  <span class="space-block" style="width:140px;height:140px">64</span>
+                </div>
+              </article>
+              <article class="panel panel-pad">
+                <p class="token-label">Système de rayons</p>
+                <div class="grid grid-3" style="margin-top:24px">
+                  <div class="radius-card" style="border-radius:8px"><code>8 px<br />Actions</code></div>
+                  <div class="radius-card" style="border-radius:14px"><code>14 px<br />Cartes</code></div>
+                  <div class="radius-card" style="border-radius:24px"><code>24 px<br />Médias</code></div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="surfaces">
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow">Modes de surface</p>
+              <h2>Deux ambiances, une seule identité</h2>
+              <p>
+                La landing utilise le crème pour informer et le vert nuit pour immerger. Le changement de surface doit marquer une étape forte, pas chaque nouvelle section.
+              </p>
+            </div>
+            <div class="grid grid-2">
+              <article class="surface surface-light">
+                <p class="token-label">Mode éditorial</p>
+                <h3>Lire et comprendre</h3>
+                <p>Prestations, guides, témoignages, FAQ et contenus détaillés.</p>
+              </article>
+              <article class="surface surface-dark">
+                <p class="token-label">Mode immersif</p>
+                <h3>Ressentir la marque</h3>
+                <p>Hero, formation signature, CTA final et footer.</p>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="actions">
+          <div class="section-inner">
+            <div class="section-heading">
+              <h2>Actions claires et tactiles</h2>
+              <p>
+                Les libellés commencent par un verbe. Le bouton principal est vert sur crème ou or sur vert. Le relief reste léger et s'enfonce brièvement au clic.
+              </p>
+            </div>
+            <article class="panel component-canvas">
+              <div class="button-row">
+                <a class="button button-primary" href="#actions">Réserver un soin</a>
+                <a class="button button-gold" href="#actions">Découvrir les formations</a>
+                <a class="button button-outline" href="#actions">Explorer les guides</a>
+                <a class="button button-primary" aria-disabled="true" href="#actions">Indisponible</a>
+              </div>
+            </article>
+            <article class="surface surface-dark" style="margin-top:20px;min-height:auto">
+              <div class="button-row">
+                <a class="button button-gold" href="#actions">Contacter Sabrina</a>
+                <a class="button button-dark-outline" href="#actions">Voir le programme</a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="composants">
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow">Composants fondamentaux</p>
+              <h2>Des composants sobres, jamais génériques</h2>
+              <p>
+                Les composants shadcn servent de base technique. La typographie, la palette, les rayons et les états ci-dessous constituent leur apparence Joie d'Être.
+              </p>
+            </div>
+
+            <div class="grid grid-2">
+              <article class="panel component-canvas">
+                <h3>Carte prestation</h3>
+                <p class="component-description">Photo dominante, titre court, texte de deux lignes maximum.</p>
+                <div class="service-card">
+                  <img src="./design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (2).png" alt="Soin du visage dans une lumière tropicale" />
+                  <div class="service-card-content">
+                    <h4>Soins du visage</h4>
+                    <p>Des protocoles personnalisés pour purifier, hydrater et révéler l'éclat naturel.</p>
+                  </div>
+                </div>
+              </article>
+
+              <article class="panel component-canvas">
+                <h3>Témoignage</h3>
+                <p class="component-description">Citation courte, attribution crédible, photographie réelle.</p>
+                <div class="quote-card">
+                  <span class="quote-mark" aria-hidden="true">“</span>
+                  <blockquote>Une pédagogie précise et bienveillante qui m'a permis de gagner en confiance dans ma pratique.</blockquote>
+                  <footer>
+                    <img class="avatar" src="./design/section a propos/ChatGPT Image 24 août 2026, 00_23_41 1.png" alt="Portrait d'une participante" />
+                    <div><strong>Camille</strong><span>Praticienne bien-être</span></div>
+                  </footer>
+                </div>
+              </article>
+
+              <article class="panel component-canvas">
+                <h3>Accordéon FAQ</h3>
+                <p class="component-description">Une seule question ouverte, réponse concise et contrôle visible.</p>
+                <div class="accordion">
+                  <details open>
+                    <summary>À qui s'adressent les formations ?</summary>
+                    <p>Elles conviennent aux personnes qui débutent comme aux praticiennes souhaitant approfondir leur geste.</p>
+                  </details>
+                  <details>
+                    <summary>Les cours sont-ils disponibles en ligne ?</summary>
+                    <p>Le format de chaque parcours est indiqué sur sa page de présentation.</p>
+                  </details>
+                  <details>
+                    <summary>Comment réserver une prestation ?</summary>
+                    <p>Choisissez votre soin puis sélectionnez le créneau qui vous convient.</p>
+                  </details>
+                </div>
+              </article>
+
+              <article class="panel component-canvas">
+                <h3>Champ de formulaire</h3>
+                <p class="component-description">Libellé toujours visible, aide sous le champ, focus or accessible.</p>
+                <form class="grid" aria-label="Exemple de formulaire">
+                  <div class="field">
+                    <label for="email">Adresse e-mail</label>
+                    <input id="email" type="email" placeholder="vous@exemple.fr" />
+                    <small>Utilisée uniquement pour répondre à votre demande.</small>
+                  </div>
+                  <div class="field">
+                    <label for="message">Votre message</label>
+                    <textarea id="message" rows="4" placeholder="Comment Sabrina peut-elle vous accompagner ?"></textarea>
+                  </div>
+                  <div><button class="button button-primary" type="button">Envoyer la demande</button></div>
+                </form>
+              </article>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="images">
+          <div class="section-inner">
+            <div class="section-heading">
+              <h2>Photographie chaude et incarnée</h2>
+              <p>
+                Lumière naturelle dorée, gestes visibles, carnations réalistes, profondeur végétale et environnement de soin crédible. Les feuilles encadrent l'image sans recouvrir le sujet.
+              </p>
+            </div>
+            <div class="image-grid">
+              <figure class="image-frame">
+                <img src="./design/section a propos/ChatGPT Image 24 août 2026, 00_23_41 1.png" alt="Portrait de Sabrina dans son espace de soin" />
+                <figcaption>Portrait : regard hors champ, présence calme, environnement réel</figcaption>
+              </figure>
+              <figure class="image-frame">
+                <img src="./design/section formation/ChatGPT Image 24 août 2026, 15_27_21.png" alt="Sabrina transmettant une technique de massage à un groupe" />
+                <figcaption>Transmission : le geste et la relation restent lisibles</figcaption>
+              </figure>
+              <figure class="image-frame">
+                <img src="./design/section faq/ChatGPT Image 24 août 2026, 21_58_47.png" alt="Serviettes, fleur de frangipanier et bougie dans un espace de soin" />
+                <figcaption>Nature morte : texture, chaleur et profondeur</figcaption>
+              </figure>
+              <figure class="image-frame">
+                <img src="./design/section guides/ChatGPT Image 24 août 2026, 15_47_59.png" alt="Collection de trois guides Joie d'Être" />
+                <figcaption>Produit : fond transparent et ombre naturelle légère</figcaption>
+              </figure>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="regles">
+          <div class="section-inner">
+            <div class="section-heading">
+              <p class="eyebrow">Principes d'application</p>
+              <h2>Les règles qui gardent la marque cohérente</h2>
+            </div>
+            <div class="panel panel-pad rules">
+              <div class="rule"><h3>Accent</h3><p>L'or est le seul accent. Il souligne, encadre ou signale une action. Il ne remplit pas de grandes surfaces.</p></div>
+              <div class="rule"><h3>Végétation</h3><p>Deux zones végétales fortes maximum par section. Le centre doit rester disponible pour le contenu et la lecture.</p></div>
+              <div class="rule"><h3>Typographie</h3><p>Serif pour la marque, les titres et les citations. Sans serif pour tout ce qui informe, guide ou déclenche une action.</p></div>
+              <div class="rule"><h3>Surfaces</h3><p>Le crème organise les contenus. Le vert nuit crée les moments de marque. Éviter l'alternance systématique à chaque section.</p></div>
+              <div class="rule"><h3>Cartes</h3><p>Une carte existe seulement si elle regroupe un contenu autonome. Les listes simples utilisent l'espace et un séparateur discret.</p></div>
+              <div class="rule"><h3>Mouvement</h3><p>Transitions de 180 à 600 ms. Mouvement réservé au feedback, à la hiérarchie et aux entrées de sections clés.</p></div>
+              <div class="rule"><h3>Accessibilité</h3><p>Contraste AA minimum, focus visible, texte de 16 px minimum, interactions utilisables au clavier et mode mouvement réduit.</p></div>
+              <div class="rule"><h3>Responsive</h3><p>Sous 768 px, toutes les compositions asymétriques passent en une colonne. Les végétaux décoratifs sont réduits, jamais placés sur le texte.</p></div>
+            </div>
+          </div>
+        </section>
+
+        <section class="section" id="sections">
+          <div class="section-inner">
+            <div class="section-heading">
+              <h2>Plan visuel de la landing page</h2>
+              <p>
+                Chaque section conserve une fonction et une famille de composition distinctes pour éviter une succession de blocs identiques.
+              </p>
+            </div>
+            <div class="panel panel-pad blueprint">
+              <table>
+                <thead><tr><th>Section</th><th>Surface</th><th>Composition</th><th>Priorité</th></tr></thead>
+                <tbody>
+                  <tr><td>Hero</td><td>Forêt nuit et photo plein cadre</td><td>Message central dans une réserve visuelle</td><td>Réservation</td></tr>
+                  <tr><td>Prestations</td><td>Crème</td><td>Galerie de trois soins orientée image</td><td>Comprendre l'offre</td></tr>
+                  <tr><td>À propos</td><td>Crème</td><td>Portrait large et manifeste court</td><td>Créer la confiance</td></tr>
+                  <tr><td>Formation</td><td>Forêt profonde</td><td>Image de transmission et parcours regroupés</td><td>Présenter l'expertise</td></tr>
+                  <tr><td>Guides</td><td>Crème</td><td>Texte compact et collection produit</td><td>Explorer les ressources</td></tr>
+                  <tr><td>Témoignages</td><td>Crème</td><td>Carrousel ou duo de citations, pas trois cartes figées</td><td>Apporter une preuve</td></tr>
+                  <tr><td>FAQ</td><td>Crème</td><td>Accordéon principal et contact secondaire</td><td>Lever les freins</td></tr>
+                  <tr><td>CTA et footer</td><td>Forêt nuit</td><td>Invitation forte puis navigation de fin</td><td>Convertir et orienter</td></tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </section>
+
+        <footer class="final-note">
+          <div class="final-note-inner">
+            <img src="./design/sbj-logo.png" alt="Joie d'Être par Sabrina" />
+            <h2>Un cadre commun pour construire avec justesse</h2>
+            <p>
+              Ce document devient la source de vérité visuelle. Les prochains composants devront reprendre ses tokens, ses règles d'images et son rythme avant toute variation locale.
+            </p>
+          </div>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,46 @@
+{
+  "originalRequest": "Que penses-tu du site là jusqu'à présent?",
+  "subject": "Joie d'Être par Sabrina : praticienne bien-être (massages, soins, épilations) qui propose aussi des formations, des ateliers, de l'e-learning et des guides pratiques",
+  "pageType": "Revue de design et affinage d'un site existant en plusieurs pages (landing page d'accueil plus pages Massages, Soins et Épilation)",
+  "scope": "Auditer le site actuel (TanStack Start + Tailwind, src/routes et src/components) et proposer des améliorations ciblées de hiérarchie visuelle, de cohérence, de rythme, de conversion et d'animation. Le design system et le contenu existants sont conservés. Pas de refonte complète.",
+  "primaryGoal": "Donner un avis franc sur le site actuel et le faire passer à un niveau premium et cohérent, pour que les visiteurs réservent un soin ou s'inscrivent à une formation",
+  "audience": "Clientes et clients locaux qui cherchent des massages, soins ou épilations, et praticiens ou praticiennes en devenir intéressés par les formations et les guides",
+  "offer": "Soins bien-être réalisés par Sabrina dans son espace, plus transmission de son savoir-faire via formations, ateliers, e-learning et guides",
+  "primaryAction": "Réserver une prestation (action secondaire : découvrir ou rejoindre une formation)",
+  "creativeControl": "Retouches guidées par l'existant : affiner et rehausser l'identité et les maquettes actuelles plutôt que les remplacer",
+  "requiredContent": [
+    "Hero : présentation de Joie d'Être par Sabrina et accès direct à la réservation",
+    "Prestations : massages, soins et épilations, avec des liens vers leurs pages dédiées",
+    "À propos : Sabrina dans son espace de soin, son approche",
+    "Formation : Sabrina qui transmet une technique de massage à un groupe ; formations, ateliers, e-learning",
+    "Guides : trois guides Joie d'Être (massage relaxant, rituels du visage, pratique professionnelle)",
+    "Témoignages : uniquement les avis déjà présents dans le projet, sans en inventer",
+    "FAQ : questions avant de rejoindre une formation ou de découvrir les guides",
+    "CTA final et footer, avec les actions flottantes existantes",
+    "Pages de service Massages, Soins et Épilation, alignées sur le même langage visuel"
+  ],
+  "constraints": [
+    "Préserver la stack existante (TanStack Start, Tailwind, shadcn) et la structure des routes",
+    "Préserver la palette, la typographie et le logo existants",
+    "Garder les références de section dans /design (hero, prestations, à propos, formation, guides, témoignages, FAQ, CTA + footer, massage, soins, épilations) comme base de composition desktop et mobile",
+    "Ne pas inventer de témoignages, certifications, résultats ou affiliations",
+    "Copy en français"
+  ],
+  "brandInputs": [
+    "Couleurs (source : design-system.html et src/styles.css) : forest 950 #061c17, 900 #082b23, 800 #0d3a2f, 700 #185343 ; cream 50 #fff9ec, 100 #f7ead3, 200 #ead5ac ; sand #d9c7ad ; gold 300 #f4df86, 500 #d4af37, 700 #8a6813 ; dégradé or métallique ; encre #14221e ; texte atténué #66736d",
+    "Typographie (source : design-system.html) : Bodoni Moda Variable pour les titres, Manrope Variable pour le texte courant",
+    "Logo : design/sbj-logo.png",
+    "Style visuel : luxe naturel, vert forêt profond, crème et or métallique, ornements de section, CTA embossés, rayons 8, 14, 24 px et pilule, ombres douces"
+  ],
+  "assumptions": [
+    "La question est interprétée comme une demande d'audit de design suivie d'améliorations ciblées, puisque le mode Design est sélectionné",
+    "L'accueil est une landing page de plus de huit sections ; on garde sa séquence actuelle, sans ajouter de sections de remplissage",
+    "Les animations d'entrée et au scroll sont conservées ou ajoutées, avec respect de prefers-reduced-motion",
+    "Le contenu business existant (prestations, guides, formations) est considéré comme vérifié ; rien de nouveau n'est inventé"
+  ],
+  "unresolved": [
+    "Tarifs, durées et outil de réservation non vérifiés dans cette passe",
+    "Origine et nombre réel des témoignages à confirmer depuis le code"
+  ],
+  "explicitAnswers": []
+}

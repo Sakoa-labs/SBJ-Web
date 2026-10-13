@@ -1,0 +1,675 @@
+{
+  "version": 1,
+  "page": {
+    "title": "Joie d'Être par Sabrina | Massages, soins visage, épilation et formations",
+    "route": "/",
+    "description": "Massages, soins visage et épilation par Sabrina dans son espace de soin, plus des formations, des ateliers, de l'e-learning et des guides pratiques pour apprendre le massage bien-être."
+  },
+  "architecture": {
+    "contract": "Cette page aide une cliente locale à choisir un massage, un soin visage ou une épilation puis à réserver, et aide une future praticienne à comprendre l'offre de formation et de guides de Sabrina. Résultat attendu : plus de réservations de soins, et des inscriptions aux formations en action secondaire. Conversion principale : Réserver un soin.",
+    "mode": "persuade_convert",
+    "novelty": "medium",
+    "grid": "Grille de 12 colonnes, contenu de 1240 px max, gouttière de 24 px, marges latérales de 32 px en desktop, 24 px en tablette et 20 px en mobile. Les blocs forêt pleine largeur (témoignages, CTA, footer) sortent de la grille de contenu et gardent une marge crème de 24 px (desktop) ou 16 px (mobile) autour d'un rayon de 24 px.",
+    "signatureRule": "Tirée du hero creatiie et des blocs lexedge et stodio : un grand titre Bodoni centré ou ancré à gauche, avec un seul mot en italique, posé sur une surface pleine (photo du hero, bloc forêt arrondi de 24 px ou crème nu) et accompagné d'objets cartes flottants à rayon 14 px qui portent les liens. Le texte ne repose jamais directement sur une photo hors du hero.",
+    "rhythm": "Clair photo (hero), clair (prestations), sombre forêt (à propos), clair (approche formation), clair (parcours), clair cream 200 (guides), sombre bloc arrondi (témoignages), clair (FAQ), sombre bloc arrondi (CTA), sombre bloc arrondi (footer). Espacement de 112 px entre sections en desktop, 72 px en mobile ; l'ornement lotus n'apparaît que sur à propos, guides et CTA."
+  },
+  "navigation": [
+    {
+      "label": "Massage",
+      "target": "/massages"
+    },
+    {
+      "label": "Soins",
+      "target": "/soins"
+    },
+    {
+      "label": "Épilation",
+      "target": "/epilation"
+    },
+    {
+      "label": "Formation",
+      "target": "#formation"
+    },
+    {
+      "label": "Mes guides",
+      "target": "#guides"
+    },
+    {
+      "label": "Offrir",
+      "target": "#offrir"
+    },
+    {
+      "label": "Réserver",
+      "target": "#reserver"
+    }
+  ],
+  "navigationDesign": {
+    "layoutCase": "reference-navigation",
+    "layout": "Reprend l'en-tête existant (site-header.tsx) posé en transparence sur la photo du hero, à la manière du hero mobile creatiie où le nom de marque est centré en haut. Desktop : logo sbj-logo.png à gauche (hauteur 44 px), cinq liens Manrope 14 px en cream 50 au centre (Massage, Soins, Épilation, Formation, Mes guides), puis à droite le lien Offrir et le CTA embossé gold Réserver (44 px de haut). Après 80 px de scroll, l'en-tête passe en fond forest 950 opaque à 96 % avec un filet or de 1 px en bas. Mobile : logo centré comme dans la référence mobile, bouton menu rond de 44 px à droite qui ouvre le navigation-drawer existant.",
+    "behavior": [
+      "Au-delà de 80 px de scroll, fond forest 950, hauteur ramenée de 88 à 68 px, transition background-color et height de 200 ms en ease-out, sans transform sur l'en-tête sticky",
+      "Le lien de la section visible prend un soulignement or de 1 px (IntersectionObserver sur les sections, aria-current=true)",
+      "Le drawer mobile s'ouvre en translateX 100 % vers 0 en 260 ms, avec focus piégé, fermeture par Échap et retour du focus au bouton menu",
+      "Le CTA Réserver reste visible à toutes les largeurs"
+    ],
+    "transformation": {
+      "compact": "Moins de 768 px : logo centré, bouton menu à droite, CTA Réserver confié aux actions flottantes existantes en bas à droite ; les liens passent dans le drawer dans le même ordre, avec Réserver en premier bouton.",
+      "medium": "De 768 à 1100 px : logo à gauche, trois liens prestations visibles, Formation et Mes guides dans un menu Plus, CTA Réserver à droite.",
+      "expanded": "Plus de 1100 px : logo, cinq liens, Offrir et CTA Réserver sur une seule ligne de 1240 px max."
+    }
+  },
+  "sections": [
+    {
+      "id": "hero",
+      "layoutFamily": "hero",
+      "layoutCases": [
+        "creatiie-01-hero"
+      ],
+      "referenceDirectionId": "creatiie-01-hero",
+      "purpose": "Dire en un regard qui est Joie d'Être, montrer les trois prestations et ouvrir la réservation.",
+      "userQuestion": "Suis-je au bon endroit pour un soin bien-être, et comment réserver ?",
+      "stage": "orient",
+      "dependencies": [],
+      "evidence": [
+        "Titre et accroche existants dans src/routes/index.tsx",
+        "Prestations Massages, Soins visage et Épilation dans prestations-section.tsx",
+        "Photo de hero existante design/section hero"
+      ],
+      "copy": {
+        "heading": "L'art du bien-être à la française",
+        "body": [
+          "Des soins inspirés par la nature tropicale, réalisés par Sabrina dans son espace de soin."
+        ],
+        "callsToAction": [
+          {
+            "label": "Réserver un soin",
+            "target": "#reserver"
+          },
+          {
+            "label": "Découvrir la formation",
+            "target": "#formation"
+          }
+        ]
+      },
+      "layout": "Référence 1586 x 992 desktop, 783 x 2009 mobile. Desktop : photo plein cadre 100 % largeur, hauteur 100svh (min 720 px), photo existante du hero avec voile forest 950 à 28 % en dégradé vers le bas pour le contraste. Pastille verre en haut à gauche (x 3 %, y 10 %, 24 % de large, 80 px de haut, rayon pilule, fond cream 50 à 18 % avec flou 12 px et bordure cream 50 à 30 %) : petit logo rond et texte Massages, soins et formations. Titre centré sur 2 lignes (L'art du bien-être / à la *française*, italique sur française), boîte de 62 % de la largeur centrée à y 30 à 50 %, Bodoni 500 en clamp(3.5rem, 7.5vw, 7rem), interlignage 0.95, cream 50 ; écart de la référence : capitales monumentales remplacées par la Bodoni en casse mixte (contrainte de marque). Trois étiquettes cartes flottantes inclinées de -6 à +4 degrés autour du titre, comme Web design, Brand systems et Motion : Massages (en haut à droite, x 68 %, y 20 %), Soins visage (en bas à gauche, x 24 %, y 52 %), Épilation (en bas à droite, x 69 %, y 50 %) ; chacune fait 230 x 64 px, fond cream 50, rayon 14 px, icône ronde de 52 px (PNG prestation du projet sur fond gold 500) qui chevauche le bord gauche, libellé Bodoni 22 px, et chacune est un lien vers sa page. Bas gauche (x 3 %, y 84 %) : filet or de 40 px et accroche Manrope 22 px sur 2 lignes. Bas centre : la barre dock de la référence devient un groupe de deux CTA (embossé gold Réserver un soin, pilule crème Découvrir la formation) dans un conteneur verre de 360 x 88 px à rayon 20 px. Bas droit (x 74 %, y 82 %, 22 % x 110 px) : carte formation cream 50 à rayon 16 px, vignette photo formation de 128 x 88 px à gauche, Formation massage bien-être sur 2 lignes avec la mention Présentiel ou en ligne, bouton flèche rond de 40 px, lien vers #formation. Mobile : logo centré en haut (y 3 %), pastille pleine largeur moins 40 px à y 30 %, puis Massages en étiquette à droite (y 41 %), titre centré sur 4 lignes à y 47 à 58 % en clamp(2.6rem, 11vw, 3.2rem), étiquettes Soins visage à gauche et Épilation à droite à y 60 %, accroche, puis les deux CTA empilés pleine largeur dans le conteneur verre du dock à y 88 % ; la carte formation passe sous le dock.",
+      "motion": {
+        "purpose": "spatial_continuity",
+        "trigger": "load",
+        "behavior": "Au chargement, la photo passe de scale 1.04 à 1 (800 ms). Les deux lignes du titre montent de translateY 16 px à 0 avec opacité 0 à 1, à 80 ms d'écart. Puis les trois étiquettes arrivent depuis translateY 12 px et leur rotation finale moins 4 degrés, à 70 ms d'écart, et le dock et la carte formation suivent en dernier, pour un décalage total de 240 ms au plus. Au hover et au focus, une étiquette se redresse de 2 degrés et monte de 4 px en 180 ms. Les éléments sont visibles par défaut en CSS ; le script n'ajoute l'état initial que s'il tourne avant le premier rendu.",
+        "durationMs": 700,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Aucune animation : photo, titre, étiquettes et CTA s'affichent directement dans leur état final, et les rotations statiques sont conservées."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "hero_spa_photo",
+        "sbj_logo",
+        "prestation_icon_massage",
+        "prestation_icon_facial",
+        "prestation_icon_epilation",
+        "formation_group_photo"
+      ],
+      "transformation": {
+        "compact": "Ordre de source conservé : pastille, titre, étiquettes, accroche, CTA, carte formation. Les étiquettes restent visibles mais passent à 180 x 52 px et s'alignent alternativement à gauche et à droite au lieu de flotter librement ; les CTA s'empilent pleine largeur à 52 px de haut ; la hauteur de section devient auto (min 100svh).",
+        "medium": "Titre en clamp 4 à 5.5 rem sur 2 lignes, étiquettes repositionnées aux quatre coins de la boîte du titre, dock centré et carte formation sous le dock, alignée à droite.",
+        "expanded": "Composition de la référence en entier : étiquettes autour du titre, accroche en bas à gauche, dock au centre, carte formation en bas à droite sur la même ligne de base."
+      }
+    },
+    {
+      "id": "prestations",
+      "layoutFamily": "feature",
+      "layoutCases": [
+        "creatiie-04-services"
+      ],
+      "referenceDirectionId": "creatiie-04-services",
+      "purpose": "Présenter les trois prestations et envoyer vers leur page dédiée.",
+      "userQuestion": "Quelles prestations Sabrina propose-t-elle, et laquelle me convient ?",
+      "stage": "qualify",
+      "dependencies": [
+        "hero"
+      ],
+      "evidence": [
+        "Titres, descriptions et liens de prestations-section.tsx (Massages /massages, Soins visage /soins, Épilation /epilation)",
+        "Icônes PNG massage.png, facial.png et epilation.png"
+      ],
+      "copy": {
+        "eyebrow": "PRESTATIONS",
+        "heading": "Des prestations pensées avec expertise",
+        "body": [
+          "Choisissez votre soin, puis découvrez son déroulé sur sa page.",
+          "Massages : techniques expertes pour relâcher, rééquilibrer et revitaliser.",
+          "Soins visage : soins sur-mesure pour purifier, hydrater et illuminer la peau.",
+          "Épilation : méthodes douces et précises pour une peau nette et soignée."
+        ],
+        "callsToAction": [
+          {
+            "label": "Voir les massages",
+            "target": "/massages"
+          },
+          {
+            "label": "Voir les soins visage",
+            "target": "/soins"
+          },
+          {
+            "label": "Voir l'épilation",
+            "target": "/epilation"
+          }
+        ]
+      },
+      "layout": "Référence 1505 x 1045 desktop, 940 x 1672 mobile. Desktop : fond canvas crème. En-tête centré sur 26 % de la hauteur : label en petites capitales (Manrope 12 px, 0.18em) à y 9 %, titre Bodoni 500 sur une ligne (64 px, 66 % de la largeur, mot *expertise* en italique) à y 12 à 19 %, sous-titre Manrope 20 px sur 1 ligne. Puis une liste de trois rangées empilées centrées, chacune à 64 % de la largeur (960 px), 110 px de haut, 12 px d'écart, rayon 16 px. Colonnes internes : icône PNG 40 px (6 %), titre Bodoni 28 px (27 %), filet vertical cream 200 de 1 px, description Manrope 17 px sur 2 lignes (45 %), bouton rond de 64 px puis flèche lucide (22 %). Écart de la référence : les cinq teintes pastel et les gribouillis décoratifs sont retirés (contrainte de marque) ; les rangées 1 et 3 sont en #fff9ec et la rangée 2 en cream 200, le bouton rond est en gold 500 avec l'icône en encre. Il n'y a que trois rangées au lieu de cinq, car trois prestations existent ; la hauteur de section passe à environ 72 % de la référence. Toute la rangée est un seul lien. Mobile : en-tête aligné à gauche (titre 40 px sur 3 lignes), puis trois grandes cartes empilées pleine largeur, 280 px de haut, rayon 20 px : titre Bodoni 34 px, description sur 3 lignes à gauche (60 %), photo de prestation à droite (40 %, rayon 14 px, inclinée de 4 degrés comme les illustrations de la référence). La carte 2 est en forest 900 avec texte crème, reprenant la carte sombre de la référence mobile ; les cartes 1 et 3 sont en #fff9ec.",
+      "motion": {
+        "purpose": "explanation",
+        "trigger": "scroll_enter",
+        "behavior": "Chaque rangée est observée séparément (threshold 0, rootMargin 0 0 12% 0, une seule fois). Elle passe de translateX -24 px et opacité 0 à 0 et 1, à 80 ms d'écart, pour se lire comme une liste. Au hover et au focus-visible d'une rangée, le bouton rond passe de gold 500 à accentHover et la flèche glisse de 4 px vers la droite en 180 ms.",
+        "durationMs": 560,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Les rangées s'affichent immédiatement ; au hover, seul le changement de couleur reste, sans déplacement."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "prestation_icon_massage",
+        "prestation_icon_facial",
+        "prestation_icon_epilation",
+        "massage_photo",
+        "facial_photo",
+        "epilation_photo"
+      ],
+      "transformation": {
+        "compact": "Rangées transformées en cartes empilées : titre, description et photo inclinée, toute la carte reste cliquable, le bouton flèche est conservé en bas à droite et l'ordre Massages, Soins visage, Épilation est préservé.",
+        "medium": "Rangées à 88 % de la largeur ; la description passe sous le titre dans la colonne gauche et le bouton reste à droite.",
+        "expanded": "Liste centrée de 960 px avec les quatre colonnes de la référence."
+      }
+    },
+    {
+      "id": "a_propos",
+      "layoutFamily": "about",
+      "layoutCases": [
+        "sidrano-03-about"
+      ],
+      "referenceDirectionId": "sidrano-03-about",
+      "purpose": "Montrer Sabrina dans son espace et dire en une phrase son approche.",
+      "userQuestion": "Qui va prendre soin de moi, et quelle est son approche ?",
+      "stage": "evaluate",
+      "dependencies": [
+        "prestations"
+      ],
+      "evidence": [
+        "Photo existante avec le texte alternatif Sabrina dans son espace de soin (about-section.tsx)",
+        "Valeurs Transmission, Exigence et Bienveillance avec leurs descriptions (about-section.tsx)"
+      ],
+      "copy": {
+        "heading": "Je suis Sabrina. Dans mon espace de soin, je prends le temps d'écouter, puis je masse, je soigne et je transmets avec la même exigence.",
+        "body": [
+          "Transmission : partager un savoir-faire précieux pour faire grandir chaque praticien.ne.",
+          "Exigence : des contenus rigoureux et actualisés pour une pratique professionnelle.",
+          "Bienveillance : une pédagogie à l'écoute, centrée sur l'humain et le respect."
+        ],
+        "callsToAction": [
+          {
+            "label": "Découvrir mon approche",
+            "target": "#formation"
+          }
+        ]
+      },
+      "layout": "Référence 1706 x 922 desktop, 849 x 1852 mobile. Desktop : fond forest 950 pleine largeur (la référence noire est adaptée à la palette). Photo de Sabrina en portrait à gauche : x 6 % à 36 %, y 11 % à 89 %, ratio environ 5:7, rayon de 8 px (la référence a des angles droits ; écart minime pour rester dans la famille de rayons de la marque), étalonnage chaud. Texte à droite : x 38.5 % à 93 %, y 13 %, Bodoni 400 en 52 px sur 5 lignes, interlignage 1.2, cream 50 ; écart de la référence : la monospace devient la Bodoni (une seule voix de titre), avec la même largeur de 5 lignes. Sous le texte à y 50 %, bouton rectangulaire à bordure cream 50 à 60 %, 212 x 62 px, libellé en capitales espacées et flèche lucide or. Bande pleine largeur à y 72 à 76.5 % (hauteur 40 px, fond cream 50) qui passe derrière la photo (la photo la chevauche) : trois valeurs Transmission, Exigence et Bienveillance en Manrope 13 px en capitales, répétées deux fois, couleur encre ; leur description complète est donnée dans une liste visuellement masquée mais lue par les lecteurs d'écran. Écart : pas de défilement perpétuel dans la bande (contrainte de mouvement) ; elle est statique. Ornement lotus de 28 px au-dessus du texte (une des trois sections autorisées). Mobile : photo carrée pleine largeur moins 2 x 62 px à y 7 % à 50 %, texte Bodoni 34 px sur 7 lignes, bouton, puis la bande cream pleine largeur en bas avec les trois valeurs sur une ligne.",
+      "motion": {
+        "purpose": "spatial_continuity",
+        "trigger": "scroll_enter",
+        "behavior": "Quand le groupe photo approche du viewport (threshold 0, rootMargin bas positif, une seule fois), la photo glisse dans son cadre fixe (image interne de scale 1.06 à 1, opacité 0.6 à 1, cadre overflow hidden) ; le texte suit 80 ms après en translateY 16 px vers 0 et le bouton 160 ms après. La bande valeurs entre de translateX -2 % à 0 en même temps que le texte.",
+        "durationMs": 750,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Photo, texte, bouton et bande sont affichés immédiatement."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "sabrina_portrait_photo",
+        "lotus_ornament"
+      ],
+      "transformation": {
+        "compact": "Photo au-dessus, puis texte et bouton, puis bande des valeurs en bas : même ordre que la référence mobile. Le texte passe à 30 à 34 px et les trois valeurs restent sur une ligne grâce à un corps de 12 px avec un espacement réduit.",
+        "medium": "Photo à 40 % de large et texte à 54 %, texte en 40 px sur 6 lignes, bande sous la ligne de base de la photo.",
+        "expanded": "Composition de la référence : photo à gauche, texte de 5 lignes à droite, bande derrière la photo."
+      }
+    },
+    {
+      "id": "formation",
+      "layoutFamily": "feature",
+      "layoutCases": [
+        "nubo-06-features"
+      ],
+      "referenceDirectionId": "nubo-06-features",
+      "purpose": "Expliquer comment Sabrina forme : format, public, supports et contenus.",
+      "userQuestion": "Comment se passent les formations, et sont-elles faites pour moi ?",
+      "stage": "explain",
+      "dependencies": [
+        "a_propos"
+      ],
+      "evidence": [
+        "Bénéfices Guidée par Sabrina, Accès flexible et Approche concrète (formation-section.tsx)",
+        "Programmes : protocoles, posture, pratique encadrée ; petits groupes ; modules vidéo et supports PDF (formation-section.tsx)",
+        "FAQ : formations pour débutantes et pour approfondir ; e-learning disponible (faq-section.tsx)",
+        "Photo existante de Sabrina en formation (design/section formation)"
+      ],
+      "copy": {
+        "eyebrow": "FORMATION",
+        "heading": "Apprendre, pratiquer, transmettre.",
+        "body": [
+          "Des parcours guidés par Sabrina pour apprendre le massage bien-être, en présentiel ou en ligne.",
+          "Format : présentiel ou en ligne, à votre rythme",
+          "Pour qui : débutantes et praticiennes qui souhaitent approfondir",
+          "En atelier : petits groupes, démonstrations et mise en pratique",
+          "En e-learning : modules vidéo et supports PDF",
+          "Au programme : protocoles, posture, pratique encadrée"
+        ],
+        "callsToAction": [
+          {
+            "label": "Voir les parcours",
+            "target": "#parcours"
+          }
+        ]
+      },
+      "layout": "Référence 1505 x 1045 desktop, 1024 x 1536 mobile. Desktop : fond canvas crème, deux colonnes 48 % et 47 % avec un écart de 5 %. Colonne gauche : point rond forest 700 de 20 px puis FORMATION en capitales à y 13 % ; titre Bodoni 500 sur 2 lignes en 76 px (Apprendre, pratiquer, / *transmettre.* en italique forest 700, reprenant le second vers coloré de la référence) à y 19 à 35 % ; paragraphe Manrope 18 px sur 2 lignes ; rangée de trois pictos (au lieu de quatre, car il y a trois bénéfices) : cercles cream 200 de 74 px avec les PNG guided-by-sabrina, flexible-access et practical-approach, libellés en capitales de 13 px sur 2 lignes, à y 47 à 58 % ; puis un tableau de spécifications de 5 lignes, chacune de 52 px avec un filet divider de 1 px (Format, Pour qui, En atelier, En e-learning, Au programme), clé en capitales textMuted sur 20 % et valeur en capitales encre sur 80 %, à y 64 à 95 %. Colonne droite : grande photo formation x 50.5 % à 97.6 %, y 11.5 % à 59.5 %, rayon 14 px ; dessous, quatre vignettes de 168 x 140 px à rayon 10 px (mains en geste, table de massage, supports PDF, atelier) ; puis 2 lignes de texte Manrope textMuted. Mobile : titre sur 2 lignes, sous-titre, liste verticale de 4 lignes à picto rond de 82 px avec clé en capitales et valeur (les trois bénéfices plus Format), grande photo à rayon 20 px, puis trois vignettes avec légende en 3 colonnes. Le tableau de spécifications complet reste sous la photo en mobile.",
+      "motion": {
+        "purpose": "explanation",
+        "trigger": "scroll_enter",
+        "behavior": "La grande photo se révèle dans son cadre (scale interne 1.05 à 1, opacité 0.7 à 1). Les quatre vignettes entrent ensuite en translateY 12 px vers 0, à 60 ms d'écart. Côté gauche, les trois pictos entrent à 70 ms d'écart, puis les lignes du tableau apparaissent en opacité, à 40 ms d'écart, avec 240 ms de décalage au plus. Chaque groupe (photo, pictos, tableau) a son propre observer et ne se déclenche qu'une fois.",
+        "durationMs": 650,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Tous les groupes sont visibles immédiatement, sans mouvement."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "formation_group_photo",
+        "formation_detail_hands",
+        "formation_detail_table",
+        "formation_detail_pdf",
+        "formation_detail_workshop",
+        "formation_icon_guided",
+        "formation_icon_flexible",
+        "formation_icon_practical"
+      ],
+      "transformation": {
+        "compact": "Titre, sous-titre, liste verticale de bénéfices à pictos, grande photo, trois vignettes légendées, puis le tableau de spécifications complet et le CTA Voir les parcours. Le contenu reste complet, seule la simultanéité diminue.",
+        "medium": "Colonnes 52 / 48, pictos sur une rangée, quatre vignettes en grille 2 x 2 sous la photo.",
+        "expanded": "Composition de la référence, deux colonnes côte à côte, avec le tableau aligné sur le bas des vignettes."
+      }
+    },
+    {
+      "id": "parcours",
+      "layoutFamily": "feature",
+      "layoutCases": [
+        "saleunion-04-services"
+      ],
+      "referenceDirectionId": "saleunion-04-services",
+      "purpose": "Montrer les trois parcours de formation et permettre d'en ouvrir un.",
+      "userQuestion": "Quel parcours choisir : formation, atelier ou e-learning ?",
+      "stage": "evaluate",
+      "dependencies": [
+        "formation"
+      ],
+      "evidence": [
+        "Programmes Formation massage bien-être, Ateliers en présentiel et E-learning premium avec leurs descriptions (formation-section.tsx)",
+        "Ancre existante #programme-formations"
+      ],
+      "copy": {
+        "eyebrow": "PARCOURS",
+        "heading": "Trois façons d'apprendre avec Sabrina",
+        "body": [
+          "01 / FORMATION : Formation massage bien-être. Protocoles, posture, pratique encadrée.",
+          "02 / ATELIERS : Ateliers en présentiel. Petits groupes, démonstrations et mise en pratique.",
+          "03 / E-LEARNING : E-learning premium. Modules vidéo, supports PDF et accès flexible."
+        ],
+        "callsToAction": [
+          {
+            "label": "Découvrir la formation",
+            "target": "#programme-formations"
+          },
+          {
+            "label": "Découvrir les ateliers",
+            "target": "#programme-formations"
+          },
+          {
+            "label": "Découvrir l'e-learning",
+            "target": "#programme-formations"
+          }
+        ]
+      },
+      "layout": "Référence 1505 x 1045 desktop, 850 x 1850 mobile. Desktop : fond canvas crème. En-tête aligné à gauche à x 5.6 % : label en capitales textMuted à y 11 %, titre Bodoni 400 en 68 px sur 2 lignes (Trois façons d'apprendre / avec *Sabrina*), largeur 40 %, à y 14 à 28 % ; deux boutons ronds de 58 px (flèches lucide, fond #fff9ec) alignés à droite à x 85 à 94 %, y 25 %. Rail de cartes de y 33 % à 92 %, chaque carte faisant 29 % de la largeur (436 x 625 px), 20 px d'écart, rayon 20 px. Chaque carte : photo plein cadre ; pastille gold 300 à rayon 12 px avec texte encre en capitales Manrope 14 px (01 / FORMATION) à x 2 %, y 70 % ; panneau #fff9ec en bas sur 21 % de la carte, à rayon 14 px et 6 px de marge, avec titre Manrope 500 de 26 px sur 2 lignes. La carte active (celle qui a le focus ou le survol) agrandit son panneau à 50 % et montre la description sur 3 lignes et un bouton forest 900 en capitales avec flèche. Écart : avec trois cartes seulement, le rail démarre aligné sur la grille et garde une marge crème à droite au lieu des cartes coupées de la référence ; les bords coupés réapparaissent en medium et compact où le rail défile.",
+      "motion": {
+        "purpose": "state_change",
+        "trigger": "press",
+        "behavior": "Les flèches font défiler le rail via scroll-snap natif (scrollBy d'une carte, comportement smooth sauf en mouvement réduit) ; la carte qui devient active anime la hauteur de son panneau de 21 % à 50 % avec grid-template-rows en 260 ms, puis sa description apparaît en fondu. À l'entrée dans le viewport, les trois cartes entrent en translateY 20 px vers 0, à 70 ms d'écart, une seule fois. Au press, les boutons ronds descendent de translateY 1 px en 140 ms.",
+        "durationMs": 560,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Défilement instantané, panneaux ouverts sans transition et cartes visibles d'emblée ; toutes les descriptions restent accessibles."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "formation_group_photo",
+        "atelier_presentiel_photo",
+        "elearning_photo"
+      ],
+      "transformation": {
+        "compact": "Une carte de 86 % de largeur visible avec le bord de la suivante, défilement horizontal natif au doigt et scroll-snap ; les flèches passent sous le rail à gauche comme dans la référence mobile. Chaque panneau montre toujours son titre et sa description (aucun contenu caché derrière un état actif) et le bouton reste dans le panneau.",
+        "medium": "Deux cartes visibles à 44 % chacune, flèches dans l'en-tête à droite, panneau ouvert sur la carte focalisée.",
+        "expanded": "Trois cartes de 29 %, flèches en haut à droite et panneau actif agrandi."
+      }
+    },
+    {
+      "id": "guides",
+      "layoutFamily": "about",
+      "layoutCases": [
+        "vistal-03-about"
+      ],
+      "referenceDirectionId": "vistal-03-about",
+      "purpose": "Présenter les trois guides Joie d'Être et conduire vers les guides disponibles.",
+      "userQuestion": "Quels guides puis-je lire pour progresser seule ?",
+      "stage": "evaluate",
+      "dependencies": [
+        "parcours"
+      ],
+      "evidence": [
+        "Titre existant Des ressources expertes pour progresser et ancre #guides-disponibles (guides-section.tsx)",
+        "Trois guides : massage relaxant, rituels du visage, pratique professionnelle (texte alternatif de l'image guides)",
+        "Couvertures existantes dans design/section guides",
+        "Guides numériques accessibles après l'achat (faq-section.tsx)"
+      ],
+      "copy": {
+        "eyebrow": "GUIDES JOIE D'ÊTRE",
+        "heading": "Des ressources expertes pour progresser",
+        "body": [
+          "Trois guides numériques, accessibles après l'achat, pour pratiquer chez vous ou en cabinet.",
+          "Massage relaxant : les gestes et l'enchaînement d'un massage bien-être.",
+          "Rituels du visage : préparer, masser et soigner la peau du visage.",
+          "Pratique professionnelle : organiser et faire grandir votre pratique."
+        ],
+        "callsToAction": [
+          {
+            "label": "Voir les guides",
+            "target": "#guides-disponibles"
+          }
+        ]
+      },
+      "layout": "Référence 1229 x 1280 desktop, 667 x 2000 mobile. Desktop : fond cream 200 pleine largeur (remplace l'aplat jaune de la référence). Contenu centré : ornement lotus de 28 px à la place du carré du label, puis label en capitales à y 9 % ; titre Bodoni 500 en 66 px centré sur 3 lignes (Des ressources / expertes pour / *progresser*), boîte de 58 % de large, à y 13 à 28 % ; paragraphe Manrope 19 px centré sur 2 lignes, 48 % de large ; CTA pilule forest 900 avec un cercle gold 500 portant la flèche à droite (194 x 58 px), à y 38 à 42.5 %. Trois cartes en éventail de y 47 % à 85 % : carte centrale 28 % de large (352 x 474 px), droite, fond #fff9ec, rayon 20 px, couverture du guide Massage relaxant en 4:5 à rayon 12 px avec 16 px de marge, titre Bodoni 24 px puis description Manrope 16 px sur 2 lignes. Cartes latérales de 24 % de large, inclinées de -6 et +6 degrés, décalées de 58 px vers le bas et passant sous la carte centrale, avec un chevauchement d'environ 30 % ; à gauche Rituels du visage, à droite Pratique professionnelle. Ombre douce unique. La section garde 15 % de vide sous les cartes comme dans la référence.",
+      "motion": {
+        "purpose": "spatial_continuity",
+        "trigger": "scroll_enter",
+        "behavior": "Quand le groupe de cartes approche du viewport (une seule fois), les cartes latérales partent empilées derrière la carte centrale (rotation 0, translateX 0) et s'ouvrent en éventail jusqu'à -6 et +6 degrés et leur décalage final, pendant que la carte centrale monte de translateY 16 px à 0 ; l'ouverture des latérales démarre 80 ms après la centrale. Au hover ou au focus d'une carte latérale, elle se redresse de 2 degrés et monte de 8 px en 200 ms, sans changer l'ordre.",
+        "durationMs": 720,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Les cartes sont affichées directement en éventail, sans ouverture animée ni déplacement au hover."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "guide_cover_massage_relaxant",
+        "guide_cover_rituels_visage",
+        "guide_cover_pratique_pro",
+        "lotus_ornament"
+      ],
+      "transformation": {
+        "compact": "Comme la référence mobile : titre centré sur 5 lignes en 44 px, paragraphe sur 4 lignes, CTA, puis l'éventail réduit (carte centrale à 54 % de large, latérales coupées par le bord du viewport). Les titres et descriptions des guides latéraux, en partie masqués visuellement, sont repris dans une liste lisible sous l'éventail pour ne perdre aucun contenu.",
+        "medium": "Titre centré sur 3 lignes en 56 px, éventail à 80 % de la largeur avec un chevauchement réduit à 20 %.",
+        "expanded": "Composition de la référence : en-tête centré, CTA, trois cartes en éventail avec la carte centrale au premier plan."
+      }
+    },
+    {
+      "id": "temoignages",
+      "layoutFamily": "social_proof",
+      "layoutCases": [
+        "stodio-09-testimonials"
+      ],
+      "referenceDirectionId": "stodio-09-testimonials",
+      "purpose": "Montrer les trois avis déjà présents dans le projet, avec leur contexte.",
+      "userQuestion": "Qu'en disent les personnes qui ont suivi une formation, un atelier ou lu les guides ?",
+      "stage": "prove",
+      "dependencies": [
+        "guides"
+      ],
+      "evidence": [
+        "Avis de Camille (Formation massage bien-être), Louise (Lectrice des guides) et Amandine (Atelier en présentiel), avec leurs portraits, dans testimonials-section.tsx"
+      ],
+      "copy": {
+        "eyebrow": "TÉMOIGNAGES",
+        "heading": "Elles ont appris avec Sabrina.",
+        "body": [
+          "Trois retours après une formation, un atelier ou la lecture des guides.",
+          "« La formation m'a apporté une vraie philosophie du toucher et une confiance nouvelle dans ma pratique. » Camille, Formation massage bien-être",
+          "« Les guides sont clairs, concrets et inspirants. Je les utilise au quotidien et gagne un temps précieux. » Louise, Lectrice des guides",
+          "« Un atelier bienveillant, professionnel et motivant. Je repars avec des clés concrètes et beaucoup de confiance. » Amandine, Atelier en présentiel"
+        ],
+        "callsToAction": []
+      },
+      "layout": "Référence 1505 x 1045 desktop, 941 x 1672 mobile. Desktop : canvas crème autour d'un bloc forest 950 de x 1.6 % à 98.4 %, y 11.5 % à 92 %, rayon 24 px. Pastille label crème à rayon pilule (188 x 40 px) avec un carré gold 500 de 14 px, TÉMOIGNAGES en capitales Manrope 13 px, à x 4.5 %, y 18 %. Titre en Bodoni 400 de 64 px sur 2 lignes (Elles ont appris / avec *Sabrina.*), x 4.5 %, y 24 à 37 %, cream 50. Texte d'appui Manrope 20 px sur 2 lignes aligné à droite, x 68.5 % à 95 %, y 30 %. Trois cartes forest 800 à rayon 16 px, de x 4.5 % à 96 %, y 40.5 % à 80.5 %, chacune à 30 % de la largeur avec 2 % d'écart : portrait existant de 118 x 98 px à rayon 10 px en haut à gauche ; à droite, à la place du logo client de la référence, le contexte de l'avis en Manrope 600 de 16 px, cream 50 (écart : aucun logo d'entreprise n'existe et il ne faut pas en inventer) ; guillemets gold 500 de 28 px puis citation Manrope 20 px sur 3 à 4 lignes ; en bas, le prénom en 20 px. Sous les cartes, à y 86 % : points de pagination à gauche (3 points, l'actif en cream 50) et deux boutons ronds forest 800 de 56 px à droite. Avec trois avis et trois cartes visibles en desktop, la pagination et les flèches sont masquées à cette largeur ; elles ne s'affichent qu'aux largeurs où toutes les cartes ne tiennent pas.",
+      "motion": {
+        "purpose": "spatial_continuity",
+        "trigger": "scroll_enter",
+        "behavior": "Le bloc forêt arrondi entre de translateY 24 px et opacité 0 à 0 et 1. Le titre et la pastille suivent 100 ms après, puis les trois cartes en translateY 16 px vers 0, à 70 ms d'écart. En compact, les flèches font défiler le rail en scroll-snap natif et le point actif change en 200 ms.",
+        "durationMs": 650,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Bloc et cartes visibles immédiatement, défilement instantané."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "testimonial_portrait_camille",
+        "testimonial_portrait_louise",
+        "testimonial_portrait_amandine"
+      ],
+      "transformation": {
+        "compact": "Bloc à 16 px du bord, pastille, titre sur 2 lignes en 40 px, texte d'appui dessous, puis une carte pleine largeur à la fois dans un rail à défilement natif avec scroll-snap, 3 points et deux flèches en bas, comme la référence mobile. Les trois avis restent atteignables au doigt, au clavier et aux flèches.",
+        "medium": "Deux cartes visibles avec le bord de la troisième, pagination et flèches affichées.",
+        "expanded": "Trois cartes côte à côte, sans pagination ni flèches puisque tout est visible."
+      }
+    },
+    {
+      "id": "faq",
+      "layoutFamily": "faq",
+      "layoutCases": [
+        "lexedge-10-faq"
+      ],
+      "referenceDirectionId": "lexedge-10-faq",
+      "purpose": "Lever les dernières hésitations sur les formations, les guides et la réservation.",
+      "userQuestion": "Les cours sont-ils en ligne, les guides téléchargeables, et comment réserver ?",
+      "stage": "de_risk",
+      "dependencies": [
+        "temoignages"
+      ],
+      "evidence": [
+        "Cinq questions et réponses de faq-section.tsx",
+        "Bloc existant Une autre question ? avec lien #contact"
+      ],
+      "copy": {
+        "eyebrow": "FAQ",
+        "heading": "Vos questions avant de commencer.",
+        "body": [
+          "À qui s'adressent les formations ? Elles sont pensées pour les débutantes comme pour les personnes souhaitant approfondir leur pratique.",
+          "Les cours sont-ils disponibles en ligne ? Oui. Certaines formations sont proposées en e-learning afin de progresser à votre rythme, où que vous soyez.",
+          "Les guides sont-ils téléchargeables ? Oui. Les guides numériques sont accessibles après l'achat et peuvent être consultés facilement sur vos appareils.",
+          "Comment réserver une prestation ? Choisissez la prestation qui vous correspond puis utilisez le bouton de réservation pour sélectionner votre créneau.",
+          "Puis-je offrir une formation ou un guide ? Oui. Contactez Sabrina pour choisir la formule et recevoir un bon cadeau personnalisé.",
+          "Une autre question ? Écrivez à Sabrina : elle vous répond et vous oriente vers le soin, la formation ou le guide qui vous convient."
+        ],
+        "callsToAction": [
+          {
+            "label": "Contacter Sabrina",
+            "target": "#contact"
+          }
+        ]
+      },
+      "layout": "Référence 1536 x 1024 desktop, 856 x 1840 mobile. Desktop : fond canvas crème, deux colonnes 34 % et 55 % avec 7 % d'écart, de x 4 % à 96 %. Colonne gauche : carré forest 900 de 12 px puis FAQ en capitales à y 12.5 % ; titre Bodoni 400 en 62 px sur 2 lignes (Vos questions / *avant de commencer.*), à y 16 à 30 %. Panneau d'aide cream 200 à rayon 14 px, 33 % x 25 %, ancré en bas de colonne à y 56 à 81 % : titre Bodoni 30 px Une autre question ?, texte de 2 lignes en textMuted dérivé, bouton pilule #fff9ec avec icône lucide Mail et le libellé Contacter Sabrina. Colonne droite : cinq éléments d'accordéon #fff9ec à rayon 14 px, 20 px d'écart, 110 px de haut fermés, à partir de y 14.5 % ; question Bodoni 28 px à gauche, bouton rond de 52 px en cream 200 avec plus ou moins (lucide) à droite ; le premier élément est ouvert par défaut et sa réponse Manrope 17 px tient sur 2 lignes. Les questions sont des boutons aria-expanded reliés à leur réponse par aria-controls.",
+      "motion": {
+        "purpose": "state_change",
+        "trigger": "press",
+        "behavior": "Au clic ou à Entrée et Espace sur une question, la réponse se déplie de grid-template-rows 0fr à 1fr avec un fondu de 0 à 1, et l'icône plus pivote de 90 degrés vers moins. L'ouverture d'un élément ne ferme pas les autres. Le groupe accordéon entre une fois au scroll en translateY 12 px vers 0, à 60 ms d'écart par élément.",
+        "durationMs": 260,
+        "easing": "cubic-bezier(0.4, 0, 0.2, 1)",
+        "reducedMotion": "Ouverture et fermeture instantanées, l'icône change sans rotation, éléments visibles d'emblée."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [],
+      "transformation": {
+        "compact": "Ordre de la référence mobile : label, titre, panneau d'aide pleine largeur, puis les cinq accordéons pleine largeur ; les questions passent à 22 px et les boutons gardent 44 px minimum.",
+        "medium": "Titre et panneau d'aide côte à côte en haut (titre 55 %, panneau 45 %), accordéons pleine largeur dessous.",
+        "expanded": "Deux colonnes : titre et panneau d'aide à gauche, accordéons à droite."
+      }
+    },
+    {
+      "id": "reserver",
+      "layoutFamily": "cta",
+      "layoutCases": [
+        "lexedge-13-cta"
+      ],
+      "referenceDirectionId": "lexedge-13-cta",
+      "purpose": "Conclure par l'action principale, réserver un soin, avec la formation en option.",
+      "userQuestion": "Je suis convaincue : comment je réserve maintenant ?",
+      "stage": "act",
+      "dependencies": [
+        "faq"
+      ],
+      "evidence": [
+        "Bloc CTA de fin existant Joie d'Être avec liens #formation et #contact-footer (closing-cta-section.tsx)",
+        "Ancre #reserver utilisée par l'en-tête"
+      ],
+      "copy": {
+        "eyebrow": "RÉSERVATION",
+        "heading": "Offrez-vous un temps pour vous. Réservez votre soin.",
+        "body": [
+          "Massage, soin visage ou épilation : choisissez votre prestation et votre créneau."
+        ],
+        "callsToAction": [
+          {
+            "label": "Réserver un soin",
+            "target": "#contact"
+          },
+          {
+            "label": "Découvrir la formation",
+            "target": "#formation"
+          }
+        ]
+      },
+      "layout": "Référence 1554 x 1012 desktop, 1100 x 1430 mobile. Desktop : canvas crème autour d'un bloc arrondi de 24 px, de x 2 % à 98 %, y 3.4 % à 96.6 % (hauteur 88vh, min 640 px). Fond du bloc : dégradé radial forest 700 en haut à gauche vers forest 950 en bas, qui reprend le dégradé lumineux gris-noir de la référence dans une seule famille de teinte (pas de dégradé forêt-or). Contenu centré de y 37 % à 64 % : ornement lotus de 28 px à la place du carré, label en capitales Manrope 13 px cream 50 ; titre Bodoni 400 en 56 px centré sur 2 lignes (Offrez-vous un temps pour vous. / *Réservez votre soin.* en italique sur la seconde ligne), 68 % de large, cream 50 ; une ligne de texte Manrope 18 px ; CTA embossé gold Réserver un soin (232 x 62 px, rayon pilule comme dans la référence) et, 16 px dessous, un lien texte souligné Découvrir la formation en cream 50.",
+      "motion": {
+        "purpose": "spatial_continuity",
+        "trigger": "scroll_enter",
+        "behavior": "Le bloc arrondi passe de translateY 24 px et opacité 0 à 0 et 1. L'ornement lotus et le titre suivent 100 ms après en translateY 12 px vers 0, puis le CTA 80 ms après. Au hover, le CTA gold élève son ombre et sa bordure en 180 ms ; au press, il descend de translateY 1 px.",
+        "durationMs": 650,
+        "easing": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "reducedMotion": "Bloc, titre et CTA visibles immédiatement ; seuls les changements de couleur au hover restent."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "lotus_ornament"
+      ],
+      "transformation": {
+        "compact": "Bloc à 16 px du bord, hauteur auto (min 520 px), titre sur 4 lignes en 38 px comme la référence mobile, CTA pleine largeur moins 48 px, lien formation dessous.",
+        "medium": "Titre sur 3 lignes en 48 px, bloc à 70vh.",
+        "expanded": "Composition de la référence : bloc quasi plein écran, contenu centré dans le tiers médian."
+      }
+    },
+    {
+      "id": "footer",
+      "layoutFamily": "footer",
+      "layoutCases": [
+        "mitchy-12-footer"
+      ],
+      "referenceDirectionId": "mitchy-12-footer",
+      "purpose": "Donner les liens de navigation, les réseaux et les mentions, et signer la marque.",
+      "userQuestion": "Où trouver les autres pages, les réseaux sociaux ou les mentions légales ?",
+      "stage": "continue",
+      "dependencies": [
+        "reserver"
+      ],
+      "evidence": [
+        "Colonnes Formations, Guides, Prestations, À propos et liens sociaux Instagram, Facebook, YouTube (site-footer.tsx)",
+        "Mention © 2026 Joie d'Être. Tous droits réservés., mentions légales et conditions d'utilisation (site-footer.tsx)"
+      ],
+      "copy": {
+        "heading": "Joie d'Être.",
+        "body": [
+          "L'art du bien-être à la française.",
+          "Prestations : Massages, Soins du visage, Épilation",
+          "Formations : Formations, Ateliers, E-learning",
+          "Guides : Guides, PDF, Amazon KDP",
+          "À propos : Contact, À propos, FAQ",
+          "© 2026 Joie d'Être. Tous droits réservés."
+        ],
+        "callsToAction": [
+          {
+            "label": "Réserver un soin",
+            "target": "#reserver"
+          },
+          {
+            "label": "Mentions légales",
+            "target": "#mentions-legales"
+          },
+          {
+            "label": "Conditions d'utilisation",
+            "target": "#conditions-utilisation"
+          },
+          {
+            "label": "Instagram",
+            "target": "#instagram"
+          },
+          {
+            "label": "Facebook",
+            "target": "#facebook"
+          },
+          {
+            "label": "YouTube",
+            "target": "#youtube"
+          }
+        ]
+      },
+      "layout": "Référence 1763 x 892 desktop, 837 x 1880 mobile. Desktop : fond canvas crème (le cadre noir de la référence devient crème), bloc forest 900 de x 2 % à 98 %, y 10 % à 92.5 %, rayon 24 px (remplace l'orange). Rangée haute de y 16 % à 42 % en 5 colonnes : colonne 1 (21 %) avec le logo sbj-logo.png de 56 px et le copyright en haut, et le CTA pilule cream 50 Réserver un soin en bas (272 x 66 px, texte encre) ; colonnes 2 à 5 avec les groupes Prestations, Formations, Guides et À propos (titres en petites capitales gold 300, liens Manrope 20 px en cream 50, interligne 54 px). Filet cream 50 à 30 % sur toute la largeur à y 47.5 %. Rangée basse : mot-symbole Joie d'Être. en Bodoni 500 de 220 px (64 % de la largeur, de x 4 % à 66 %, y 54 % à 90 %), cream 50, qui reprend le nom géant de la référence ; la signature L'art du bien-être à la française en Manrope 20 px dessous à gauche. À droite, de x 78 % à 96 % : liens Mentions légales et Conditions d'utilisation en haut, puis trois boutons ronds de 56 px à bordure cream 50 (icônes lucide Instagram, Facebook, Youtube) à y 75 %.",
+      "motion": {
+        "purpose": "feedback",
+        "trigger": "hover",
+        "behavior": "Pas d'animation d'entrée pour le footer. Au hover et au focus-visible, les liens prennent un soulignement or qui s'étend de 0 à 100 % de largeur (transform scaleX sur un pseudo-élément), et les boutons ronds se remplissent de cream 50 à 12 %. Le CTA Réserver un soin descend de translateY 1 px à l'appui.",
+        "durationMs": 180,
+        "easing": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "reducedMotion": "Soulignement et remplissage affichés sans transition ni déplacement."
+      },
+      "componentNeeds": [],
+      "assetNeeds": [
+        "sbj_logo"
+      ],
+      "transformation": {
+        "compact": "Ordre de la référence mobile : groupes de liens empilés, mentions, copyright, CTA Réserver un soin pleine largeur, filet, puis le mot-symbole en 72 px, la signature et les icônes sociales.",
+        "medium": "Groupes de liens en 2 x 2, CTA et copyright au-dessus, mot-symbole en 140 px.",
+        "expanded": "Composition de la référence : 5 colonnes en haut, filet, mot-symbole géant à gauche et réseaux à droite."
+      }
+    }
+  ],
+  "responsive": [
+    "Points de rupture : compact moins de 768 px, medium de 768 à 1099 px, expanded à partir de 1100 px ; tailles de titre en clamp() entre les valeurs compact et expanded de chaque section",
+    "Aucun défilement horizontal de page à 320, 375, 768, 1024, 1280 et 1440 px ; seuls les rails parcours et témoignages défilent horizontalement, en scroll-snap natif",
+    "Toutes les cibles tactiles mesurent au moins 44 x 44 px ; les étiquettes du hero et les rangées de prestations sont des liens entiers",
+    "Les actions flottantes existantes (floating-actions.tsx) portent le CTA Réserver en compact et se masquent quand la section reserver est visible, pour ne recouvrir ni le dock du hero ni le CTA final",
+    "Les blocs forêt arrondis gardent 16 px de marge crème en compact et 24 px en expanded",
+    "Les images utilisent srcset et sizes, avec des ratios fixes (aspect-ratio) pour éviter les décalages de mise en page"
+  ],
+  "interactions": [
+    "Étiquettes du hero : liens vers /massages, /soins et /epilation, redressement de 2 degrés au hover et au focus",
+    "Rangées de prestations : toute la rangée est un lien, bouton flèche qui passe à accentHover et glisse de 4 px",
+    "Rail parcours : flèches précédente et suivante (aria-label Parcours précédent et Parcours suivant), défilement au clavier, panneau agrandi sur la carte focalisée",
+    "Éventail des guides : cartes latérales qui se redressent au hover et au focus, CTA Voir les guides",
+    "Rail témoignages en compact et medium : flèches et points de pagination (aria-label Avis 1 sur 3), défilement natif au doigt",
+    "Accordéon FAQ : boutons aria-expanded et aria-controls, plusieurs éléments ouverts possibles, premier ouvert par défaut",
+    "En-tête : changement de fond au scroll, lien actif souligné en or, drawer mobile avec focus piégé et fermeture par Échap",
+    "Footer : soulignement or des liens et remplissage des boutons sociaux au hover et au focus",
+    "Focus visible partout : anneau de 3 px forest 700 sur les surfaces claires et gold 300 sur les blocs forêt, décalé de 4 px"
+  ],
+  "acceptanceCriteria": [
+    "La page / suit l'ordre hero, prestations, a_propos, formation, parcours, guides, temoignages, faq, reserver, footer, et chaque section reproduit la carte de composition de sa référence en desktop et en mobile",
+    "Le CTA Réserver un soin est visible sans scroll dans le hero aux trois largeurs, et dans le CTA final ; l'en-tête garde Réserver à toutes les largeurs",
+    "Seuls les trois avis existants (Camille, Louise, Amandine) apparaissent, avec leurs portraits ; aucun logo client, chiffre, certification ou avis n'est ajouté",
+    "Tout le texte visible est en français, au vouvoiement, sans tiret cadratin ni note interne",
+    "Bodoni Moda Variable et Manrope Variable sont chargées et vérifiées avec document.fonts.check ; les couleurs viennent uniquement de la palette de marque et le texte courant respecte un contraste de 4.5:1",
+    "L'ornement lotus n'apparaît que sur a_propos, guides et reserver",
+    "Entrée du hero visible au chargement ; révélations au scroll distinctes vérifiées dans le navigateur sur prestations (liste), a_propos (photo dans son cadre), formation, guides (ouverture en éventail), témoignages et reserver (bloc qui monte)",
+    "Les révélations ne se jouent qu'une fois : après deux défilements rapides aller-retour, un rechargement à mi-page, un redimensionnement et un basculement de prefers-reduced-motion pendant la lecture, chaque section visitée reste visible sans clignotement ni rejeu",
+    "Avec prefers-reduced-motion, tout le contenu est lisible immédiatement et les contrôles (flèches, accordéon, drawer) restent fonctionnels",
+    "Sans JavaScript, tout le contenu reste visible (pas de classe globale opacity:0) et les liens fonctionnent",
+    "Navigation complète au clavier : rails, accordéon, drawer et cartes, avec un focus visible conforme à la marque",
+    "Les liens /massages, /soins et /epilation mènent aux pages de service existantes ; la structure des routes TanStack Start reste inchangée"
+  ]
+}

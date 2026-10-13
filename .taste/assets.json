@@ -1,0 +1,671 @@
+{
+  "version": 1,
+  "assets": [
+    {
+      "id": "hero_spa_photo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Photo plein cadre du hero : cliente détendue sur une table de massage, ambiance tropicale aux bougies, derrière le titre centré et les étiquettes flottantes.",
+      "requirements": [
+        "Image déjà utilisée par src/routes/index.tsx",
+        "Voile forest 950 à 28 % en dégradé vers le bas pour le contraste du titre cream 50",
+        "object-fit: cover avec point focal sur le visage et les mains (environ 75 % x, 55 % y) pour que le sujet reste visible en recadrage portrait mobile"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "hero"
+      ],
+      "aspectRatio": "1672:941",
+      "composition": "Scène spa sombre et chaude : palmes et bougies à gauche, cliente allongée sur une serviette crème à droite, mains de la praticienne en haut à droite. Le centre (feuillage sombre) sert de zone sûre pour le titre ; le bas gauche et le bas droit restent calmes pour l'accroche et la carte formation.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section hero/ChatGPT Image 1 août 2026, 15_34_49.png"
+      },
+      "destination": "design/section hero/ChatGPT Image 1 août 2026, 15_34_49.png"
+    },
+    {
+      "id": "sbj_logo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Logo officiel Joie d'Être par Sabrina pour l'en-tête, la pastille du hero et le footer.",
+      "requirements": [
+        "Ne pas modifier, recolorer ni redessiner",
+        "Hauteur de 44 px dans l'en-tête, 56 px dans le footer",
+        "Texte alternatif : Joie d'Être par Sabrina"
+      ],
+      "role": "logo",
+      "sectionIds": [
+        "hero",
+        "footer"
+      ],
+      "aspectRatio": "1870:841",
+      "composition": "Logo horizontal sur fond transparent, à afficher en entier sans recadrage.",
+      "source": {
+        "kind": "project",
+        "reference": "design/sbj-logo.png"
+      },
+      "destination": "design/sbj-logo.png"
+    },
+    {
+      "id": "prestation_icon_massage",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Icône de la prestation Massages dans l'étiquette du hero et la rangée de prestations.",
+      "requirements": [
+        "PNG du projet, affiché à 40 px dans la liste et dans un cercle gold 500 de 52 px dans le hero",
+        "Décoratif (alt vide) car le libellé Massages est visible"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "hero",
+        "prestations"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Pictogramme centré sur fond transparent.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/prestations-icons/massage.png"
+      },
+      "destination": "src/assets/prestations-icons/massage.png"
+    },
+    {
+      "id": "prestation_icon_facial",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Icône de la prestation Soins visage dans l'étiquette du hero et la rangée de prestations.",
+      "requirements": [
+        "PNG du projet, mêmes tailles que les autres icônes de prestation",
+        "Décoratif (alt vide)"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "hero",
+        "prestations"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Pictogramme centré sur fond transparent.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/prestations-icons/facial.png"
+      },
+      "destination": "src/assets/prestations-icons/facial.png"
+    },
+    {
+      "id": "prestation_icon_epilation",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Icône de la prestation Épilation dans l'étiquette du hero et la rangée de prestations.",
+      "requirements": [
+        "PNG du projet, mêmes tailles que les autres icônes de prestation",
+        "Décoratif (alt vide)"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "hero",
+        "prestations"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Pictogramme centré sur fond transparent.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/prestations-icons/epilation.png"
+      },
+      "destination": "src/assets/prestations-icons/epilation.png"
+    },
+    {
+      "id": "formation_group_photo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Sabrina qui transmet une technique de massage à un groupe : vignette de la carte formation du hero, grande photo de la section formation et carte 01 / FORMATION du rail parcours.",
+      "requirements": [
+        "Photo existante déjà utilisée par formation-section.tsx",
+        "Grande photo formation : cadre paysage à rayon 14 px, révélée dans son cadre au scroll",
+        "Carte parcours : recadrage portrait 2:3 en object-fit cover, point focal sur la formatrice (environ 55 % x, 35 % y), panneau texte crème sur les 21 % du bas",
+        "Vignette hero : 128 x 88 px, centrée sur les mains de la formatrice"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "hero",
+        "formation",
+        "parcours"
+      ],
+      "aspectRatio": "1672:941",
+      "composition": "Formatrice en tunique vert forêt au centre, mains posées sur le dos d'une personne allongée sous une serviette crème, élèves en t-shirt crème de part et d'autre. Lumière naturelle chaude, plantes tropicales et bougies. Le tiers bas (serviette) reste calme pour un panneau texte dans les recadrages portrait.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section formation/ChatGPT Image 24 août 2026, 15_27_21.png"
+      },
+      "destination": "design/section formation/ChatGPT Image 24 août 2026, 15_27_21.png"
+    },
+    {
+      "id": "massage_photo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Photo de la carte Massages dans la version mobile des prestations (photo inclinée de 4 degrés à droite de la carte).",
+      "requirements": [
+        "Photo existante déjà utilisée par prestations-section.tsx",
+        "Recadrage en cover dans un cadre à rayon 14 px, environ 40 % de la largeur de la carte",
+        "Point focal sur le dos et la nuque (environ 45 % x, 45 % y)"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "prestations"
+      ],
+      "aspectRatio": "1672:941",
+      "composition": "Femme de dos, chignon, ombres de palmes sur la peau et le mur crème, feuillage à gauche et à droite. Sujet centré, lisible même en recadrage quasi carré.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section prestations/ChatGPT Image 24 août 2026, 16_06_04 (1).png"
+      },
+      "destination": "design/section prestations/ChatGPT Image 24 août 2026, 16_06_04 (1).png"
+    },
+    {
+      "id": "facial_photo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Photo de la carte Soins visage dans la version mobile des prestations (carte forêt).",
+      "requirements": [
+        "Photo existante déjà utilisée par prestations-section.tsx",
+        "Recadrage en cover dans un cadre à rayon 14 px, point focal sur le visage (environ 52 % x, 40 % y)"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "prestations"
+      ],
+      "aspectRatio": "1672:941",
+      "composition": "Portrait serré d'une femme yeux fermés, main sur la joue, lumière dorée et ombres de feuillage, monstera à droite. Visage centré, qui survit à un recadrage carré.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (2).png"
+      },
+      "destination": "design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (2).png"
+    },
+    {
+      "id": "epilation_photo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Photo de la carte Épilation dans la version mobile des prestations.",
+      "requirements": [
+        "Photo existante déjà utilisée par prestations-section.tsx",
+        "Recadrage en cover dans un cadre à rayon 14 px, point focal sur le genou et la main (environ 55 % x, 45 % y)",
+        "Image douce et non clinique, conforme à la direction photo"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "prestations"
+      ],
+      "aspectRatio": "1672:941",
+      "composition": "Jambes hâlées et main posée sur le genou, ombres de palmes et feuilles de monstera aux bords, fond crème lumineux. Sujet en diagonale au centre.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (3).png"
+      },
+      "destination": "design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (3).png"
+    },
+    {
+      "id": "sabrina_portrait_photo",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Portrait de Sabrina dans son espace de soin, colonne gauche de la section À propos (référence sidrano).",
+      "requirements": [
+        "Photo existante déjà utilisée par about-section.tsx",
+        "Cadre portrait 5:7 sur desktop (x 6 % à 36 %) avec léger recadrage cover, carré en mobile ; rayon de 8 px",
+        "Point focal sur le visage et les mains (environ 50 % x, 30 % y en mobile carré)",
+        "Texte alternatif : Sabrina dans son espace de soin"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "a_propos"
+      ],
+      "aspectRatio": "4:5",
+      "composition": "Sabrina en kimono de lin crème, mains posées sur une table de massage, regard vers la droite (vers le texte), cadre lotus doré, étagère avec bougies et flacons à droite. Le bas (table et serviette) peut passer derrière la bande des valeurs.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section a propos/ChatGPT Image 24 août 2026, 00_23_41 1.png"
+      },
+      "destination": "design/section a propos/ChatGPT Image 24 août 2026, 00_23_41 1.png"
+    },
+    {
+      "id": "lotus_ornament",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Pictogramme lotus doré du jeu d'icônes PNG du projet, placé au-dessus des titres de seuil (À propos, Guides, Réservation), comme dans le composant SectionEyebrow existant.",
+      "requirements": [
+        "Même PNG que SectionEyebrow (src/components/landing/section-ornaments.tsx), du même jeu d'icônes 256 x 256 que les pictos de formation",
+        "Affiché à 28 px seulement, donc la source 256 x 256 couvre largement le 2x et le 3x ; ne jamais l'agrandir au-delà de 85 px",
+        "Décoratif (alt vide, aria-hidden)",
+        "Trois sections au plus sur la landing"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "a_propos",
+        "guides",
+        "reserver"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Lotus doré centré sur fond transparent, sans recadrage.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/formation-icons/massage-wellness.png"
+      },
+      "destination": "src/assets/formation-icons/massage-wellness.png"
+    },
+    {
+      "id": "formation_detail_hands",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Première vignette sous la grande photo formation : gestes de massage des mains.",
+      "requirements": [
+        "Photo existante du projet (carte du massage Étoile), réutilisée en vignette de 168 x 140 px à rayon 10 px",
+        "Recadrage cover, point focal sur les mains (environ 45 % x, 55 % y)"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "1726:911",
+      "composition": "Mains d'une praticienne en manches de lin qui massent la main d'une personne allongée sur une serviette crème, plantes floues en fond. Sujet au centre, lisible en petit format.",
+      "source": {
+        "kind": "project",
+        "reference": "design/massage/massages/etoile.png"
+      },
+      "destination": "design/massage/massages/etoile.png"
+    },
+    {
+      "id": "formation_detail_table",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Deuxième vignette sous la grande photo formation : table de massage préparée.",
+      "requirements": [
+        "Photo existante du projet (carte du massage aux pierres chaudes), réutilisée en vignette de 168 x 140 px à rayon 10 px",
+        "Recadrage cover centré sur la coupelle et les pierres (environ 40 % x, 65 % y)"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "1727:911",
+      "composition": "Table de massage en éponge crème avec une coupelle de pierres noires, flacon ambré, serviette roulée, plantes et lumière naturelle chaude en fond.",
+      "source": {
+        "kind": "project",
+        "reference": "design/massage/massages/pierres-chaudes.png"
+      },
+      "destination": "design/massage/massages/pierres-chaudes.png"
+    },
+    {
+      "id": "formation_detail_pdf",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Troisième vignette sous la grande photo formation : supports de cours et PDF de l'e-learning.",
+      "requirements": [
+        "Vignette de 168 x 140 px à rayon 10 px, recadrage cover centré sur le cahier ouvert",
+        "Image d'illustration générée : le texte du cahier est volontairement illisible et ne représente pas un support réel précis",
+        "Inspectée : composition nette, palette crème, chêne et vert forêt conforme",
+        "Fichier JPEG de 1152 x 864 px"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "4:3",
+      "composition": "Vue plongeante d'un cahier à spirale ouvert avec des croquis de mains et un texte illisible, tablette floue, serviette crème, fleurs de frangipanier et flacons ambrés sur une table en chêne, lumière chaude rasante. Cahier au centre, bords calmes pour le recadrage.",
+      "source": {
+        "kind": "generated",
+        "reference": "treg minimax.image-gen.from_text (MiniMax image-01), task 071d7e73b187c35c3ec14b15157b56aa, 2026-10-13",
+        "license": "Image générée pour ce projet via MiniMax image-01 ; usage commercial selon les conditions MiniMax"
+      },
+      "destination": "src/assets/landing/formation-supports-pdf.jpg"
+    },
+    {
+      "id": "formation_detail_workshop",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Quatrième vignette sous la grande photo formation : détail d'une pratique en atelier.",
+      "requirements": [
+        "Vignette de 168 x 140 px à rayon 10 px, recadrage cover centré sur les mains (environ 65 % x, 50 % y)",
+        "Un premier essai a échoué côté fournisseur ; ce résultat vient d'une seconde génération au prompt simplifié",
+        "Inspectée : mains bien formées, lumière chaude, palette conforme",
+        "Fichier JPEG de 1152 x 864 px"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "4:3",
+      "composition": "Gros plan de deux mains posées sur le bas du dos d'une personne allongée sous une serviette crème, bougie et plantes floues en arrière-plan, faible profondeur de champ. Mains dans le tiers droit, serviette au premier plan à gauche.",
+      "source": {
+        "kind": "generated",
+        "reference": "treg minimax.image-gen.from_text (MiniMax image-01), task 071d7e8e48c5b9fcf1d533d02a00863f, 2026-10-13",
+        "license": "Image générée pour ce projet via MiniMax image-01 ; usage commercial selon les conditions MiniMax"
+      },
+      "destination": "src/assets/landing/formation-atelier-mains.jpg"
+    },
+    {
+      "id": "formation_icon_guided",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Picto du bénéfice Guidée par Sabrina dans la rangée de pictos de la section formation.",
+      "requirements": [
+        "PNG du projet dans un cercle cream 200 de 74 px (82 px en mobile)",
+        "Décoratif, le libellé est visible"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Pictogramme centré sur fond transparent.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/formation-icons/guided-by-sabrina.png"
+      },
+      "destination": "src/assets/formation-icons/guided-by-sabrina.png"
+    },
+    {
+      "id": "formation_icon_flexible",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Picto du bénéfice Accès flexible dans la rangée de pictos de la section formation.",
+      "requirements": [
+        "PNG du projet dans un cercle cream 200 de 74 px (82 px en mobile)",
+        "Décoratif, le libellé est visible"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Pictogramme centré sur fond transparent.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/formation-icons/flexible-access.png"
+      },
+      "destination": "src/assets/formation-icons/flexible-access.png"
+    },
+    {
+      "id": "formation_icon_practical",
+      "kind": "icon",
+      "status": "existing",
+      "purpose": "Picto du bénéfice Approche concrète dans la rangée de pictos de la section formation.",
+      "requirements": [
+        "PNG du projet dans un cercle cream 200 de 74 px (82 px en mobile)",
+        "Décoratif, le libellé est visible"
+      ],
+      "role": "functional_icon",
+      "sectionIds": [
+        "formation"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Pictogramme centré sur fond transparent.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/formation-icons/practical-approach.png"
+      },
+      "destination": "src/assets/formation-icons/practical-approach.png"
+    },
+    {
+      "id": "atelier_presentiel_photo",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Photo plein cadre de la carte 02 / ATELIERS du rail parcours (référence saleunion).",
+      "requirements": [
+        "Carte portrait 2:3 à rayon 20 px, photo en cover, pastille gold 300 vers 70 % de hauteur et panneau crème sur les 21 % du bas",
+        "Image d'illustration générée : les personnes sont fictives et ne représentent ni Sabrina ni de vraies participantes ; ne pas les légender comme telles",
+        "Inspectée : groupe crédible, mains correctes, palette crème et vert forêt conforme",
+        "Fichier JPEG de 832 x 1248 px"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "parcours"
+      ],
+      "aspectRatio": "2:3",
+      "composition": "Formatrice en tunique vert forêt au centre qui montre un geste, trois élèves en t-shirt crème autour d'une personne allongée sous une couverture crème, monstera et étagères en bois avec bougies. Visages et gestes dans les deux tiers supérieurs ; la couverture crème du tiers inférieur accueille la pastille et le panneau texte.",
+      "source": {
+        "kind": "generated",
+        "reference": "treg minimax.image-gen.from_text (MiniMax image-01), task 071d7e745f902896c97351cb471c79f6, 2026-10-13",
+        "license": "Image générée pour ce projet via MiniMax image-01 ; usage commercial selon les conditions MiniMax"
+      },
+      "destination": "src/assets/landing/atelier-presentiel.jpg"
+    },
+    {
+      "id": "elearning_photo",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Photo plein cadre de la carte 03 / E-LEARNING du rail parcours.",
+      "requirements": [
+        "Carte portrait 2:3 à rayon 20 px, photo en cover, pastille gold 300 vers 70 % de hauteur et panneau crème sur les 21 % du bas",
+        "Image d'illustration générée : personne fictive, écran volontairement illisible, aucune interface réelle représentée",
+        "Inspectée : composition calme, lumière chaude, palette conforme",
+        "Fichier JPEG de 832 x 1248 px"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "parcours"
+      ],
+      "aspectRatio": "2:3",
+      "composition": "Femme en haut de lin crème qui suit un cours sur un ordinateur portable posé sur une table en bois, flacon d'huile, fleur de frangipanier et cahier à côté, plante tropicale et bande murale vert forêt en fond. Visage et écran dans les deux tiers supérieurs, table calme dans le tiers inférieur pour le panneau texte.",
+      "source": {
+        "kind": "generated",
+        "reference": "treg minimax.image-gen.from_text (MiniMax image-01), task 071d7e74b6f3e68cd01ce12a2ee11479, 2026-10-13",
+        "license": "Image générée pour ce projet via MiniMax image-01 ; usage commercial selon les conditions MiniMax"
+      },
+      "destination": "src/assets/landing/elearning.jpg"
+    },
+    {
+      "id": "guide_cover_massage_relaxant",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Couverture du guide Massage relaxant sur la carte centrale de l'éventail des guides.",
+      "requirements": [
+        "Découpée à partir du visuel existant des trois guides (design/section guides), sans retouche",
+        "Affichée en 4:5 à rayon 12 px avec 16 px de marge dans la carte #fff9ec ; utiliser object-fit: contain ou un léger cover centré pour garder le titre de couverture entier",
+        "Taille source limitée par le visuel d'origine (440 x 660) : ne pas l'afficher au-delà d'environ 330 px de large en 1x"
+      ],
+      "role": "product_image",
+      "sectionIds": [
+        "guides"
+      ],
+      "aspectRatio": "2:3",
+      "composition": "Livre vert forêt et crème « Guide du massage relaxant », logo Joie d'Être en haut, photo de massage du dos en bas, présenté de face avec un léger relief ; fond blanc.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section guides/ChatGPT Image 24 août 2026, 15_47_59.png"
+      },
+      "destination": "src/assets/landing/guide-massage-relaxant.png"
+    },
+    {
+      "id": "guide_cover_rituels_visage",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Couverture du guide Rituels du visage sur la carte latérale gauche de l'éventail.",
+      "requirements": [
+        "Découpée à partir du visuel existant des trois guides, sans retouche ; l'extrême bas de la couverture est légèrement rogné par le cadrage d'origine",
+        "Affichée en 4:5 à rayon 12 px dans une carte inclinée de -6 degrés",
+        "Taille source 430 x 645 : ne pas l'afficher au-delà d'environ 320 px de large en 1x"
+      ],
+      "role": "product_image",
+      "sectionIds": [
+        "guides"
+      ],
+      "aspectRatio": "2:3",
+      "composition": "Livre crème « Rituels visage & bien-être », logo Joie d'Être en haut, femme qui se masse le visage en bas ; fond blanc.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section guides/ChatGPT Image 24 août 2026, 15_47_59.png"
+      },
+      "destination": "src/assets/landing/guide-rituels-visage.png"
+    },
+    {
+      "id": "guide_cover_pratique_pro",
+      "kind": "image",
+      "status": "ready",
+      "purpose": "Couverture du guide Pratique professionnelle sur la carte latérale droite de l'éventail.",
+      "requirements": [
+        "Découpée à partir du visuel existant des trois guides, sans retouche",
+        "Affichée en 4:5 à rayon 12 px dans une carte inclinée de +6 degrés",
+        "Taille source 440 x 660 : ne pas l'afficher au-delà d'environ 330 px de large en 1x"
+      ],
+      "role": "product_image",
+      "sectionIds": [
+        "guides"
+      ],
+      "aspectRatio": "2:3",
+      "composition": "Livre vert forêt « Débuter sa pratique avec confiance », logo Joie d'Être en haut, scène de formation en bas ; fond blanc.",
+      "source": {
+        "kind": "project",
+        "reference": "design/section guides/ChatGPT Image 24 août 2026, 15_47_59.png"
+      },
+      "destination": "src/assets/landing/guide-pratique-pro.png"
+    },
+    {
+      "id": "testimonial_portrait_camille",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Portrait de Camille sur sa carte témoignage (avis existant).",
+      "requirements": [
+        "Portrait existant de testimonials-section.tsx, affiché à 118 x 98 px à rayon 10 px en cover centré sur le visage",
+        "Texte alternatif : Camille"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "temoignages"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Portrait centré, visage dans le tiers supérieur, qui reste lisible en recadrage paysage léger.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/testimonials/camille.png"
+      },
+      "destination": "src/assets/testimonials/camille.png"
+    },
+    {
+      "id": "testimonial_portrait_louise",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Portrait de Louise sur sa carte témoignage (avis existant).",
+      "requirements": [
+        "Portrait existant de testimonials-section.tsx, affiché à 118 x 98 px à rayon 10 px en cover centré sur le visage",
+        "Texte alternatif : Louise"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "temoignages"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Portrait centré, visage dans le tiers supérieur.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/testimonials/louise.png"
+      },
+      "destination": "src/assets/testimonials/louise.png"
+    },
+    {
+      "id": "testimonial_portrait_amandine",
+      "kind": "image",
+      "status": "existing",
+      "purpose": "Portrait d'Amandine sur sa carte témoignage (avis existant).",
+      "requirements": [
+        "Portrait existant de testimonials-section.tsx, affiché à 118 x 98 px à rayon 10 px en cover centré sur le visage",
+        "Texte alternatif : Amandine"
+      ],
+      "role": "photography",
+      "sectionIds": [
+        "temoignages"
+      ],
+      "aspectRatio": "1:1",
+      "composition": "Portrait centré, visage dans le tiers supérieur.",
+      "source": {
+        "kind": "project",
+        "reference": "src/assets/testimonials/amandine.png"
+      },
+      "destination": "src/assets/testimonials/amandine.png"
+    },
+    {
+      "id": "font_bodoni_moda_normal",
+      "kind": "font",
+      "status": "ready",
+      "purpose": "Bodoni Moda Variable romain (axe wght 400 à 900) pour les titres, questions de FAQ, noms de prestations et de guides et le mot-symbole du footer.",
+      "requirements": [
+        "Fichier variable latin, poids utilisés 400, 500, 600 et 700",
+        "Déjà chargé via @fontsource-variable/bodoni-moda dans src/styles.css ; copie locale fournie avec sa licence OFL 1.1",
+        "Build doit vérifier document.fonts.check('500 1em \"Bodoni Moda Variable\"')"
+      ],
+      "role": "font",
+      "sectionIds": [
+        "hero",
+        "prestations",
+        "a_propos",
+        "formation",
+        "parcours",
+        "guides",
+        "temoignages",
+        "faq",
+        "reserver",
+        "footer"
+      ],
+      "source": {
+        "kind": "project",
+        "reference": "node_modules/@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-normal.woff2",
+        "license": "SIL Open Font License 1.1 (src/assets/fonts/LICENSE-bodoni-moda.txt)"
+      },
+      "destination": "src/assets/fonts/bodoni-moda-latin-wght-normal.woff2"
+    },
+    {
+      "id": "font_bodoni_moda_italic",
+      "kind": "font",
+      "status": "ready",
+      "purpose": "Bodoni Moda Variable italique pour le mot d'accent en italique de chaque titre de seuil.",
+      "requirements": [
+        "Vrai fichier italique variable latin (pas d'italique synthétique)",
+        "Déjà chargé via @fontsource-variable/bodoni-moda/wght-italic.css ; copie locale fournie avec sa licence"
+      ],
+      "role": "font",
+      "sectionIds": [
+        "hero",
+        "prestations",
+        "formation",
+        "parcours",
+        "guides",
+        "temoignages",
+        "faq",
+        "reserver"
+      ],
+      "source": {
+        "kind": "project",
+        "reference": "node_modules/@fontsource-variable/bodoni-moda/files/bodoni-moda-latin-wght-italic.woff2",
+        "license": "SIL Open Font License 1.1 (src/assets/fonts/LICENSE-bodoni-moda.txt)"
+      },
+      "destination": "src/assets/fonts/bodoni-moda-latin-wght-italic.woff2"
+    },
+    {
+      "id": "font_manrope_normal",
+      "kind": "font",
+      "status": "ready",
+      "purpose": "Manrope Variable (axe wght 200 à 800) pour le texte courant, les labels en petites capitales, les boutons, la navigation et les métadonnées.",
+      "requirements": [
+        "Fichier variable latin, poids utilisés 400, 500, 600, 700 et 800",
+        "Déjà chargé via @fontsource-variable/manrope ; copie locale fournie avec sa licence OFL 1.1",
+        "Build doit vérifier document.fonts.check('400 1em \"Manrope Variable\"')"
+      ],
+      "role": "font",
+      "sectionIds": [
+        "hero",
+        "prestations",
+        "a_propos",
+        "formation",
+        "parcours",
+        "guides",
+        "temoignages",
+        "faq",
+        "reserver",
+        "footer"
+      ],
+      "source": {
+        "kind": "project",
+        "reference": "node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
+        "license": "SIL Open Font License 1.1 (src/assets/fonts/LICENSE-manrope.txt)"
+      },
+      "destination": "src/assets/fonts/manrope-latin-wght-normal.woff2"
+    }
+  ]
+}
