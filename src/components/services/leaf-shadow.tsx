@@ -8,7 +8,7 @@ const leaves = { bananier, frangipanier, monstera, palme }
 
 // Faint, blurred foliage shadow cast on a cream section, as if sunlight came through the leaves.
 // Goes under the section's light gradients; only on wide screens, where it stays off the text.
-// Solid leaves are drawn at 2048 px with a soft edge already baked in, so only the palm is blurred.
+// Solid leaves come with their soft penumbra baked in from clean edges; only the palm is blurred in CSS.
 export function LeafShadow({
   leaf,
   className,
@@ -26,8 +26,8 @@ export function LeafShadow({
         leaf === 'palme' && 'blur-[3px]',
         className,
       )}
-      width={leaf === 'palme' ? 768 : 2048}
-      height={leaf === 'palme' ? 768 : 2048}
+      width={leaf === 'palme' ? 768 : 1280}
+      height={leaf === 'palme' ? 768 : 1280}
       loading="lazy"
     />
   )
