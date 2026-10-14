@@ -14,6 +14,9 @@ import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as EpilationRouteImport } from './routes/epilation'
 import { Route as MassagesRouteImport } from './routes/massages'
 import { Route as SoinsRouteImport } from './routes/soins'
+import { Route as EpilationSlugRouteImport } from './routes/epilation_.$slug'
+import { Route as MassagesSlugRouteImport } from './routes/massages_.$slug'
+import { Route as SoinsSlugRouteImport } from './routes/soins_.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
@@ -40,6 +43,21 @@ const SoinsRoute = SoinsRouteImport.update({
   path: '/soins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EpilationSlugRoute = EpilationSlugRouteImport.update({
+  id: '/epilation_/$slug',
+  path: '/epilation/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MassagesSlugRoute = MassagesSlugRouteImport.update({
+  id: '/massages_/$slug',
+  path: '/massages/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoinsSlugRoute = SoinsSlugRouteImport.update({
+  id: '/soins_/$slug',
+  path: '/soins/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -47,6 +65,9 @@ export interface FileRoutesByFullPath {
   '/epilation': typeof EpilationRoute
   '/massages': typeof MassagesRoute
   '/soins': typeof SoinsRoute
+  '/epilation/$slug': typeof EpilationSlugRoute
+  '/massages/$slug': typeof MassagesSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -54,6 +75,9 @@ export interface FileRoutesByTo {
   '/epilation': typeof EpilationRoute
   '/massages': typeof MassagesRoute
   '/soins': typeof SoinsRoute
+  '/epilation/$slug': typeof EpilationSlugRoute
+  '/massages/$slug': typeof MassagesSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -62,14 +86,41 @@ export interface FileRoutesById {
   '/epilation': typeof EpilationRoute
   '/massages': typeof MassagesRoute
   '/soins': typeof SoinsRoute
+  '/epilation_/$slug': typeof EpilationSlugRoute
+  '/massages_/$slug': typeof MassagesSlugRoute
+  '/soins_/$slug': typeof SoinsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/design-system' | '/epilation' | '/massages' | '/soins'
+  fullPaths:
+    | '/'
+    | '/design-system'
+    | '/epilation'
+    | '/massages'
+    | '/soins'
+    | '/epilation/$slug'
+    | '/massages/$slug'
+    | '/soins/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/design-system' | '/epilation' | '/massages' | '/soins'
+  to:
+    | '/'
+    | '/design-system'
+    | '/epilation'
+    | '/massages'
+    | '/soins'
+    | '/epilation/$slug'
+    | '/massages/$slug'
+    | '/soins/$slug'
   id:
-    '__root__' | '/' | '/design-system' | '/epilation' | '/massages' | '/soins'
+    | '__root__'
+    | '/'
+    | '/design-system'
+    | '/epilation'
+    | '/massages'
+    | '/soins'
+    | '/epilation_/$slug'
+    | '/massages_/$slug'
+    | '/soins_/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -78,6 +129,9 @@ export interface RootRouteChildren {
   EpilationRoute: typeof EpilationRoute
   MassagesRoute: typeof MassagesRoute
   SoinsRoute: typeof SoinsRoute
+  EpilationSlugRoute: typeof EpilationSlugRoute
+  MassagesSlugRoute: typeof MassagesSlugRoute
+  SoinsSlugRoute: typeof SoinsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -117,6 +171,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SoinsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/epilation_/$slug': {
+      id: '/epilation_/$slug'
+      path: '/epilation/$slug'
+      fullPath: '/epilation/$slug'
+      preLoaderRoute: typeof EpilationSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/massages_/$slug': {
+      id: '/massages_/$slug'
+      path: '/massages/$slug'
+      fullPath: '/massages/$slug'
+      preLoaderRoute: typeof MassagesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soins_/$slug': {
+      id: '/soins_/$slug'
+      path: '/soins/$slug'
+      fullPath: '/soins/$slug'
+      preLoaderRoute: typeof SoinsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -126,6 +201,9 @@ const rootRouteChildren: RootRouteChildren = {
   EpilationRoute: EpilationRoute,
   MassagesRoute: MassagesRoute,
   SoinsRoute: SoinsRoute,
+  EpilationSlugRoute: EpilationSlugRoute,
+  MassagesSlugRoute: MassagesSlugRoute,
+  SoinsSlugRoute: SoinsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
