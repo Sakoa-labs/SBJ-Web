@@ -490,7 +490,7 @@ body {
     z-index: 1;
     display: flex;
     width: max-content;
-    animation: testimonials-marquee 36s linear infinite;
+    animation: testimonials-marquee var(--marquee-duration, 36s) linear infinite;
     transform: translate3d(0, 0, 0);
   }
 

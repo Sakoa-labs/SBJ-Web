@@ -1,44 +1,34 @@
-import amandinePortrait from '#/assets/testimonials/amandine.png'
-import camillePortrait from '#/assets/testimonials/camille.png'
-import louisePortrait from '#/assets/testimonials/louise.png'
+import type { CSSProperties } from 'react'
+import { Star } from 'lucide-react'
+
 import {
   GoldDivider,
   SectionEyebrow,
 } from '#/components/landing/section-ornaments'
+import { reviewStats, reviews } from '#/data/reviews'
+import type { Review } from '#/data/reviews'
+import defaultAvatar from '#/assets/testimonials/avatar-defaut.jpg'
 import foliageLeft from '../../../design/section temoignages/ChatGPT Image 24 août 2026, 22_13_34.png'
 import foliageRight from '../../../design/section temoignages/ChatGPT Image 24 août 2026, 22_16_37.png'
 
-const testimonials = [
-  {
-    name: 'Camille',
-    context: 'Formation massage bien-être',
-    portrait: camillePortrait,
-    quote:
-      'La formation m’a apporté une vraie philosophie du toucher et une confiance nouvelle dans ma pratique.',
-  },
-  {
-    name: 'Louise',
-    context: 'Lectrice des guides',
-    portrait: louisePortrait,
-    quote:
-      'Les guides sont clairs, concrets et inspirants. Je les utilise au quotidien et gagne un temps précieux.',
-  },
-  {
-    name: 'Amandine',
-    context: 'Atelier en présentiel',
-    portrait: amandinePortrait,
-    quote:
-      'Un atelier bienveillant, professionnel et motivant. Je repars avec des clés concrètes et beaucoup de confiance.',
-  },
-]
-
-function TestimonialCard({
-  testimonial,
-}: {
-  testimonial: (typeof testimonials)[number]
-}) {
+function Stars({ className }: { className?: string }) {
   return (
-    <article className="testimonial-card relative flex min-h-[22rem] w-[min(82vw,24rem)] shrink-0 snap-start flex-col rounded-[1.75rem] border border-[#c99442]/55 bg-[#fffdf8] px-6 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:w-[24rem] sm:px-7 sm:py-7 lg:w-[27rem]">
+    <span className={className} role="img" aria-label="5 étoiles sur 5">
+      {Array.from({ length: 5 }, (_, index) => (
+        <Star
+          key={index}
+          aria-hidden="true"
+          className="size-3.5 fill-[#d4af37] text-[#d4af37]"
+          strokeWidth={1.2}
+        />
+      ))}
+    </span>
+  )
+}
+
+function TestimonialCard({ review }: { review: Review }) {
+  return (
+    <article className="testimonial-card relative flex min-h-[20rem] w-[min(82vw,24rem)] shrink-0 snap-start flex-col rounded-[1.75rem] border border-[#c99442]/55 bg-[#fffdf8] px-6 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:w-[24rem] sm:px-7 sm:py-7 lg:w-[27rem]">
       <span
         className="absolute right-7 top-7 font-heading text-5xl leading-none text-[#b98232]"
         aria-hidden="true"
@@ -46,32 +36,37 @@ function TestimonialCard({
         “
       </span>
 
-      <div className="flex items-center gap-5 pr-12">
-        <div className="size-24 shrink-0 overflow-hidden rounded-full border border-[#d4af37]/40 shadow-[0_10px_26px_rgba(72,51,25,0.12)] sm:size-28">
+      <div className="flex items-center gap-4 pr-12">
+        <div className="size-16 shrink-0 overflow-hidden rounded-full border border-[#d4af37]/50 shadow-[0_8px_20px_rgba(72,51,25,0.12)] sm:size-[4.5rem]">
           <img
-            src={testimonial.portrait}
-            alt={`Portrait de ${testimonial.name}`}
+            src={review.avatar ?? defaultAvatar}
+            alt=""
             className="size-full object-cover object-center"
-            width={1254}
-            height={1254}
+            width={512}
+            height={512}
             loading="lazy"
           />
         </div>
         <div className="min-w-0">
-          <h3 className="font-heading text-[2rem] font-medium leading-none text-[#173c32] sm:text-[2.15rem]">
-            {testimonial.name}
+          <h3 className="font-heading text-[1.75rem] font-medium leading-none text-[#173c32] sm:text-[1.9rem]">
+            {review.name}
           </h3>
           <p className="mt-2 text-xs font-semibold uppercase tracking-[0.13em] text-[#9a6d2c]">
-            {testimonial.context}
+            {review.service}
           </p>
         </div>
       </div>
 
       <GoldDivider compact className="mt-5 self-center" />
 
-      <blockquote className="mt-5 text-[1rem] leading-7 text-[#29443c] sm:text-[1.04rem]">
-        « {testimonial.quote} »
+      <blockquote className="mt-5 flex-1 text-[1rem] leading-7 text-[#29443c] sm:text-[1.04rem]">
+        « {review.text} »
       </blockquote>
+
+      <p className="mt-5 flex items-center gap-2.5 text-xs font-semibold uppercase tracking-[0.13em] text-[#40574f]">
+        <Stars className="flex gap-0.5" />
+        Avis {review.source}
+      </p>
     </article>
   )
 }
@@ -124,37 +119,37 @@ export function TestimonialsSection() {
             id="testimonials-title"
             className="mt-6 text-balance text-[clamp(2.45rem,12vw,2.85rem)] font-normal leading-[1.02] tracking-[-0.025em] sm:text-[clamp(3.8rem,6.5vw,5.5rem)] lg:whitespace-nowrap lg:text-[clamp(4.25rem,5vw,5.35rem)]"
           >
-            Elles en parlent{' '}
+            Vous en parlez{' '}
             <em className="inline-block pb-1 font-normal text-[#d4af37]">
               mieux
             </em>{' '}
             que nous
           </h2>
           <p className="mx-auto mt-6 max-w-[43rem] text-pretty text-base leading-7 text-[#355149] sm:text-lg sm:leading-8">
-            Des femmes inspirées qui ont transformé leur pratique et leur quotidien
-            grâce aux formations, guides et ateliers.
+            Les avis laissés par nos clients, notés{' '}
+            {String(reviewStats.google.rating).replace('.', ',')}/5 sur Google et{' '}
+            {reviewStats.booksy.rating}/5 sur Booksy.
           </p>
         </header>
 
+        {/* The duration grows with the number of reviews to keep the same scrolling speed. */}
         <div
           className="testimonials-marquee mt-12 sm:mt-14"
-          aria-label="Témoignages de clientes"
+          aria-label="Avis de nos clients"
+          style={{ '--marquee-duration': `${reviews.length * 12}s` } as CSSProperties}
         >
           <div className="testimonials-track py-4">
             <div className="flex shrink-0 gap-5 pr-5 sm:gap-6 sm:pr-6">
-              {testimonials.map((testimonial) => (
-                <TestimonialCard key={testimonial.name} testimonial={testimonial} />
+              {reviews.map((review) => (
+                <TestimonialCard key={review.name} review={review} />
               ))}
             </div>
             <div
               className="testimonials-copy flex shrink-0 gap-5 pr-5 sm:gap-6 sm:pr-6"
               aria-hidden="true"
             >
-              {testimonials.map((testimonial) => (
-                <TestimonialCard
-                  key={`copy-${testimonial.name}`}
-                  testimonial={testimonial}
-                />
+              {reviews.map((review) => (
+                <TestimonialCard key={`copy-${review.name}`} review={review} />
               ))}
             </div>
           </div>
