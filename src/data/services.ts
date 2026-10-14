@@ -424,11 +424,11 @@ export const services: ReadonlyArray<Service> = [
 
 export const categoryInfo: Record<
   ServiceCategory,
-  { label: string; path: '/massages' | '/soins' | '/epilation'; bookLabel: string }
+  { label: string; path: '/massages' | '/soins' | '/epilation'; bookLabel: string; giftLabel: string }
 > = {
-  massages: { label: 'Massages', path: '/massages', bookLabel: 'Réserver ce massage' },
-  soins: { label: 'Soins visage', path: '/soins', bookLabel: 'Réserver ce soin' },
-  epilation: { label: 'Épilation', path: '/epilation', bookLabel: 'Réserver cette épilation' },
+  massages: { label: 'Massages', path: '/massages', bookLabel: 'Réserver ce massage', giftLabel: 'Offrir ce massage' },
+  soins: { label: 'Soins visage', path: '/soins', bookLabel: 'Réserver ce soin', giftLabel: 'Offrir ce soin' },
+  epilation: { label: 'Épilation', path: '/epilation', bookLabel: 'Réserver cette épilation', giftLabel: 'Offrir cette épilation' },
 }
 
 export function servicesIn(category: ServiceCategory, group?: 'forfait') {

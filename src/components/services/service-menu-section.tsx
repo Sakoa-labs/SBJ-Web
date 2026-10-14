@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { cn } from '#/lib/utils'
 import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
 import foliageTopRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
@@ -52,6 +53,8 @@ export function ServiceMenuSection({
   compact?: boolean
 }) {
   const isCard = variant === 'card'
+  // Keeps the titles aligned when only some items have a pictogram.
+  const hasIcons = items.some((item) => item.icon)
 
   return (
     <section
@@ -117,9 +120,10 @@ export function ServiceMenuSection({
       />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
+        <SectionEyebrow />
         <h2
           id={`${id}-title`}
-          className="text-center text-[clamp(2.6rem,10vw,3.2rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#0d3a2f] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
+          className="mt-5 text-center text-[clamp(2.6rem,10vw,3.2rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#0d3a2f] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
         >
           {title}{' '}
           <em className="inline-block pb-1 font-normal text-[#d4af37]">{accent}</em>
@@ -188,7 +192,7 @@ export function ServiceMenuSection({
               <div
                 className={cn(
                   'mx-auto flex w-full max-w-[22rem] flex-1 flex-col items-center',
-                  item.icon ? 'pt-12' : 'pt-6',
+                  hasIcons ? 'pt-12' : 'pt-6',
                   isCard ? 'max-w-[26rem] px-6' : 'px-2',
                 )}
               >

@@ -37,7 +37,8 @@ export function SectionEyebrow({
   label,
   className,
 }: {
-  label: string
+  // Without a label, only the lotus and the gold divider are shown.
+  label?: string
   className?: string
 }) {
   return (
@@ -50,10 +51,12 @@ export function SectionEyebrow({
         width={256}
         height={256}
       />
-      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.28em]">
-        {label}
-      </p>
-      <GoldDivider className="mt-4" />
+      {label && (
+        <p className="mt-3 text-xs font-semibold uppercase tracking-[0.28em]">
+          {label}
+        </p>
+      )}
+      <GoldDivider className={label ? 'mt-4' : 'mt-3'} />
     </div>
   )
 }

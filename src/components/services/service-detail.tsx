@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import type { ReactNode } from 'react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SiteHeader } from '#/components/layout/site-header'
+import { DecorObject } from '#/components/services/decor-object'
 import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
 import {
@@ -16,6 +18,10 @@ import { cn } from '#/lib/utils'
 import durationIcon from '#/assets/info-icons/info-duree.png'
 import paymentIcon from '#/assets/info-icons/info-paiement.png'
 import cancellationIcon from '#/assets/info-icons/info-annulation.png'
+import frangipanier from '#/assets/decor/frangipanier.png'
+import frangipaniersDuo from '#/assets/decor/frangipaniers-duo.png'
+import fioleHuile from '#/assets/decor/fiole-huile.png'
+import pierresEmpilees from '#/assets/decor/pierres-empilees.png'
 import palmLeaf from '../../../design/massage/decorations/palme-faq-gauche.png'
 
 // Card layout of the "Vous aimerez aussi" section, matching each category's list page.
@@ -36,9 +42,32 @@ const relatedLayout: Record<
   },
 }
 
+// Same decor objects as the menu section of each category's list page.
+const relatedDecor: Record<ServiceCategory, ReactNode> = {
+  massages: (
+    <>
+      <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
+      <DecorObject src={pierresEmpilees} className="-right-14 bottom-[18%] w-32 -rotate-12" />
+    </>
+  ),
+  soins: (
+    <>
+      <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
+      <DecorObject src={fioleHuile} className="-right-8 bottom-[22%] w-20 -rotate-[24deg]" />
+    </>
+  ),
+  epilation: (
+    <DecorObject src={frangipaniersDuo} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
+  ),
+}
+
 export function ServiceDetailPage({ service }: { service: Service }) {
   const category = categoryInfo[service.category]
-  const related: ReadonlyArray<ServiceMenuItem> = servicesIn(service.category, service.group)
+  // Same group first (zones or forfaits), then the rest of the category to fill the row.
+  const related: ReadonlyArray<ServiceMenuItem> = [
+    ...servicesIn(service.category, service.group),
+    ...servicesIn(service.category, service.group ? undefined : 'forfait'),
+  ]
     .filter((other) => other.slug !== service.slug)
     .slice(0, service.category === 'epilation' ? 3 : 4)
     .map((other) => ({
@@ -61,6 +90,7 @@ export function ServiceDetailPage({ service }: { service: Service }) {
           title="Vous aimerez"
           accent="aussi"
           compact
+          decor={relatedDecor[service.category]}
           items={related}
           {...relatedLayout[service.category]}
         />
@@ -135,8 +165,9 @@ function ServiceDetail({ service }: { service: Service }) {
             id="service-detail-title"
             className="mt-3 text-[clamp(2.1rem,8.6vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.025em] lg:text-[clamp(2.5rem,3.3vw,3.6rem)]"
           >
-            <span className="block font-medium">{service.headline}</span>
-            <em className="block pb-1 font-normal text-[#c09027]">{service.accent}</em>
+            {/* The accent joins the headline line when it fits, otherwise it wraps as a whole. */}
+            <span className="font-medium">{service.headline}</span>{' '}
+            <em className="inline-block pb-1 font-normal text-[#c09027]">{service.accent}</em>
           </h1>
 
           <p className="mt-3 font-heading text-lg italic leading-snug text-[#173c32] sm:text-xl">
@@ -219,7 +250,7 @@ function ServiceDetail({ service }: { service: Service }) {
                   {category.bookLabel}
                 </EmbossedCta>
                 <EmbossedCta href="#offrir" className="w-full">
-                  Offrir ce soin
+                  {category.giftLabel}
                 </EmbossedCta>
               </div>
             </div>
@@ -232,12 +263,12 @@ function ServiceDetail({ service }: { service: Service }) {
 
 function InfoRow({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
-    <div className="flex items-center gap-4 border-b border-[#d4af37]/35 py-2">
+    <div className="flex items-center gap-4 border-b border-[#d4af37]/35 py-2.5">
       <span
-        className="grid size-10 shrink-0 place-items-center rounded-full bg-[#0d3a2f] shadow-[inset_0_1px_0_rgba(255,255,255,0.13),0_4px_10px_rgba(13,58,47,0.18)] ring-1 ring-[#d4af37]/65"
+        className="embossed-dark-tile grid size-12 shrink-0 place-items-center rounded-lg border border-[#d4af37]/85"
         aria-hidden="true"
       >
-        <img src={icon} alt="" className="size-[1.45rem] object-contain" />
+        <img src={icon} alt="" className="size-8 object-contain" />
       </span>
       <dt className="font-semibold text-[#0d3a2f]">{label}</dt>
       <dd className="ml-auto text-right text-[#29443c]">{value}</dd>
