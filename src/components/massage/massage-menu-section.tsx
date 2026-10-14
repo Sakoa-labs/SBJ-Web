@@ -18,6 +18,7 @@ const items: ReadonlyArray<ServiceMenuItem> = servicesIn('massages').map((servic
 export function MassageMenuSection() {
   return (
     <ServiceMenuSection
+      eyebrow="Nos massages"
       decor={
         <>
           <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />

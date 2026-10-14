@@ -17,6 +17,7 @@ const items: ReadonlyArray<ServiceMenuItem> = servicesIn('epilation', 'forfait')
 export function EpilationForfaitsSection() {
   return (
     <ServiceMenuSection
+      eyebrow="Nos forfaits"
       decor={<DecorObject src={frangipanier} className="-right-14 bottom-[18%] w-32 -rotate-12" />}
       id="forfaits-epilation"
       title="Les forfaits"

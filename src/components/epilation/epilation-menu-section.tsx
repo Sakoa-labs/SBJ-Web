@@ -17,6 +17,7 @@ const items: ReadonlyArray<ServiceMenuItem> = servicesIn('epilation').map((servi
 export function EpilationMenuSection() {
   return (
     <ServiceMenuSection
+      eyebrow="Nos épilations"
       decor={<DecorObject src={frangipaniersDuo} className="-left-12 top-[44%] w-28 rotate-[18deg]" />}
       id="carte-des-epilations"
       accent="épilations"

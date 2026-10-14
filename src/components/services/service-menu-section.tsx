@@ -23,6 +23,7 @@ export type ServiceMenuItem = {
 
 export function ServiceMenuSection({
   id,
+  eyebrow,
   title = 'La carte des',
   accent,
   subtitle,
@@ -36,6 +37,8 @@ export function ServiceMenuSection({
   compact = false,
 }: {
   id: string
+  // Small label under the lotus ornament, as on the FAQ.
+  eyebrow: string
   title?: string
   accent: string
   subtitle?: string
@@ -120,7 +123,7 @@ export function ServiceMenuSection({
       />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
-        <SectionEyebrow />
+        <SectionEyebrow label={eyebrow} />
         <h2
           id={`${id}-title`}
           className="mt-5 text-center text-[clamp(2.6rem,10vw,3.2rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#0d3a2f] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
@@ -140,6 +143,8 @@ export function ServiceMenuSection({
             isCard
               ? 'mx-auto max-w-[92rem] gap-6 lg:grid-cols-3 xl:gap-8'
               : 'gap-x-7 gap-y-12 sm:gap-y-14 lg:grid-cols-4 lg:gap-x-8 xl:gap-x-10',
+            // Three cards keep the four-column card width and stay centered.
+            !isCard && items.length === 3 && 'lg:mx-auto lg:max-w-[75%] lg:grid-cols-3',
           )}
         >
           {items.map((item) => (
