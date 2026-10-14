@@ -4,6 +4,7 @@ import type { ReactNode } from 'react'
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SiteHeader } from '#/components/layout/site-header'
 import { DecorObject } from '#/components/services/decor-object'
+import { LeafShadow } from '#/components/services/leaf-shadow'
 import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
 import {
@@ -46,18 +47,23 @@ const relatedLayout: Record<
 const relatedDecor: Record<ServiceCategory, ReactNode> = {
   massages: (
     <>
+      <LeafShadow leaf="bananier" className="-left-56 top-[20%] w-[46rem] -scale-x-100" />
       <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
       <DecorObject src={pierresEmpilees} className="-right-14 bottom-[18%] w-32 -rotate-12" />
     </>
   ),
   soins: (
     <>
+      <LeafShadow leaf="monstera" className="-right-44 top-[16%] w-[42rem] -rotate-[28deg]" />
       <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
       <DecorObject src={fioleHuile} className="-right-8 bottom-[22%] w-20 -rotate-[24deg]" />
     </>
   ),
   epilation: (
-    <DecorObject src={frangipaniersDuo} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
+    <>
+      <LeafShadow leaf="palme" className="-left-52 top-[14%] w-[44rem] -rotate-[8deg]" />
+      <DecorObject src={frangipaniersDuo} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
+    </>
   ),
 }
 
@@ -116,6 +122,7 @@ function ServiceDetail({ service }: { service: Service }) {
         className="absolute inset-0 -z-30 bg-[linear-gradient(118deg,#fff9ec_0%,#fffaf0_30%,#fffdf8_58%,#fff9ec_100%)]"
         aria-hidden="true"
       />
+      <LeafShadow leaf="palme" className="-right-40 -top-28 w-[46rem] rotate-[96deg]" />
       <img
         data-reveal="left"
         src={palmLeaf}

@@ -1,4 +1,5 @@
 import { DecorObject } from '#/components/services/decor-object'
+import { LeafShadow } from '#/components/services/leaf-shadow'
 import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
 import { serviceHref, servicesIn } from '#/data/services'
@@ -21,6 +22,7 @@ export function SoinsMenuSection() {
       eyebrow="Nos soins"
       decor={
         <>
+          <LeafShadow leaf="bananier" className="-left-56 top-[18%] w-[48rem] -scale-x-100" />
           <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
           <DecorObject src={fioleHuile} className="-right-8 bottom-[22%] w-20 -rotate-[24deg]" />
         </>
