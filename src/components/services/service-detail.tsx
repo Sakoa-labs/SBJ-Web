@@ -60,6 +60,7 @@ export function ServiceDetailPage({ service }: { service: Service }) {
           id="vous-aimerez-aussi"
           title="Vous aimerez"
           accent="aussi"
+          compact
           items={related}
           {...relatedLayout[service.category]}
         />
@@ -77,7 +78,7 @@ function ServiceDetail({ service }: { service: Service }) {
 
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#fff9ec] pb-16 pt-28 text-[#0d3a2f] sm:pb-20 sm:pt-32 lg:pb-24"
+      className="relative isolate overflow-hidden bg-[#fff9ec] pb-6 pt-28 text-[#0d3a2f] sm:pt-32 lg:pb-8"
       aria-labelledby="service-detail-title"
     >
       <div
@@ -95,9 +96,8 @@ function ServiceDetail({ service }: { service: Service }) {
       />
 
       <div className="mx-auto grid w-full max-w-[100rem] gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16 xl:px-12">
-        {/* Gallery: one large photo and two framed thumbnails; follows the scroll on desktop
-            when the booking box makes the text column taller. */}
-        <div className="hero-photo grid grid-cols-2 gap-3 self-start sm:gap-4 lg:sticky lg:top-32">
+        {/* Gallery: one large photo and two framed thumbnails, top-aligned with the breadcrumb. */}
+        <div className="hero-photo grid grid-cols-2 gap-3 self-start sm:gap-4">
           <figure className="col-span-2 aspect-[1.8/1] overflow-hidden border-2 border-[#d4af37]/80 bg-[#e8dcc8]">
             <img
               src={service.image.src}
@@ -133,7 +133,7 @@ function ServiceDetail({ service }: { service: Service }) {
 
           <h1
             id="service-detail-title"
-            className="mt-4 text-[clamp(2.1rem,8.6vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.025em] lg:text-[clamp(2.5rem,3.3vw,3.6rem)]"
+            className="mt-3 text-[clamp(2.1rem,8.6vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.025em] lg:text-[clamp(2.5rem,3.3vw,3.6rem)]"
           >
             <span className="block font-medium">{service.headline}</span>
             <em className="block pb-1 font-normal text-[#c09027]">{service.accent}</em>
@@ -143,19 +143,19 @@ function ServiceDetail({ service }: { service: Service }) {
             {service.hook}
           </p>
 
-          <span className="mt-5 block h-px w-full bg-[#d4af37]/45" aria-hidden="true" />
+          <span className="mt-4 block h-px w-full bg-[#d4af37]/45" aria-hidden="true" />
 
-          <p className="mt-5 text-pretty text-base leading-7 text-[#29443c] sm:text-[1.05rem] sm:leading-7">
+          <p className="mt-4 text-pretty text-base leading-7 text-[#29443c] sm:text-[1.05rem] sm:leading-7">
             {service.description}
           </p>
 
-          <dl className="mt-5 border-t border-[#d4af37]/35">
+          <dl className="mt-4 border-t border-[#d4af37]/35">
             <InfoRow icon={durationIcon} label="Durée" value={formatDuration(selected.minutes)} />
             <InfoRow icon={paymentIcon} label="Paiement" value="Sur place ou en ligne" />
             <InfoRow icon={cancellationIcon} label="Annulation" value="Gratuite jusqu’à 24 h avant" />
           </dl>
 
-          <div className="mt-6 overflow-hidden rounded-md border border-[#d4af37]/70 bg-[#fffdf8] shadow-[0_18px_40px_rgba(77,51,22,0.08)]">
+          <div className="mt-5 overflow-hidden rounded-md border border-[#d4af37]/70 bg-[#fffdf8] shadow-[0_18px_40px_rgba(77,51,22,0.08)]">
             {service.promotion && (
               <p className="bg-[#0d3a2f] px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.24em] text-[#e5bd42]">
                 Offre du moment · {service.promotion}
@@ -168,14 +168,14 @@ function ServiceDetail({ service }: { service: Service }) {
                   <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#40574f]">
                     Choisissez votre formule
                   </legend>
-                  <div className="grid gap-2">
+                  <div className="grid gap-2 sm:grid-cols-2">
                     {service.variants.map((option, index) => {
                       const isSelected = index === selectedIndex
                       return (
                         <label
                           key={`${option.label}-${option.minutes}`}
                           className={cn(
-                            'flex cursor-pointer items-center gap-3 rounded-sm border px-4 py-3 transition-[border-color,background-color] duration-150 ease-out',
+                            'flex cursor-pointer items-center gap-3 rounded-sm border px-3.5 py-2 transition-[border-color,background-color] duration-150 ease-out',
                             isSelected
                               ? 'border-[#c09027] bg-[#fff6e3]'
                               : 'border-[#d4af37]/30 hover:border-[#d4af37]/70',
@@ -188,11 +188,11 @@ function ServiceDetail({ service }: { service: Service }) {
                             checked={isSelected}
                             onChange={() => setSelectedIndex(index)}
                           />
-                          <span className="min-w-0 flex-1 text-sm text-[#173c32] sm:text-base">
+                          <span className="min-w-0 flex-1 text-sm leading-snug text-[#173c32]">
                             {option.label}
-                            <span className="text-[#40574f]"> · {formatDuration(option.minutes)}</span>
+                            <span className="block text-xs text-[#40574f]">{formatDuration(option.minutes)}</span>
                           </span>
-                          <span className="text-sm font-semibold text-[#0d3a2f] sm:text-base">
+                          <span className="text-sm font-semibold text-[#0d3a2f]">
                             {formatPrice(option.promoPrice ?? option.price)}
                           </span>
                         </label>
@@ -202,7 +202,7 @@ function ServiceDetail({ service }: { service: Service }) {
                 </fieldset>
               )}
 
-              <p className={cn('flex items-baseline gap-3', hasOptions && 'mt-5')} aria-live="polite">
+              <p className={cn('flex items-baseline gap-3', hasOptions && 'mt-4')} aria-live="polite">
                 <span className="font-heading text-[2.6rem] font-medium leading-none text-[#0d3a2f] sm:text-5xl">
                   {formatPrice(finalPrice)}
                 </span>
@@ -232,12 +232,12 @@ function ServiceDetail({ service }: { service: Service }) {
 
 function InfoRow({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
-    <div className="flex items-center gap-4 border-b border-[#d4af37]/35 py-2.5">
+    <div className="flex items-center gap-4 border-b border-[#d4af37]/35 py-2">
       <span
-        className="grid size-10 shrink-0 place-items-center rounded-full bg-[#fff6e3] ring-1 ring-[#d4af37]/40"
+        className="grid size-10 shrink-0 place-items-center rounded-full bg-[#0d3a2f] shadow-[inset_0_1px_0_rgba(255,255,255,0.13),0_4px_10px_rgba(13,58,47,0.18)] ring-1 ring-[#d4af37]/65"
         aria-hidden="true"
       >
-        <img src={icon} alt="" className="size-6 object-contain" />
+        <img src={icon} alt="" className="size-[1.45rem] object-contain" />
       </span>
       <dt className="font-semibold text-[#0d3a2f]">{label}</dt>
       <dd className="ml-auto text-right text-[#29443c]">{value}</dd>

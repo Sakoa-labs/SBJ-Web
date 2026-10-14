@@ -32,6 +32,7 @@ export function ServiceMenuSection({
   variant = 'plain',
   ctaLabel = 'En savoir plus',
   decor,
+  compact = false,
 }: {
   id: string
   title?: string
@@ -47,13 +48,18 @@ export function ServiceMenuSection({
   ctaLabel?: string
   // Page-specific DecorObject elements.
   decor?: ReactNode
+  // Tighter top spacing, for a follow-up section right under other content.
+  compact?: boolean
 }) {
   const isCard = variant === 'card'
 
   return (
     <section
       id={id}
-      className="relative isolate scroll-mt-24 overflow-hidden bg-[#fff9ec] py-16 text-[#0d3a2f] sm:scroll-mt-28 sm:py-24 lg:py-28 xl:py-32"
+      className={cn(
+        'relative isolate scroll-mt-24 overflow-hidden bg-[#fff9ec] py-16 text-[#0d3a2f] sm:scroll-mt-28 sm:py-24 lg:py-28 xl:py-32',
+        compact && 'pt-8 sm:pt-10 lg:pt-10 xl:pt-12',
+      )}
       aria-labelledby={`${id}-title`}
     >
       <div
