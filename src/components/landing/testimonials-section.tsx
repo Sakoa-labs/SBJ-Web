@@ -65,7 +65,7 @@ function ReviewSourceBadge({ review }: { review: Review }) {
           height={64}
         />
       )}
-      {review.verified ? `Avis vérifié ${review.source}` : `Avis ${review.source}`}
+      {review.verified ? `Avis vérifié ${review.source}` : `Avis client ${review.source}`}
     </span>
   )
 }
