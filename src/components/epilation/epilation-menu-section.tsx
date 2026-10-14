@@ -21,7 +21,7 @@ export function EpilationMenuSection() {
       eyebrow="Nos épilations"
       decor={
         <>
-          <LeafShadow leaf="frangipanier" className="-right-48 top-[6%] w-[44rem] rotate-[12deg]" />
+          <LeafShadow leaf="monstera" className="-right-64 top-[8%] w-[44rem] -rotate-[28deg]" />
           <DecorObject src={frangipaniersDuo} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
         </>
       }

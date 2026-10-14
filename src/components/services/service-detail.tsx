@@ -47,7 +47,7 @@ const relatedLayout: Record<
 const relatedDecor: Record<ServiceCategory, ReactNode> = {
   massages: (
     <>
-      <LeafShadow leaf="bananier" className="-left-56 top-[20%] w-[46rem] -scale-x-100" />
+      <LeafShadow leaf="monstera" className="-right-44 top-[16%] w-[42rem] -rotate-[28deg]" />
       <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
       <DecorObject src={pierresEmpilees} className="-right-14 bottom-[18%] w-32 -rotate-12" />
     </>

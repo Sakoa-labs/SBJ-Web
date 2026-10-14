@@ -22,7 +22,7 @@ export function SoinsMenuSection() {
       eyebrow="Nos soins"
       decor={
         <>
-          <LeafShadow leaf="bananier" className="-left-56 top-[18%] w-[48rem] -scale-x-100" />
+          <LeafShadow leaf="palme" className="-left-52 top-[14%] w-[46rem] -rotate-[8deg]" />
           <DecorObject src={frangipanier} className="-left-12 top-[44%] w-28 rotate-[18deg]" />
           <DecorObject src={fioleHuile} className="-right-8 bottom-[22%] w-20 -rotate-[24deg]" />
         </>
