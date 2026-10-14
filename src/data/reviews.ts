@@ -9,6 +9,8 @@ export type Review = {
   service: string
   source: ReviewSource
   text: string
+  // Booksy marks a review as verified when it comes from a real appointment; Google has no such check.
+  verified?: boolean
   // Only with the customer's consent; the default avatar is shown otherwise.
   avatar?: string
 }
@@ -30,6 +32,7 @@ export const reviews: ReadonlyArray<Review> = [
     name: 'Laëtitia G.',
     service: 'Épilation & massage du visage',
     source: 'Booksy',
+    verified: true,
     text: 'Une expérience parfaite du début à la fin ! La praticienne est douce, attentionnée et très professionnelle. L’épilation s’est très bien passée et le massage du visage était tout simplement merveilleux. Je suis ressortie détendue et satisfaite. Merci encore !',
   },
   {
@@ -42,12 +45,14 @@ export const reviews: ReadonlyArray<Review> = [
     name: 'John B.',
     service: 'Massage Joie d’Être',
     source: 'Booksy',
+    verified: true,
     text: 'Une belle expérience de massage avec Sabrina, une praticienne à l’écoute, respectueuse et profondément connectée à son art. Son approche intuitive, à la fois douce et ancrée, m’a permis de relâcher, de respirer et de retrouver l’essentiel : le calme intérieur.',
   },
   {
     name: 'Morgane A.',
     service: 'Massage californien',
     source: 'Booksy',
+    verified: true,
     text: 'Un vrai moment de détente, Sabrina est douce, accueillante et très à l’écoute. Je recommande sans hésiter !',
   },
   {
@@ -60,6 +65,7 @@ export const reviews: ReadonlyArray<Review> = [
     name: 'Elodie M.',
     service: 'Massage crânien & visage',
     source: 'Booksy',
+    verified: true,
     text: 'J’ai vécu une expérience hors du commun, elle a réussi à m’enlever des tensions présentes depuis longtemps. Je me sens légère et détendue ! Je recommande grandement ! Merci Sabrina, je reviendrai.',
   },
   {
@@ -72,18 +78,21 @@ export const reviews: ReadonlyArray<Review> = [
     name: 'Catherine C.',
     service: 'Massage californien',
     source: 'Booksy',
+    verified: true,
     text: 'Quelle belle découverte ! Sabrina est très à l’écoute, dans la bienveillance, très professionnelle. J’ai eu un massage de dingue ! Tellement que j’y retourne très bientôt. Merci Sabrina !',
   },
   {
     name: 'Alicia A.',
     service: 'Massage Joie d’Être',
     source: 'Booksy',
+    verified: true,
     text: 'J’ai passé un moment agréable auprès de Sabrina. J’avais des douleurs dorsales et cervicales et elles ont disparu ce matin. Merci pour cette belle expérience.',
   },
   {
     name: 'Océane R.',
     service: 'Massage californien',
     source: 'Booksy',
+    verified: true,
     text: 'Sabrina est une vraie petite fée qui sait donner de l’attention sur nos tensions connues ou non ! C’est une réelle source de bien-être et de détente qui nous sort du quotidien.',
   },
 ]
