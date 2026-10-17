@@ -60,7 +60,7 @@ export function GuidesBundleSection() {
             </s>
           </p>
 
-          <EmbossedCta href="#acheter" tone="gold" className="mt-9 sm:min-w-72">
+          <EmbossedCta href={guidesBundle.href} tone="gold" className="mt-9 sm:min-w-72">
             Choisir le coffret
           </EmbossedCta>
         </div>

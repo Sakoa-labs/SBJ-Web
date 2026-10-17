@@ -10,6 +10,10 @@ import visageTabletImage from '../../design/guides/detail/visage-tablette.png'
 import pratiqueMainImage from '../../design/guides/detail/pratique-principale.png'
 import pratiquePagesImage from '../../design/guides/detail/pratique-pages.png'
 import pratiqueTabletImage from '../../design/guides/detail/pratique-tablette.png'
+import bundleImage from '../../design/guides/coffret.png'
+import bundleCardImage from '../../design/guides/coffret-carte.png'
+import bundleGiftImage from '../../design/guides/detail/coffret-cadeau.png'
+import bundleScreensImage from '../../design/guides/detail/coffret-ecrans.png'
 
 // Sabrina's e-books, sold as illustrated PDFs.
 // Prices, page counts and chapters are placeholders until Sabrina confirms them.
@@ -143,9 +147,32 @@ export const guides: ReadonlyArray<Guide> = [
 
 // The three guides bought together.
 export const guidesBundle = {
+  title: 'Le coffret des trois guides',
+  accent: 'réunis',
+  subtitle: 'La collection complète en un seul achat',
+  description:
+    'Les trois guides de Sabrina pour masser vos proches, prendre soin de votre visage et débuter votre pratique, à garder pour vous ou à offrir.',
   price: 59,
   separatePrice: guides.reduce((total, guide) => total + guide.price, 0),
-}
+  pages: guides.reduce((total, guide) => total + guide.pages, 0),
+  href: '/guides/coffret',
+  // Cropped to the 4:3 of the guide cards.
+  cardImage: bundleCardImage,
+  photo: {
+    src: bundleImage,
+    alt: 'Les trois guides réunis dans un coffret vert, entre papier de soie doré, bougies et fleurs de frangipanier',
+  },
+  gallery: [
+    {
+      src: bundleGiftImage,
+      alt: 'Le coffret fermé par un ruban doré, prêt à être offert',
+    },
+    {
+      src: bundleScreensImage,
+      alt: 'Les trois guides affichés sur une tablette, un téléphone et un ordinateur',
+    },
+  ],
+} as const
 
 export function findGuide(slug: string) {
   return guides.find((guide) => guide.slug === slug)
