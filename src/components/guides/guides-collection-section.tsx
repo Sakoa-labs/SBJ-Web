@@ -1,8 +1,22 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
+import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
+import livreOuvert from '#/assets/decor/livre-ouvert.png'
+import tasseTisane from '#/assets/decor/tasse-tisane.png'
 import { guides } from '#/data/guides'
 import type { Guide } from '#/data/guides'
+import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
+import foliageTopRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
+import foliageBottomLeft from '../../../design/massage/decorations/feuillage-bas-gauche.png'
+import foliageBottomRight from '../../../design/massage/decorations/feuillage-bas-droit.png'
+
+const foliage = [
+  { src: foliageTopLeft, side: 'left', className: '-left-16 -top-12 rotate-[8deg] w-[14rem] xl:w-[17rem]' },
+  { src: foliageTopRight, side: 'right', className: '-right-16 -top-12 -rotate-[8deg] w-[14rem] xl:w-[17rem]' },
+  { src: foliageBottomLeft, side: 'left', className: '-bottom-16 -left-20 w-[13rem] xl:w-[15rem]' },
+  { src: foliageBottomRight, side: 'right', className: '-bottom-16 -right-20 w-[13rem] xl:w-[15rem]' },
+] as const
 
 export function GuidesCollectionSection() {
   return (
@@ -20,6 +34,21 @@ export function GuidesCollectionSection() {
         aria-hidden="true"
       />
       <LeafShadow leaf="monstera" className="-left-40 -top-48 w-[46rem] rotate-[18deg]" />
+      {foliage.map((leaf) => (
+        <img
+          key={leaf.src}
+          data-reveal={leaf.side}
+          src={leaf.src}
+          alt=""
+          aria-hidden="true"
+          className={`pointer-events-none absolute -z-10 hidden max-w-none object-contain lg:block ${leaf.className}`}
+          width={1254}
+          height={1254}
+          loading="lazy"
+        />
+      ))}
+      <DecorObject src={livreOuvert} className="left-[6%] top-[17%] w-48 -rotate-[10deg]" />
+      <DecorObject src={tasseTisane} className="right-[7%] top-[18%] w-36 rotate-[6deg]" />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
         <SectionEyebrow label="La collection" />

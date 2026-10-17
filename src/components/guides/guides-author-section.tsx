@@ -1,8 +1,13 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
+import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
+import bougieLaiton from '#/assets/decor/bougie-laiton.png'
+import pileLivres from '#/assets/decor/pile-livres.png'
+import styloPlume from '#/assets/decor/stylo-plume.png'
 import signature from '#/assets/guides/signature-sabrina.png'
 import sabrinaPortrait from '../../../design/guides/sabrina.png'
+import foliageRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
 
 export function GuidesAuthorSection() {
   return (
@@ -17,6 +22,19 @@ export function GuidesAuthorSection() {
       />
       <LeafShadow leaf="palme" className="-left-24 -top-32 w-[40rem] rotate-[200deg]" />
       <LeafShadow leaf="palme" className="-bottom-40 right-[30%] w-[36rem] rotate-[20deg]" />
+      <img
+        data-reveal="right"
+        src={foliageRight}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -right-16 -top-10 -z-10 hidden w-[15rem] max-w-none -rotate-[8deg] object-contain lg:block xl:w-[18rem]"
+        width={1254}
+        height={1254}
+        loading="lazy"
+      />
+      <DecorObject src={styloPlume} className="bottom-[4%] left-[10%] w-28 -rotate-[24deg]" />
+      <DecorObject src={pileLivres} className="-left-10 bottom-[3%] w-44 rotate-6" />
+      <DecorObject src={bougieLaiton} className="-right-6 bottom-[8%] w-24" />
 
       <div className="mx-auto grid w-full max-w-[90rem] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:px-16">
         <div className="lg:pl-4">

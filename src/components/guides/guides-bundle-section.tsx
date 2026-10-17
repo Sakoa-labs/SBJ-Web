@@ -2,6 +2,7 @@ import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { formatEuros, guidesBundle } from '#/data/guides'
 import bundleImage from '../../../design/guides/coffret.png'
+import palmLeaf from '../../../design/massage/decorations/palme-faq-gauche.png'
 
 export function GuidesBundleSection() {
   return (
@@ -26,7 +27,18 @@ export function GuidesBundleSection() {
         />
       </div>
 
-      <div className="mx-auto flex w-full max-w-[100rem] items-center px-5 pb-20 pt-4 sm:px-8 sm:pb-24 lg:min-h-[52rem] lg:py-28 xl:px-16">
+      <img
+        data-reveal="left"
+        src={palmLeaf}
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none absolute -bottom-40 -left-32 hidden w-[22rem] max-w-none rotate-[24deg] object-contain opacity-90 lg:block"
+        width={1254}
+        height={1254}
+        loading="lazy"
+      />
+
+      <div className="relative mx-auto flex w-full max-w-[100rem] items-center px-5 pb-20 pt-4 sm:px-8 sm:pb-24 lg:min-h-[52rem] lg:py-28 xl:px-16">
         <div className="max-w-[34rem]">
           <SectionEyebrow label="Le coffret" className="w-fit" />
           <h2
