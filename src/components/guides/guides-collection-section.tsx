@@ -2,8 +2,8 @@ import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
-import livreOuvert from '#/assets/decor/livre-ouvert.png'
-import tasseTisane from '#/assets/decor/tasse-tisane.png'
+import coupelleHuile from '#/assets/decor/coupelle-huile.png'
+import flaconPompe from '#/assets/decor/flacon-pompe.png'
 import { guides } from '#/data/guides'
 import type { Guide } from '#/data/guides'
 import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
@@ -47,8 +47,8 @@ export function GuidesCollectionSection() {
           loading="lazy"
         />
       ))}
-      <DecorObject src={livreOuvert} className="left-[6%] top-[17%] w-48 -rotate-[10deg]" />
-      <DecorObject src={tasseTisane} className="right-[7%] top-[18%] w-36 rotate-[6deg]" />
+      <DecorObject src={coupelleHuile} className="left-[6%] top-[17%] w-44 -rotate-[6deg]" />
+      <DecorObject src={flaconPompe} className="right-[8%] top-[12%] w-20 rotate-[4deg]" />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
         <SectionEyebrow label="La collection" />
