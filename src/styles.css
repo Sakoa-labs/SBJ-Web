@@ -7,6 +7,8 @@
 @import "@fontsource-variable/manrope";
 
 @custom-variant dark (&:is(.dark *));
+/* Desktop windows too short for a hero at its full size (most laptops). */
+@custom-variant short (@media (min-width: 64rem) and (max-height: 54rem));
 
 * {
   box-sizing: border-box;

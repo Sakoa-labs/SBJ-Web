@@ -174,7 +174,7 @@ function ProductHero({
 }) {
   return (
     <section
-      className="relative isolate overflow-hidden bg-[#fff9ec] pb-14 pt-28 text-[#0d3a2f] sm:pt-32 lg:pb-20"
+      className="relative isolate overflow-hidden bg-[#fff9ec] pb-14 pt-28 text-[#0d3a2f] sm:pt-32 lg:flex lg:min-h-svh lg:flex-col lg:justify-center lg:pb-10 lg:pt-28 short:pb-6"
       aria-labelledby="guide-detail-title"
     >
       <div
@@ -183,9 +183,10 @@ function ProductHero({
       />
       <LeafShadow leaf="palme" className="-right-40 -top-28 w-[46rem] rotate-[96deg]" />
 
-      <div className="mx-auto grid w-full max-w-[100rem] gap-10 px-5 sm:px-8 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)] lg:gap-12 xl:gap-16 xl:px-12">
-        {/* Gallery: the product in situ, then two framed thumbnails. */}
-        <div className="hero-photo grid grid-cols-2 gap-3 self-start sm:gap-4">
+      {/* On desktop the whole section fits the window: the gallery takes its width from the
+          window height (it is about as tall as it is wide), and both columns center together. */}
+      <div className="mx-auto grid w-full max-w-[100rem] gap-10 px-5 sm:px-8 lg:grid-cols-[auto_minmax(0,38rem)] lg:justify-center lg:gap-12 xl:gap-16 xl:px-12">
+        <div className="hero-photo grid grid-cols-2 gap-3 self-center sm:gap-4 lg:w-[min(calc((100svh-11.5rem)*1.04),58rem,52vw)]">
           <figure className="col-span-2 aspect-[1.6/1] overflow-hidden border-2 border-[#d4af37]/80 bg-[#e8dcc8]">
             <img
               src={photo.src}
@@ -213,7 +214,7 @@ function ProductHero({
           ))}
         </div>
 
-        <div className="hero-stagger lg:max-w-[38rem]">
+        <div className="hero-stagger self-center">
           <nav aria-label="Fil d’Ariane" className="text-sm text-[#40574f]">
             <ol className="flex flex-wrap items-center gap-2">
               <li>
@@ -230,32 +231,32 @@ function ProductHero({
 
           <h1
             id="guide-detail-title"
-            className="mt-3 text-[clamp(2.1rem,8.6vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.025em] lg:text-[clamp(2.5rem,3.3vw,3.6rem)]"
+            className="mt-3 text-[clamp(2.1rem,8.6vw,3.25rem)] font-normal leading-[1.06] tracking-[-0.025em] lg:text-[clamp(2.5rem,3.3vw,3.6rem)] short:mt-2 short:text-[clamp(2.2rem,5.2svh,3rem)]"
           >
             {/* The accent joins the title line when it fits, otherwise it wraps as a whole. */}
             <span className="font-medium">{title}</span>{' '}
             <em className="inline-block pb-1 font-normal text-[#c09027]">{accent}</em>
           </h1>
 
-          <p className="mt-3 font-heading text-lg italic leading-snug text-[#173c32] sm:text-xl">
+          <p className="mt-3 font-heading text-lg italic leading-snug text-[#173c32] sm:text-xl short:mt-1.5 short:text-lg">
             {subtitle}.
           </p>
 
-          <span className="mt-4 block h-px w-full bg-[#d4af37]/45" aria-hidden="true" />
+          <span className="mt-4 block h-px w-full bg-[#d4af37]/45 short:mt-3" aria-hidden="true" />
 
-          <p className="mt-4 text-pretty text-base leading-7 text-[#29443c] sm:text-[1.05rem] sm:leading-7">
+          <p className="mt-4 text-pretty text-base leading-7 text-[#29443c] sm:text-[1.05rem] sm:leading-7 short:mt-3 short:text-[0.95rem] short:leading-6">
             {description}
           </p>
 
-          <dl className="mt-4 border-t border-[#d4af37]/35">
+          <dl className="mt-4 border-t border-[#d4af37]/35 short:mt-3 short:[&>div]:py-2">
             <InfoRow icon={formatIcon} label={format.label} value={format.value} />
             <InfoRow icon={readingIcon} label="Lecture" value="Mobile, tablette, ordinateur" />
             <InfoRow icon={downloadIcon} label="Livraison" value="Téléchargement immédiat" />
           </dl>
 
-          <div className="mt-5 rounded-md border border-[#d4af37]/70 bg-[#fffdf8] p-5 shadow-[0_18px_40px_rgba(77,51,22,0.08)]">
+          <div className="mt-5 rounded-md border border-[#d4af37]/70 bg-[#fffdf8] p-5 shadow-[0_18px_40px_rgba(77,51,22,0.08)] short:mt-4 short:p-4">
             <p className="flex items-baseline gap-3">
-              <span className="font-heading text-[2.6rem] font-medium leading-none text-[#0d3a2f] sm:text-5xl">
+              <span className="font-heading text-[2.6rem] font-medium leading-none text-[#0d3a2f] sm:text-5xl short:text-[2.6rem]">
                 {formatEuros(price)}
               </span>
               {separatePrice !== undefined && (
@@ -266,15 +267,15 @@ function ProductHero({
               )}
             </p>
             {priceNote && <p className="mt-2 text-sm text-[#40574f]">{priceNote}</p>}
-            <div className="mt-4 grid gap-3 sm:grid-cols-2">
-              <EmbossedCta href="#acheter" tone="gold" className="w-full">
+            <div className="mt-4 grid gap-3 sm:grid-cols-2 short:mt-3">
+              <EmbossedCta href="#acheter" tone="gold" className="w-full short:h-11">
                 {buyLabel}
               </EmbossedCta>
-              <EmbossedCta href="#offrir" className="w-full">
+              <EmbossedCta href="#offrir" className="w-full short:h-11">
                 {giftLabel}
               </EmbossedCta>
             </div>
-            <p className="mt-4 text-center text-sm text-[#40574f]">Paiement sécurisé · Accès à vie</p>
+            <p className="mt-4 text-center text-sm text-[#40574f] short:mt-3">Paiement sécurisé · Accès à vie</p>
           </div>
         </div>
       </div>

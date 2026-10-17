@@ -43,9 +43,11 @@ export function SiteHeader({
 
   return (
     <>
+      {/* Over a cream hero the transparent header would let the content show through it,
+          so it turns green on the very first pixel of scroll. */}
       <span
         ref={navSentinelRef}
-        className="pointer-events-none absolute left-0 top-16 size-px"
+        className={cn('pointer-events-none absolute left-0 size-px', onLight ? 'top-px' : 'top-16')}
         aria-hidden="true"
       />
 
