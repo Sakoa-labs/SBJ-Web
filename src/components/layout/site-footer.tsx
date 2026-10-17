@@ -14,9 +14,9 @@ const footerGroups = [
   {
     title: 'Guides',
     links: [
-      { label: 'Guides', href: '#guides' },
-      { label: 'PDF', href: '#guides' },
-      { label: 'Amazon KDP', href: '#guides' },
+      { label: 'Guides', href: '/guides' },
+      { label: 'PDF', href: '/guides#collection' },
+      { label: 'Amazon KDP', href: '/guides' },
     ],
   },
   {

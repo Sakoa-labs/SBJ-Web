@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as EpilationRouteImport } from './routes/epilation'
+import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as MassagesRouteImport } from './routes/massages'
 import { Route as SoinsRouteImport } from './routes/soins'
 import { Route as EpilationSlugRouteImport } from './routes/epilation_.$slug'
@@ -31,6 +32,11 @@ const DesignSystemRoute = DesignSystemRouteImport.update({
 const EpilationRoute = EpilationRouteImport.update({
   id: '/epilation',
   path: '/epilation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesRoute = GuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MassagesRoute = MassagesRouteImport.update({
@@ -63,6 +69,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
+  '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
   '/soins': typeof SoinsRoute
   '/epilation/$slug': typeof EpilationSlugRoute
@@ -73,6 +80,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
+  '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
   '/soins': typeof SoinsRoute
   '/epilation/$slug': typeof EpilationSlugRoute
@@ -84,6 +92,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
+  '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
   '/soins': typeof SoinsRoute
   '/epilation_/$slug': typeof EpilationSlugRoute
@@ -96,6 +105,7 @@ export interface FileRouteTypes {
     | '/'
     | '/design-system'
     | '/epilation'
+    | '/guides'
     | '/massages'
     | '/soins'
     | '/epilation/$slug'
@@ -106,6 +116,7 @@ export interface FileRouteTypes {
     | '/'
     | '/design-system'
     | '/epilation'
+    | '/guides'
     | '/massages'
     | '/soins'
     | '/epilation/$slug'
@@ -116,6 +127,7 @@ export interface FileRouteTypes {
     | '/'
     | '/design-system'
     | '/epilation'
+    | '/guides'
     | '/massages'
     | '/soins'
     | '/epilation_/$slug'
@@ -127,6 +139,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   DesignSystemRoute: typeof DesignSystemRoute
   EpilationRoute: typeof EpilationRoute
+  GuidesRoute: typeof GuidesRoute
   MassagesRoute: typeof MassagesRoute
   SoinsRoute: typeof SoinsRoute
   EpilationSlugRoute: typeof EpilationSlugRoute
@@ -155,6 +168,13 @@ declare module '@tanstack/react-router' {
       path: '/epilation'
       fullPath: '/epilation'
       preLoaderRoute: typeof EpilationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides': {
+      id: '/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof GuidesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/massages': {
@@ -199,6 +219,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   DesignSystemRoute: DesignSystemRoute,
   EpilationRoute: EpilationRoute,
+  GuidesRoute: GuidesRoute,
   MassagesRoute: MassagesRoute,
   SoinsRoute: SoinsRoute,
   EpilationSlugRoute: EpilationSlugRoute,

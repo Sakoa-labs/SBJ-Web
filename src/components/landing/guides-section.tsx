@@ -89,7 +89,7 @@ export function GuidesSection() {
             posture et les protocoles, puis bientôt disponibles sur Amazon KDP.
           </p>
 
-          <EmbossedCta href="#guides-disponibles" className="mt-8">
+          <EmbossedCta href="/guides" className="mt-8">
             Explorer les guides
           </EmbossedCta>
         </div>

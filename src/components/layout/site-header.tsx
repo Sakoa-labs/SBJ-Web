@@ -12,7 +12,7 @@ const primaryLinks = [
   { label: 'Soins', href: '/soins' },
   { label: 'Épilation', href: '/epilation' },
   { label: 'Formation', href: '/#formation' },
-  { label: 'Mes guides', href: '/#guides' },
+  { label: 'Mes guides', href: '/guides' },
 ]
 
 // Render as the first element of the page, outside any isolated hero, so the fixed header
