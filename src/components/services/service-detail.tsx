@@ -269,7 +269,7 @@ function ServiceDetail({ service }: { service: Service }) {
   )
 }
 
-function InfoRow({ icon, label, value }: { icon: string; label: string; value: string }) {
+export function InfoRow({ icon, label, value }: { icon: string; label: string; value: string }) {
   return (
     <div className="flex items-center gap-3.5 border-b border-[#d4af37]/35 py-3">
       <img src={icon} alt="" aria-hidden="true" className="size-7 shrink-0 object-contain" />

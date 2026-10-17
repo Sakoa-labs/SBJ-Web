@@ -4,7 +4,7 @@ import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import coupelleHuile from '#/assets/decor/coupelle-huile.png'
 import flaconPompe from '#/assets/decor/flacon-pompe.png'
-import { guides } from '#/data/guides'
+import { guideHref, guides } from '#/data/guides'
 import type { Guide } from '#/data/guides'
 import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
 import foliageTopRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
@@ -99,8 +99,9 @@ function GuideCard({ guide }: { guide: Guide }) {
           {guide.subtitle}
         </p>
         {/* Pushed down so the buttons line up when a title wraps to two lines. */}
-        <EmbossedCta href="#acheter" tone="gold" className="mt-auto h-12 min-w-52">
+        <EmbossedCta href={guideHref(guide)} tone="gold" className="mt-auto h-12 min-w-52">
           Découvrir
+          <span className="sr-only"> : {guide.title}</span>
         </EmbossedCta>
       </div>
     </article>
