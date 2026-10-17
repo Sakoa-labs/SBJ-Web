@@ -5,7 +5,7 @@ import {
   GoldDivider,
   SectionEyebrow,
 } from '#/components/landing/section-ornaments'
-import { reviewStats, reviews } from '#/data/reviews'
+import { reviews } from '#/data/reviews'
 import type { Review } from '#/data/reviews'
 import defaultAvatar from '#/assets/testimonials/avatar-defaut.jpg'
 import booksyLogo from '#/assets/review-logos/booksy.png'
@@ -169,11 +169,6 @@ export function TestimonialsSection() {
             </em>{' '}
             que nous
           </h2>
-          <p className="mx-auto mt-6 max-w-[43rem] text-pretty text-base leading-7 text-[#355149] sm:text-lg sm:leading-8">
-            Les avis laissés par nos clients, notés{' '}
-            {String(reviewStats.google.rating).replace('.', ',')}/5 sur Google et{' '}
-            {reviewStats.booksy.rating}/5 sur Booksy.
-          </p>
         </header>
 
         {/* The duration grows with the number of reviews to keep the same scrolling speed. */}

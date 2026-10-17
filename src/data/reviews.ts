@@ -15,12 +15,6 @@ export type Review = {
   avatar?: string
 }
 
-// Ratings shown on the review platforms when the list was copied.
-export const reviewStats = {
-  google: { rating: 4.9, count: 78 },
-  booksy: { rating: 5, count: 40 },
-}
-
 export const reviews: ReadonlyArray<Review> = [
   {
     name: 'Audrey B.',
