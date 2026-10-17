@@ -1,5 +1,5 @@
-import { ArrowRight } from 'lucide-react'
-
+import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import signature from '#/assets/guides/signature-sabrina.png'
 import sabrinaPortrait from '../../../design/guides/sabrina.png'
@@ -9,7 +9,7 @@ export function GuidesAuthorSection() {
     <section
       id="auteure"
       className="relative isolate scroll-mt-24 overflow-hidden bg-[#fff9ec] py-16 text-[#0d3a2f] sm:scroll-mt-28 sm:py-24 lg:py-28"
-      aria-labelledby="auteure-title"
+      aria-label="Écrits par Sabrina"
     >
       <div
         className="absolute inset-0 -z-30 bg-[linear-gradient(118deg,#fff9ec_0%,#fffaf0_30%,#fffdf8_58%,#fff9ec_100%)]"
@@ -20,13 +20,8 @@ export function GuidesAuthorSection() {
 
       <div className="mx-auto grid w-full max-w-[90rem] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:px-16">
         <div className="lg:pl-4">
-          <p
-            id="auteure-title"
-            className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c09027]"
-          >
-            Écrits par Sabrina
-          </p>
-          <figure className="mt-7">
+          <SectionEyebrow label="Écrits par Sabrina" className="w-fit" />
+          <figure className="mt-8">
             <blockquote className="relative pl-14 sm:pl-20">
               <span
                 className="absolute -top-3 left-0 font-heading text-[5rem] leading-none text-[#d4af37] sm:-top-4 sm:text-[7rem]"
@@ -53,13 +48,9 @@ export function GuidesAuthorSection() {
               </p>
             </figcaption>
           </figure>
-          <a
-            href="/#formation"
-            className="ml-14 mt-6 inline-flex items-center gap-2 border-b border-[#0d3a2f]/60 pb-0.5 text-base text-[#0d3a2f] transition-colors duration-200 hover:border-[#c09027] hover:text-[#8a6417] sm:ml-20"
-          >
+          <EmbossedCta href="/#formation" className="ml-14 mt-8 sm:ml-20 sm:min-w-72">
             Découvrir les formations
-            <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
-          </a>
+          </EmbossedCta>
         </div>
 
         <figure className="mx-auto w-full max-w-[30rem] lg:max-w-none">

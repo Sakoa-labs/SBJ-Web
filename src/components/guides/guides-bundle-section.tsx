@@ -1,7 +1,5 @@
-import { ArrowRight } from 'lucide-react'
-
 import { EmbossedCta } from '#/components/landing/embossed-cta'
-import { GoldDivider } from '#/components/landing/section-ornaments'
+import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { formatEuros, guidesBundle } from '#/data/guides'
 import bundleImage from '../../../design/guides/coffret.png'
 
@@ -30,10 +28,7 @@ export function GuidesBundleSection() {
 
       <div className="mx-auto flex w-full max-w-[100rem] items-center px-5 pb-20 pt-4 sm:px-8 sm:pb-24 lg:min-h-[52rem] lg:py-28 xl:px-16">
         <div className="max-w-[34rem]">
-          <GoldDivider compact />
-          <p className="mt-5 text-xs font-semibold uppercase tracking-[0.32em] text-[#e5bd42]">
-            Le coffret
-          </p>
+          <SectionEyebrow label="Le coffret" className="w-fit" />
           <h2
             id="coffret-title"
             className="mt-4 text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#fff5df] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
@@ -55,18 +50,9 @@ export function GuidesBundleSection() {
             </s>
           </p>
 
-          <div className="mt-9 flex flex-col items-start gap-6 sm:flex-row sm:items-center sm:gap-9">
-            <EmbossedCta href="#acheter" tone="gold" className="sm:min-w-72">
-              Choisir le coffret
-            </EmbossedCta>
-            <a
-              href="#offrir"
-              className="inline-flex items-center gap-2 border-b border-[#fff9ec]/60 pb-0.5 text-base text-[#fff9ec] transition-colors duration-200 hover:border-[#e5bd42] hover:text-[#e5bd42]"
-            >
-              Offrir le coffret
-              <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
-            </a>
-          </div>
+          <EmbossedCta href="#acheter" tone="gold" className="mt-9 sm:min-w-72">
+            Choisir le coffret
+          </EmbossedCta>
         </div>
       </div>
     </section>

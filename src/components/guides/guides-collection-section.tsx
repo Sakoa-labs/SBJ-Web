@@ -1,21 +1,10 @@
-import { useState } from 'react'
-import { ArrowRight } from 'lucide-react'
-
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { LeafShadow } from '#/components/services/leaf-shadow'
-import { formatEuros, guideCategories, guides } from '#/data/guides'
-import type { Guide, GuideCategory } from '#/data/guides'
-import { cn } from '#/lib/utils'
-
-type Filter = 'Tous' | GuideCategory
-
-const filters: ReadonlyArray<Filter> = ['Tous', ...guideCategories]
+import { guides } from '#/data/guides'
+import type { Guide } from '#/data/guides'
 
 export function GuidesCollectionSection() {
-  const [filter, setFilter] = useState<Filter>('Tous')
-  const visibleGuides = filter === 'Tous' ? guides : guides.filter((guide) => guide.category === filter)
-
   return (
     <section
       id="collection"
@@ -36,37 +25,14 @@ export function GuidesCollectionSection() {
         <SectionEyebrow label="La collection" />
         <h2
           id="collection-title"
-          className="mt-5 text-center text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.04] tracking-[-0.025em] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
+          className="mt-5 text-center text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.08] tracking-[-0.025em] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
         >
-          <span className="block">Trois guides,</span>
-          <em className="block pb-1 font-normal text-[#c09027]">un même art du soin</em>
+          Le guide qui{' '}
+          <em className="inline-block pb-1 font-normal text-[#c09027]">vous ressemble</em>
         </h2>
 
-        <div
-          className="mt-7 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm text-[#355149] sm:text-base"
-          role="group"
-          aria-label="Filtrer les guides"
-        >
-          {filters.map((item, index) => (
-            <span key={item} className="flex items-center gap-3">
-              {index > 0 && <span className="text-[#c09027]" aria-hidden="true">·</span>}
-              <button
-                type="button"
-                onClick={() => setFilter(item)}
-                aria-pressed={filter === item}
-                className={cn(
-                  'cursor-pointer rounded-sm border-b px-1 pb-1 transition-colors duration-200 hover:text-[#0d3a2f] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d4af37]',
-                  filter === item ? 'border-[#c09027] text-[#0d3a2f]' : 'border-transparent',
-                )}
-              >
-                {item}
-              </button>
-            </span>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-10 grid max-w-[92rem] gap-6 sm:mt-12 sm:grid-cols-2 lg:grid-cols-3 xl:gap-8">
-          {visibleGuides.map((guide) => (
+        <div className="mx-auto mt-10 grid max-w-[92rem] gap-6 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:gap-8">
+          {guides.map((guide) => (
             <GuideCard key={guide.slug} guide={guide} />
           ))}
         </div>
@@ -82,7 +48,7 @@ function GuideCard({ guide }: { guide: Guide }) {
       className="group flex scroll-mt-28 flex-col overflow-hidden rounded-sm border border-[#d4af37]/45 bg-[#fffdf8] p-2 pb-8 text-center shadow-[0_18px_40px_rgba(77,51,22,0.08)]"
       aria-labelledby={`${guide.slug}-title`}
     >
-      <div className="relative aspect-[4/3] overflow-hidden rounded-[2px] bg-[#e8dcc8]">
+      <div className="aspect-[4/3] overflow-hidden rounded-[2px] bg-[#e8dcc8]">
         <img
           src={guide.image}
           alt={guide.imageAlt}
@@ -91,45 +57,22 @@ function GuideCard({ guide }: { guide: Guide }) {
           height={1086}
           loading="lazy"
         />
-        {guide.isNew && (
-          <span className="absolute right-0 top-0 rounded-bl-sm bg-[linear-gradient(180deg,#f2d96b_0%,#d9b63d_46%,#b2871e_100%)] px-4 py-2 text-[0.68rem] font-bold uppercase tracking-[0.18em] text-[#14221e] shadow-[inset_0_1px_0_rgba(255,249,220,0.8)]">
-            Nouveau
-          </span>
-        )}
       </div>
 
-      <div className="flex flex-1 flex-col items-center px-4 pt-6 sm:px-6">
-        <p className="text-xs font-semibold uppercase tracking-[0.28em] text-[#c09027]">
-          {guide.category}
-        </p>
+      <div className="flex flex-1 flex-col items-center px-4 pt-7 sm:px-6">
         <h3
           id={`${guide.slug}-title`}
-          className="mt-2 text-balance text-[1.6rem] font-normal leading-tight tracking-[-0.015em] xl:text-[1.85rem]"
+          className="text-balance text-[1.6rem] font-normal leading-tight tracking-[-0.015em] xl:text-[1.85rem]"
         >
           {guide.title}
         </h3>
-        <p className="mb-4 mt-1.5 text-pretty text-sm leading-6 text-[#355149] sm:text-base">
+        <p className="mb-6 mt-2 text-pretty text-sm leading-6 text-[#355149] sm:text-base">
           {guide.subtitle}
         </p>
-        {/* Pushed down so prices and buttons line up when a title wraps to two lines. */}
-        <span className="mt-auto h-px w-12 bg-[#d4af37]/70" aria-hidden="true" />
-        <p className="mt-4 text-xs tracking-[0.08em] text-[#4f665e]">
-          PDF · {guide.pages} pages · Mobile, tablette, ordinateur
-        </p>
-        <p className="mt-2 font-heading text-[1.75rem] leading-none">{formatEuros(guide.price)}</p>
-
-        <div className="mt-6 flex flex-wrap items-center justify-center gap-x-7 gap-y-4">
-          <EmbossedCta href="#acheter" tone="gold" className="h-12 min-w-44">
-            Acheter
-          </EmbossedCta>
-          <a
-            href="#acheter"
-            className="inline-flex items-center gap-2 border-b border-[#0d3a2f]/60 pb-0.5 text-sm text-[#0d3a2f] transition-colors duration-200 hover:border-[#c09027] hover:text-[#8a6417]"
-          >
-            Voir le détail
-            <ArrowRight aria-hidden="true" className="size-4" strokeWidth={1.5} />
-          </a>
-        </div>
+        {/* Pushed down so the buttons line up when a title wraps to two lines. */}
+        <EmbossedCta href="#acheter" tone="gold" className="mt-auto h-12 min-w-52">
+          Découvrir
+        </EmbossedCta>
       </div>
     </article>
   )
