@@ -1,5 +1,4 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
-import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { formatEuros, guidesBundle } from '#/data/guides'
 import bundleImage from '../../../design/guides/coffret.png'
 import palmLeaf from '../../../design/massage/decorations/palme-faq-gauche.png'
@@ -40,10 +39,9 @@ export function GuidesBundleSection() {
 
       <div className="relative mx-auto flex w-full max-w-[100rem] items-center px-5 pb-20 pt-4 sm:px-8 sm:pb-24 lg:min-h-[52rem] lg:py-28 xl:px-16">
         <div className="max-w-[34rem]">
-          <SectionEyebrow label="Le coffret" className="w-fit" />
           <h2
             id="coffret-title"
-            className="mt-4 text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#fff5df] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
+            className="text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#fff5df] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
           >
             <span className="block">Les trois guides,</span>
             <em className="block pb-1 font-normal text-[#e5bd42]">réunis</em>

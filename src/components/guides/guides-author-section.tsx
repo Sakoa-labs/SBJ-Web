@@ -1,5 +1,4 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
-import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import bougieLaiton from '#/assets/decor/bougie-laiton.png'
@@ -36,8 +35,7 @@ export function GuidesAuthorSection() {
 
       <div className="mx-auto grid w-full max-w-[90rem] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:px-16">
         <div className="lg:pl-4">
-          <SectionEyebrow label="Écrits par Sabrina" className="w-fit" />
-          <figure className="mt-8">
+          <figure>
             <blockquote className="relative pl-14 sm:pl-20">
               <span
                 className="absolute -top-3 left-0 font-heading text-[5rem] leading-none text-[#d4af37] sm:-top-4 sm:text-[7rem]"
