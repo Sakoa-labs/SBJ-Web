@@ -47,8 +47,8 @@ export function GuidesCollectionSection() {
           loading="lazy"
         />
       ))}
-      <DecorObject src={coupelleHuile} className="left-[6%] top-[17%] w-44 -rotate-[6deg]" />
-      <DecorObject src={flaconPompe} className="right-[8%] top-[12%] w-20 rotate-[4deg]" />
+      <DecorObject src={coupelleHuile} className="-left-16 top-[46%] w-36 rotate-[14deg]" />
+      <DecorObject src={flaconPompe} className="-right-8 bottom-[16%] w-20 -rotate-[24deg]" />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
         <SectionEyebrow label="La collection" />

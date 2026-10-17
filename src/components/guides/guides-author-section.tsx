@@ -3,7 +3,6 @@ import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import bougieLaiton from '#/assets/decor/bougie-laiton.png'
-import pipetteHuile from '#/assets/decor/pipette-huile.png'
 import serviettesRoulees from '#/assets/decor/serviettes-roulees.png'
 import signature from '#/assets/guides/signature-sabrina.png'
 import sabrinaPortrait from '../../../design/guides/sabrina.png'
@@ -32,9 +31,8 @@ export function GuidesAuthorSection() {
         height={1254}
         loading="lazy"
       />
-      <DecorObject src={serviettesRoulees} className="-left-8 bottom-[3%] w-48 rotate-[4deg]" />
-      <DecorObject src={pipetteHuile} className="bottom-[3%] left-[9%] w-14 -rotate-[6deg]" />
-      <DecorObject src={bougieLaiton} className="-right-6 bottom-[8%] w-24" />
+      <DecorObject src={serviettesRoulees} className="-left-20 bottom-[10%] w-40 rotate-[10deg]" />
+      <DecorObject src={bougieLaiton} className="-right-10 bottom-[14%] w-24 -rotate-[8deg]" />
 
       <div className="mx-auto grid w-full max-w-[90rem] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[1.15fr_0.85fr] lg:gap-16 xl:px-16">
         <div className="lg:pl-4">
