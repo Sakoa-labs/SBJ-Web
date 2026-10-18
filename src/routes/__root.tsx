@@ -6,6 +6,7 @@ import { FloatingActions } from '#/components/landing/floating-actions'
 import { BooksyBooking } from '#/components/layout/booksy-booking'
 import { ScrollReveal } from '#/components/layout/scroll-reveal'
 import { SiteFooter } from '#/components/layout/site-footer'
+import { NotFoundPage } from '#/components/not-found/not-found-page'
 import appCss from '../styles.css?url'
 
 export const Route = createRootRoute({
@@ -51,6 +52,8 @@ export const Route = createRootRoute({
     ],
   }),
   shellComponent: RootDocument,
+  // Any unknown address, and detail pages whose guide or service no longer exists.
+  notFoundComponent: NotFoundPage,
 })
 
 function RootDocument({ children }: { children: React.ReactNode }) {
