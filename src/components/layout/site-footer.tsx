@@ -157,11 +157,14 @@ export function SiteFooter() {
             <a href="#mentions-legales" className="transition-colors hover:text-[#e5bd42]">
               Mentions légales
             </a>
+            <a href="/conditions-generales" className="transition-colors hover:text-[#e5bd42]">
+              Conditions générales de vente
+            </a>
             <a
-              href="#conditions-utilisation"
+              href="/politique-de-confidentialite"
               className="transition-colors hover:text-[#e5bd42]"
             >
-              Conditions d’utilisation
+              Politique de confidentialité
             </a>
           </div>
         </div>

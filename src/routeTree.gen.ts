@@ -10,11 +10,13 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConditionsGeneralesRouteImport } from './routes/conditions-generales'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as EpilationRouteImport } from './routes/epilation'
 import { Route as FormationRouteImport } from './routes/formation'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as MassagesRouteImport } from './routes/massages'
+import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as SoinsRouteImport } from './routes/soins'
 import { Route as EpilationSlugRouteImport } from './routes/epilation_.$slug'
 import { Route as GuidesSlugRouteImport } from './routes/guides_.$slug'
@@ -25,6 +27,11 @@ import { Route as SoinsSlugRouteImport } from './routes/soins_.$slug'
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConditionsGeneralesRoute = ConditionsGeneralesRouteImport.update({
+  id: '/conditions-generales',
+  path: '/conditions-generales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesignSystemRoute = DesignSystemRouteImport.update({
@@ -52,6 +59,12 @@ const MassagesRoute = MassagesRouteImport.update({
   path: '/massages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const PolitiqueDeConfidentialiteRoute =
+  PolitiqueDeConfidentialiteRouteImport.update({
+    id: '/politique-de-confidentialite',
+    path: '/politique-de-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SoinsRoute = SoinsRouteImport.update({
   id: '/soins',
   path: '/soins',
@@ -85,11 +98,13 @@ const SoinsSlugRoute = SoinsSlugRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conditions-generales': typeof ConditionsGeneralesRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
   '/formation': typeof FormationRoute
   '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
   '/epilation/$slug': typeof EpilationSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -99,11 +114,13 @@ export interface FileRoutesByFullPath {
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conditions-generales': typeof ConditionsGeneralesRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
   '/formation': typeof FormationRoute
   '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
   '/epilation/$slug': typeof EpilationSlugRoute
   '/guides/$slug': typeof GuidesSlugRoute
@@ -114,11 +131,13 @@ export interface FileRoutesByTo {
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conditions-generales': typeof ConditionsGeneralesRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
   '/formation': typeof FormationRoute
   '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
   '/epilation_/$slug': typeof EpilationSlugRoute
   '/guides_/$slug': typeof GuidesSlugRoute
@@ -130,11 +149,13 @@ export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | '/'
+    | '/conditions-generales'
     | '/design-system'
     | '/epilation'
     | '/formation'
     | '/guides'
     | '/massages'
+    | '/politique-de-confidentialite'
     | '/soins'
     | '/epilation/$slug'
     | '/guides/$slug'
@@ -144,11 +165,13 @@ export interface FileRouteTypes {
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
+    | '/conditions-generales'
     | '/design-system'
     | '/epilation'
     | '/formation'
     | '/guides'
     | '/massages'
+    | '/politique-de-confidentialite'
     | '/soins'
     | '/epilation/$slug'
     | '/guides/$slug'
@@ -158,11 +181,13 @@ export interface FileRouteTypes {
   id:
     | '__root__'
     | '/'
+    | '/conditions-generales'
     | '/design-system'
     | '/epilation'
     | '/formation'
     | '/guides'
     | '/massages'
+    | '/politique-de-confidentialite'
     | '/soins'
     | '/epilation_/$slug'
     | '/guides_/$slug'
@@ -173,11 +198,13 @@ export interface FileRouteTypes {
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConditionsGeneralesRoute: typeof ConditionsGeneralesRoute
   DesignSystemRoute: typeof DesignSystemRoute
   EpilationRoute: typeof EpilationRoute
   FormationRoute: typeof FormationRoute
   GuidesRoute: typeof GuidesRoute
   MassagesRoute: typeof MassagesRoute
+  PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   SoinsRoute: typeof SoinsRoute
   EpilationSlugRoute: typeof EpilationSlugRoute
   GuidesSlugRoute: typeof GuidesSlugRoute
@@ -193,6 +220,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditions-generales': {
+      id: '/conditions-generales'
+      path: '/conditions-generales'
+      fullPath: '/conditions-generales'
+      preLoaderRoute: typeof ConditionsGeneralesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/design-system': {
@@ -228,6 +262,13 @@ declare module '@tanstack/react-router' {
       path: '/massages'
       fullPath: '/massages'
       preLoaderRoute: typeof MassagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politique-de-confidentialite': {
+      id: '/politique-de-confidentialite'
+      path: '/politique-de-confidentialite'
+      fullPath: '/politique-de-confidentialite'
+      preLoaderRoute: typeof PolitiqueDeConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/soins': {
@@ -277,11 +318,13 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConditionsGeneralesRoute: ConditionsGeneralesRoute,
   DesignSystemRoute: DesignSystemRoute,
   EpilationRoute: EpilationRoute,
   FormationRoute: FormationRoute,
   GuidesRoute: GuidesRoute,
   MassagesRoute: MassagesRoute,
+  PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   SoinsRoute: SoinsRoute,
   EpilationSlugRoute: EpilationSlugRoute,
   GuidesSlugRoute: GuidesSlugRoute,
