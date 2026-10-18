@@ -1,11 +1,24 @@
 import type { SVGProps } from 'react'
+import { Navigation, Phone } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
-import { contact } from '#/data/contact'
+import { contact, mapsLink } from '#/data/contact'
+import { cn } from '#/lib/utils'
 import { guides } from '#/data/guides'
 import logoImage from '../../../design/sbj-logo.png'
 
-// Only links to pages (or to call and write), never to a section within one.
-const footerGroups = [
+type FooterLink = {
+  // Several entries for a label on several lines (the address).
+  label: string | ReadonlyArray<string>
+  href: string
+  // Shown in a gold disc before the label, as for the phone and the address.
+  icon?: LucideIcon
+  external?: boolean
+}
+
+// Only links to pages (or to call, or to open the address in Maps), never to a section
+// within one.
+const footerGroups: ReadonlyArray<{ title: string; links: ReadonlyArray<FooterLink> }> = [
   {
     title: 'Prestations',
     links: [
@@ -30,8 +43,8 @@ const footerGroups = [
     title: 'Contact',
     links: [
       { label: 'Nous contacter', href: '/contact' },
-      { label: contact.phone, href: contact.phoneHref },
-      { label: 'Écrire un email', href: `mailto:${contact.email}` },
+      { label: contact.phone, href: contact.phoneHref, icon: Phone },
+      { label: contact.addressLines, href: mapsLink, icon: Navigation, external: true },
     ],
   },
 ]
@@ -148,13 +161,32 @@ export function SiteFooter() {
                     />
                   )}
                   <ul className="space-y-3">
-                    {group.links.map((link) => (
-                      <li key={`${group.title}-${link.label}`}>
+                    {group.links.map(({ label, href, icon: Icon, external }) => (
+                      <li key={href}>
                         <a
-                          href={link.href}
-                          className="text-sm text-[#fff9ec]/78 transition-colors hover:text-[#e5bd42] sm:text-base"
+                          href={href}
+                          {...(external && { target: '_blank', rel: 'noreferrer' })}
+                          className={cn(
+                            'group text-sm text-[#fff9ec]/78 transition-colors hover:text-[#e5bd42] sm:text-base',
+                            Icon && 'flex items-start gap-3',
+                          )}
                         >
-                          {link.label}
+                          {Icon && (
+                            <span className="mt-px grid size-7 shrink-0 place-items-center rounded-full bg-[#d4af37] text-[#062b23] transition-colors group-hover:bg-[#e5bd42]">
+                              <Icon aria-hidden="true" className="size-3.5" strokeWidth={2.2} fill={Icon === Navigation ? 'currentColor' : 'none'} />
+                            </span>
+                          )}
+                          {typeof label === 'string' ? (
+                            <span className={cn(Icon && 'pt-0.5')}>{label}</span>
+                          ) : (
+                            <span className="pt-0.5 text-[0.78rem] leading-6 sm:text-sm">
+                              {label.map((line) => (
+                                <span key={line} className="block whitespace-nowrap">
+                                  {line}
+                                </span>
+                              ))}
+                            </span>
+                          )}
                         </a>
                       </li>
                     ))}
