@@ -3,6 +3,7 @@ import { Menu, UserRound, X } from 'lucide-react'
 import { Dialog } from 'radix-ui'
 
 import { Button } from '#/components/ui/button'
+import { learnerSpaceOpen } from '#/lib/features'
 import { cn } from '#/lib/utils'
 import menuImage from '#/assets/navigation/menu-spa.png'
 import logoImage from '../../../design/sbj-logo.png'
@@ -100,15 +101,17 @@ export function NavigationDrawer({
 
               </nav>
 
-              <Button
-                asChild
-                className="embossed-dark-cta mb-6 h-12 w-full rounded-sm border border-[#d4af37]/85 px-5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-[#fff9ec] hover:border-[#e5bd42] hover:text-[#fff9ec]"
-              >
-                <a href="#espace-apprenant" onClick={closeMenu}>
-                  <UserRound aria-hidden="true" className="size-4" strokeWidth={1.6} />
-                  Espace apprenant
-                </a>
-              </Button>
+              {learnerSpaceOpen && (
+                <Button
+                  asChild
+                  className="embossed-dark-cta mb-6 h-12 w-full rounded-sm border border-[#d4af37]/85 px-5 text-[0.7rem] font-bold uppercase tracking-[0.16em] text-[#fff9ec] hover:border-[#e5bd42] hover:text-[#fff9ec]"
+                >
+                  <a href="#espace-apprenant" onClick={closeMenu}>
+                    <UserRound aria-hidden="true" className="size-4" strokeWidth={1.6} />
+                    Espace apprenant
+                  </a>
+                </Button>
+              )}
 
               <div className="grid grid-cols-2 gap-3 border-t border-[#d4af37]/28 pt-6">
                 <Button

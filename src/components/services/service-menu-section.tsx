@@ -1,6 +1,7 @@
 import type { ReactNode } from 'react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { cn } from '#/lib/utils'
 import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
 import foliageTopRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
@@ -22,6 +23,7 @@ export type ServiceMenuItem = {
 
 export function ServiceMenuSection({
   id,
+  eyebrow,
   title = 'La carte des',
   accent,
   subtitle,
@@ -32,8 +34,11 @@ export function ServiceMenuSection({
   variant = 'plain',
   ctaLabel = 'En savoir plus',
   decor,
+  compact = false,
 }: {
   id: string
+  // Small label under the lotus ornament, as on the FAQ.
+  eyebrow: string
   title?: string
   accent: string
   subtitle?: string
@@ -47,13 +52,20 @@ export function ServiceMenuSection({
   ctaLabel?: string
   // Page-specific DecorObject elements.
   decor?: ReactNode
+  // Tighter top spacing, for a follow-up section right under other content.
+  compact?: boolean
 }) {
   const isCard = variant === 'card'
+  // Keeps the titles aligned when only some items have a pictogram.
+  const hasIcons = items.some((item) => item.icon)
 
   return (
     <section
       id={id}
-      className="relative isolate scroll-mt-24 overflow-hidden bg-[#fff9ec] py-16 text-[#0d3a2f] sm:scroll-mt-28 sm:py-24 lg:py-28 xl:py-32"
+      className={cn(
+        'relative isolate scroll-mt-24 overflow-hidden bg-[#fff9ec] py-16 text-[#0d3a2f] sm:scroll-mt-28 sm:py-24 lg:py-28 xl:py-32',
+        compact && 'pt-8 sm:pt-10 lg:pt-10 xl:pt-12',
+      )}
       aria-labelledby={`${id}-title`}
     >
       <div
@@ -111,9 +123,10 @@ export function ServiceMenuSection({
       />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
+        <SectionEyebrow label={eyebrow} />
         <h2
           id={`${id}-title`}
-          className="text-center text-[clamp(2.6rem,10vw,3.2rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#0d3a2f] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
+          className="mt-5 text-center text-[clamp(2.6rem,10vw,3.2rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#0d3a2f] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
         >
           {title}{' '}
           <em className="inline-block pb-1 font-normal text-[#d4af37]">{accent}</em>
@@ -130,6 +143,8 @@ export function ServiceMenuSection({
             isCard
               ? 'mx-auto max-w-[92rem] gap-6 lg:grid-cols-3 xl:gap-8'
               : 'gap-x-7 gap-y-12 sm:gap-y-14 lg:grid-cols-4 lg:gap-x-8 xl:gap-x-10',
+            // Three cards keep the four-column card width and stay centered.
+            !isCard && items.length === 3 && 'lg:mx-auto lg:max-w-[75%] lg:grid-cols-3',
           )}
         >
           {items.map((item) => (
@@ -182,7 +197,7 @@ export function ServiceMenuSection({
               <div
                 className={cn(
                   'mx-auto flex w-full max-w-[22rem] flex-1 flex-col items-center',
-                  item.icon ? 'pt-12' : 'pt-6',
+                  hasIcons ? 'pt-12' : 'pt-6',
                   isCard ? 'max-w-[26rem] px-6' : 'px-2',
                 )}
               >
