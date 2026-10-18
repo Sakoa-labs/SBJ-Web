@@ -2,12 +2,32 @@ import type { FormEvent } from 'react'
 import { Bus, Navigation } from 'lucide-react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
-import { SectionEyebrow } from '#/components/landing/section-ornaments'
-import { contact, mapsLinks } from '#/data/contact'
+import { contact, mapsLink } from '#/data/contact'
 import { cn } from '#/lib/utils'
 import parkingImage from '../../../design/contact/acces-parking.jpg'
 import bannerImage from '../../../design/contact/acces-banniere.jpg'
 import gateImage from '../../../design/contact/acces-portail.jpg'
+
+// The Google Maps pin, in its four brand colours.
+function GoogleMapsIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
+      <defs>
+        <clipPath id="maps-pin">
+          <path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.4 6.2 12.2 6.9 12.9a.8.8 0 0 0 1.2 0c.7-.7 6.9-7.5 6.9-12.9A7.5 7.5 0 0 0 12 1.5Z" />
+        </clipPath>
+      </defs>
+      <g clipPath="url(#maps-pin)">
+        <rect width="24" height="24" fill="#34A853" />
+        <path d="M0 0h12L0 12Z" fill="#1A73E8" />
+        <path d="M12 0h12v9L4 24H0V12Z" fill="#EA4335" />
+        <path d="M24 9v15H4Z" fill="#FBBC04" />
+        <path d="M0 12 12 0v4L4 14Z" fill="#4285F4" />
+      </g>
+      <circle cx="12" cy="9" r="2.8" fill="#fff" />
+    </svg>
+  )
+}
 
 const arrivalSteps = [
   { image: parkingImage, alt: 'Le chemin d’accès, la place de parking et l’entrée signalées par des flèches', caption: 'Garez-vous sur la place de parking' },
@@ -42,8 +62,7 @@ export function ContactFormSection() {
     >
       <div className="mx-auto grid w-full max-w-[84rem] gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 xl:gap-20">
         <div>
-          <SectionEyebrow label="Écrire à Sabrina" className="items-start [&>img]:self-start" />
-          <h2 className="mt-4 text-[clamp(2rem,6vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em]">
+          <h2 className="text-[clamp(2rem,6vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em]">
             Un message, <em className="font-normal text-[#c09027]">une question</em>
           </h2>
           <form
@@ -75,20 +94,11 @@ export function ContactFormSection() {
             >
               Envoyer le message
             </button>
-            <p className="mt-4 text-sm leading-6 text-[#40574f]">
-              Votre messagerie s’ouvre avec le message prêt à partir. Pour une réponse rapide,
-              appelez le{' '}
-              <a href={contact.phoneHref} className="font-semibold text-[#9a6d2c] hover:text-[#0d3a2f]">
-                {contact.phone}
-              </a>
-              .
-            </p>
           </form>
         </div>
 
         <div>
-          <SectionEyebrow label="Venir au cabinet" className="items-start [&>img]:self-start" />
-          <h2 className="mt-4 text-[clamp(2rem,6vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em]">
+          <h2 className="text-[clamp(2rem,6vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em]">
             Comment <em className="font-normal text-[#c09027]">venir&nbsp;?</em>
           </h2>
 
@@ -101,14 +111,16 @@ export function ContactFormSection() {
               <p className="mt-2 text-sm leading-6 text-[#40574f]">
                 Dans votre GPS, cherchez «&nbsp;{contact.mapsQuery}&nbsp;».
               </p>
-              <div className="mt-4 grid grid-cols-2 gap-2">
-                <EmbossedCta href={mapsLinks.google} tone="light" target="_blank" rel="noreferrer" className="h-10 px-3 text-[0.62rem] tracking-[0.12em]">
-                  Google Maps
-                </EmbossedCta>
-                <EmbossedCta href={mapsLinks.waze} tone="light" target="_blank" rel="noreferrer" className="h-10 px-3 text-[0.62rem] tracking-[0.12em]">
-                  Waze
-                </EmbossedCta>
-              </div>
+              <EmbossedCta
+                href={mapsLink}
+                tone="light"
+                target="_blank"
+                rel="noreferrer"
+                className="mt-4 h-11 gap-2.5 px-5 text-[0.66rem] tracking-[0.14em]"
+              >
+                <GoogleMapsIcon className="size-5" />
+                Ouvrir dans Maps
+              </EmbossedCta>
             </div>
             <div className="rounded-2xl border border-[#d4af37]/45 bg-[#fff9ec] p-5">
               <p className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-[#9a6d2c]">

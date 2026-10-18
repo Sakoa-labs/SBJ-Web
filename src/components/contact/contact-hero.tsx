@@ -52,18 +52,12 @@ export function ContactHero() {
               Une question, un conseil, une réservation&nbsp;? Sabrina vous répond et vous accueille
               à La Bretagne, à Saint-Denis.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:gap-5">
-              <EmbossedCta href="#reserver" tone="gold" className="sm:h-14 sm:min-w-60 sm:text-[0.8rem]">
-                Réserver en ligne
-              </EmbossedCta>
-              <EmbossedCta href={contact.phoneHref} className="gap-3 sm:h-14 sm:min-w-60 sm:text-[0.8rem]">
-                <Phone aria-hidden="true" className="size-4" strokeWidth={1.6} />
-                Appeler Sabrina
-              </EmbossedCta>
-            </div>
+            <EmbossedCta href="#reserver" tone="gold" className="mt-10 w-full sm:h-14 sm:w-auto sm:min-w-64 sm:text-[0.8rem]">
+              Réserver en ligne
+            </EmbossedCta>
             <p className="mt-6 max-w-[34rem] text-sm leading-6 text-[#40574f]">
-              Pendant un soin, Sabrina ne peut pas décrocher&nbsp;: laissez-lui un SMS avec vos
-              coordonnées et vos disponibilités, elle vous rappelle.
+              Pendant un soin, Sabrina ne peut pas décrocher&nbsp;: le plus simple est de réserver
+              votre créneau directement en ligne.
             </p>
           </div>
 
