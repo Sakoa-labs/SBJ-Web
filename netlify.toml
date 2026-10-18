@@ -1,0 +1,15 @@
+# Preview deployment on Netlify: the build renders every page to static HTML in dist/client.
+[build]
+  command = "pnpm run build"
+  publish = "dist/client"
+
+# Addresses of the previous site that have a new home.
+[[redirects]]
+  from = "/faq"
+  to = "/massages"
+  status = 301
+
+[[redirects]]
+  from = "/salle-de-massage"
+  to = "/contact"
+  status = 301
