@@ -1,9 +1,10 @@
 import type { SVGProps } from 'react'
 
+import { contact } from '#/data/contact'
 import { guides } from '#/data/guides'
 import logoImage from '../../../design/sbj-logo.png'
 
-// Only links to pages, never to a section within one.
+// Only links to pages (or to call and write), never to a section within one.
 const footerGroups = [
   {
     title: 'Prestations',
@@ -26,11 +27,11 @@ const footerGroups = [
     links: guides.map((guide) => ({ label: guide.title, href: `/guides/${guide.slug}` })),
   },
   {
-    title: 'Informations',
+    title: 'Contact',
     links: [
-      { label: 'Mentions légales', href: '/mentions-legales' },
-      { label: 'Conditions de vente', href: '/conditions-generales' },
-      { label: 'Confidentialité', href: '/politique-de-confidentialite' },
+      { label: 'Nous contacter', href: '/contact' },
+      { label: contact.phone, href: contact.phoneHref },
+      { label: 'Écrire un email', href: `mailto:${contact.email}` },
     ],
   },
 ]
@@ -164,8 +165,22 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div data-footer-legal className="mt-14 border-t border-[#d4af37]/38 pt-6 text-center text-xs text-[#fff9ec]/65 sm:mt-16 sm:text-sm">
+        <div data-footer-legal className="mt-14 flex flex-col gap-4 border-t border-[#d4af37]/38 pt-6 text-xs text-[#fff9ec]/65 sm:mt-16 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>© 2026 Joie d’Être. Tous droits réservés.</p>
+          <div className="flex flex-wrap gap-x-7 gap-y-2 sm:justify-end">
+            <a href="/mentions-legales" className="transition-colors hover:text-[#e5bd42]">
+              Mentions légales
+            </a>
+            <a href="/conditions-generales" className="transition-colors hover:text-[#e5bd42]">
+              Conditions générales de vente
+            </a>
+            <a
+              href="/politique-de-confidentialite"
+              className="transition-colors hover:text-[#e5bd42]"
+            >
+              Politique de confidentialité
+            </a>
+          </div>
         </div>
       </div>
     </footer>

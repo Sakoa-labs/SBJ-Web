@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ConditionsGeneralesRouteImport } from './routes/conditions-generales'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as EpilationRouteImport } from './routes/epilation'
 import { Route as FormationRouteImport } from './routes/formation'
@@ -33,6 +34,11 @@ const IndexRoute = IndexRouteImport.update({
 const ConditionsGeneralesRoute = ConditionsGeneralesRouteImport.update({
   id: '/conditions-generales',
   path: '/conditions-generales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesignSystemRoute = DesignSystemRouteImport.update({
@@ -105,6 +111,7 @@ const SoinsSlugRoute = SoinsSlugRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/conditions-generales': typeof ConditionsGeneralesRoute
+  '/contact': typeof ContactRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
   '/formation': typeof FormationRoute
@@ -122,6 +129,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/conditions-generales': typeof ConditionsGeneralesRoute
+  '/contact': typeof ContactRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
   '/formation': typeof FormationRoute
@@ -140,6 +148,7 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/conditions-generales': typeof ConditionsGeneralesRoute
+  '/contact': typeof ContactRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
   '/formation': typeof FormationRoute
@@ -159,6 +168,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/conditions-generales'
+    | '/contact'
     | '/design-system'
     | '/epilation'
     | '/formation'
@@ -176,6 +186,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/conditions-generales'
+    | '/contact'
     | '/design-system'
     | '/epilation'
     | '/formation'
@@ -193,6 +204,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/conditions-generales'
+    | '/contact'
     | '/design-system'
     | '/epilation'
     | '/formation'
@@ -211,6 +223,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   ConditionsGeneralesRoute: typeof ConditionsGeneralesRoute
+  ContactRoute: typeof ContactRoute
   DesignSystemRoute: typeof DesignSystemRoute
   EpilationRoute: typeof EpilationRoute
   FormationRoute: typeof FormationRoute
@@ -240,6 +253,13 @@ declare module '@tanstack/react-router' {
       path: '/conditions-generales'
       fullPath: '/conditions-generales'
       preLoaderRoute: typeof ConditionsGeneralesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/design-system': {
@@ -339,6 +359,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   ConditionsGeneralesRoute: ConditionsGeneralesRoute,
+  ContactRoute: ContactRoute,
   DesignSystemRoute: DesignSystemRoute,
   EpilationRoute: EpilationRoute,
   FormationRoute: FormationRoute,

@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { SiteHeader } from '#/components/layout/site-header'
 import { LeafShadow } from '#/components/services/leaf-shadow'
+import { contact } from '#/data/contact'
 
 // A run of text, or a link inside it (email, phone, external page).
 export type LegalInline = string | { label: string; href: string }
@@ -17,13 +18,6 @@ export type LegalSection = {
   id: string
   title: string
   blocks: ReadonlyArray<LegalBlock>
-}
-
-export const contact = {
-  email: 'sabrinajoiedetre@gmail.com',
-  phone: '+262 693 45 14 30',
-  phoneHref: 'tel:+262693451430',
-  address: '12 C Chemin du Milieu, La Bretagne, 97490 Saint-Denis, La Réunion',
 }
 
 function renderText(text: LegalText): ReactNode {

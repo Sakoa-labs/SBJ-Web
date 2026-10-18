@@ -1,4 +1,4 @@
-import { contact } from '#/components/legal/legal-page'
+import { contact } from '#/data/contact'
 import type { LegalSection } from '#/components/legal/legal-page'
 
 const email = { label: contact.email, href: `mailto:${contact.email}` }

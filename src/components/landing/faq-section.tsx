@@ -325,7 +325,7 @@ export function FaqContactAside({
       <p className="mt-5 max-w-[17rem] text-base leading-7 text-[#fff9ec]/90">
         {text}
       </p>
-      <EmbossedCta href="#contact" className="mt-6 w-full max-w-[19rem] gap-3">
+      <EmbossedCta href="/contact" className="mt-6 w-full max-w-[19rem] gap-3">
         <Mail aria-hidden="true" className="size-5" strokeWidth={1.4} />
         Nous contacter
       </EmbossedCta>
