@@ -1,4 +1,4 @@
-import { GoldDivider, SectionEyebrow } from '#/components/landing/section-ornaments'
+import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import tableImage from '../../../design/contact/salle-table.jpg'
 import roomImage from '../../../design/contact/salle-solo.jpg'
 import duoImage from '../../../design/contact/salle-duo.jpg'
@@ -19,7 +19,7 @@ export function ContactRoomSection() {
 
       <div className="mx-auto grid w-full max-w-[84rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 xl:gap-20">
         <div>
-          <SectionEyebrow label="La salle" className="items-start [&>img]:self-start" />
+          <SectionEyebrow label="Le lieu" className="w-fit" />
           <h2
             id="salle-title"
             className="mt-4 text-[clamp(2.2rem,7vw,3.6rem)] font-normal leading-[1.06] tracking-[-0.025em] text-[#fff5df]"
@@ -31,8 +31,7 @@ export function ContactRoomSection() {
             soins y sont réalisés avec des produits 100&nbsp;% naturels, qui respectent votre peau et
             l’environnement.
           </p>
-          <GoldDivider compact className="mt-8" />
-          <blockquote className="mt-6 max-w-[30rem] font-heading text-[1.35rem] italic leading-snug text-[#fff5df] sm:text-[1.6rem]">
+          <blockquote className="mt-8 max-w-[30rem] font-heading text-[1.35rem] italic leading-snug text-[#fff5df] sm:text-[1.6rem]">
             «&nbsp;Offrez à votre corps le soin qu’il mérite, il vous le rendra en énergie et
             sérénité.&nbsp;»
           </blockquote>

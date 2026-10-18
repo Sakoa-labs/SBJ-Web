@@ -8,23 +8,15 @@ import parkingImage from '../../../design/contact/acces-parking.jpg'
 import bannerImage from '../../../design/contact/acces-banniere.jpg'
 import gateImage from '../../../design/contact/acces-portail.jpg'
 
-// The Google Maps pin, in its four brand colours.
+// The Google Maps app icon (2020 pin).
 function GoogleMapsIcon({ className }: { className?: string }) {
   return (
-    <svg viewBox="0 0 24 24" className={className} aria-hidden="true">
-      <defs>
-        <clipPath id="maps-pin">
-          <path d="M12 1.5a7.5 7.5 0 0 0-7.5 7.5c0 5.4 6.2 12.2 6.9 12.9a.8.8 0 0 0 1.2 0c.7-.7 6.9-7.5 6.9-12.9A7.5 7.5 0 0 0 12 1.5Z" />
-        </clipPath>
-      </defs>
-      <g clipPath="url(#maps-pin)">
-        <rect width="24" height="24" fill="#34A853" />
-        <path d="M0 0h12L0 12Z" fill="#1A73E8" />
-        <path d="M12 0h12v9L4 24H0V12Z" fill="#EA4335" />
-        <path d="M24 9v15H4Z" fill="#FBBC04" />
-        <path d="M0 12 12 0v4L4 14Z" fill="#4285F4" />
-      </g>
-      <circle cx="12" cy="9" r="2.8" fill="#fff" />
+    <svg viewBox="0 0 92.3 132.3" className={className} aria-hidden="true">
+      <path fill="#1a73e8" d="M60.2 2.2C55.8.8 51 0 46.1 0 32 0 19.3 6.4 10.8 16.5l21.8 18.3L60.2 2.2z" />
+      <path fill="#ea4335" d="M10.8 16.5C4.1 24.5 0 34.9 0 46.1c0 8.7 1.7 15.7 4.6 22l28-33.3-21.8-18.3z" />
+      <path fill="#4285f4" d="M46.2 28.5c9.8 0 17.7 7.9 17.7 17.7 0 4.3-1.6 8.3-4.2 11.4 0 0 13.9-16.6 27.5-32.7-5.6-10.8-15.3-19-27-22.7L32.6 34.8c3.3-3.8 8.1-6.3 13.6-6.3" />
+      <path fill="#fbbc04" d="M46.2 63.8c-9.8 0-17.7-7.9-17.7-17.7 0-4.3 1.5-8.3 4.1-11.3l-28 33.3c4.8 10.6 12.8 19.2 21 29.9l34.1-40.5c-3.3 3.9-8.1 6.3-13.5 6.3" />
+      <path fill="#34a853" d="M59.1 109.2c15.4-24.1 33.3-35 33.3-63 0-7.7-1.9-14.9-5.2-21.3L25.6 98c2.6 3.4 5.3 7.3 7.9 11.3 9.4 14.5 6.8 23.1 12.8 23.1s3.4-8.7 12.8-23.2" />
     </svg>
   )
 }
