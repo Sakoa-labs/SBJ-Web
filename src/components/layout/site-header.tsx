@@ -4,6 +4,7 @@ import { UserRound } from 'lucide-react'
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { NavigationDrawer } from '#/components/layout/navigation-drawer'
 import { Button } from '#/components/ui/button'
+import { learnerSpaceOpen } from '#/lib/features'
 import { cn } from '#/lib/utils'
 import logoImage from '../../../design/sbj-logo.png'
 
@@ -107,10 +108,12 @@ export function SiteHeader({
             >
               <a href="#reserver">Réserver</a>
             </Button>
-            <a href="#espace-apprenant" className="nav-link items-center gap-1.5">
-              <UserRound aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
-              Espace apprenant
-            </a>
+            {learnerSpaceOpen && (
+              <a href="#espace-apprenant" className="nav-link items-center gap-1.5">
+                <UserRound aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
+                Espace apprenant
+              </a>
+            )}
           </div>
 
           <NavigationDrawer

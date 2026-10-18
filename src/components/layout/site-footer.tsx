@@ -2,37 +2,40 @@ import type { SVGProps } from 'react'
 
 import logoImage from '../../../design/sbj-logo.png'
 
+// Absolute links (/#…) so every entry also works from the inner pages.
 const footerGroups = [
+  {
+    title: 'Prestations',
+    links: [
+      { label: 'Massages', href: '/massages' },
+      { label: 'Soins du visage', href: '/soins' },
+      { label: 'Épilation', href: '/epilation' },
+      { label: 'Réserver en ligne', href: '#reserver' },
+    ],
+  },
   {
     title: 'Formations',
     links: [
-      { label: 'Formations', href: '/formation' },
-      { label: 'Ateliers', href: '/formation#presentiel' },
-      { label: 'E-learning', href: '/formation#en-ligne' },
+      { label: 'Le parcours', href: '/formation#parcours' },
+      { label: 'En présentiel', href: '/formation#presentiel' },
+      { label: 'En ligne', href: '/formation#en-ligne' },
     ],
   },
   {
     title: 'Guides',
     links: [
-      { label: 'Guides', href: '/guides' },
-      { label: 'PDF', href: '/guides#collection' },
-      { label: 'Amazon KDP', href: '/guides' },
-    ],
-  },
-  {
-    title: 'Prestations',
-    links: [
-      { label: 'Massages', href: '#massage' },
-      { label: 'Soins du visage', href: '#soins' },
-      { label: 'Épilation', href: '#epilation' },
+      { label: 'Les guides', href: '/guides#collection' },
+      { label: 'Le coffret', href: '/guides/coffret' },
+      { label: 'L’auteure', href: '/guides#auteure' },
     ],
   },
   {
     title: 'À propos',
     links: [
-      { label: 'Contact', href: '#contact' },
-      { label: 'À propos', href: '#a-propos' },
-      { label: 'FAQ', href: '#faq' },
+      { label: 'Sabrina', href: '/#a-propos' },
+      { label: 'Témoignages', href: '/#temoignages' },
+      { label: 'FAQ', href: '/#faq' },
+      { label: 'Contact', href: '/#contact' },
     ],
   },
 ]
@@ -98,7 +101,7 @@ export function SiteFooter() {
         <div className="grid gap-12 xl:grid-cols-[1.35fr_3fr] xl:items-center xl:gap-12 2xl:gap-16">
           <div className="flex flex-col items-center text-center">
             <a
-              href="#accueil"
+              href="/"
               className="inline-flex justify-center"
               aria-label="Joie d'être par Sabrina, accueil"
             >
@@ -136,12 +139,12 @@ export function SiteFooter() {
             aria-label="Navigation du pied de page"
           >
             {footerGroups.map((group, index) => (
-              <div key={group.title} className="relative lg:px-4 xl:px-2 2xl:px-5">
+              <div key={group.title} className="relative flex flex-col lg:px-4 xl:px-2 2xl:px-5">
                 <h2 className="font-heading text-lg font-medium uppercase tracking-[0.06em] text-[#e5bd42] sm:text-xl sm:tracking-[0.08em]">
                   {group.title}
                 </h2>
                 <span className="mt-4 block h-px w-12 bg-[#d4af37]/55" aria-hidden="true" />
-                <div className="relative mt-5">
+                <div className="relative mt-5 flex-1">
                   {index < footerGroups.length - 1 && (
                     <span
                       className="absolute -right-4 top-1/2 hidden h-20 w-px -translate-y-1/2 bg-[#d4af37]/24 lg:block xl:-right-2 2xl:-right-4"
