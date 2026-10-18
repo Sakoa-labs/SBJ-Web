@@ -1,11 +1,22 @@
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
+import { usePhotoLightbox, ZoomablePhoto } from '#/components/layout/photo-lightbox'
 import tableImage from '../../../design/contact/salle-table.jpg'
 import roomImage from '../../../design/contact/salle-solo.jpg'
 import duoImage from '../../../design/contact/salle-duo.jpg'
 
+const photos = [
+  { src: tableImage, alt: 'La table de massage préparée, serviettes roulées et bougies, devant la fenêtre', caption: 'La table de massage' },
+  { src: roomImage, alt: 'La salle de massage, ses murs végétalisés et sa table drapée de blanc', caption: 'La salle de soins' },
+  { src: duoImage, alt: 'Deux tables de massage côte à côte dans la salle', caption: 'Deux tables côte à côte' },
+] as const
+
+const frame = 'rounded-2xl border border-[#d4af37]/60'
+
 // The massage room, from the previous site's "Salle de massage" page; its product photos
-// are left out on purpose.
+// are left out on purpose. Each photo opens larger on click.
 export function ContactRoomSection() {
+  const { openAt, lightbox } = usePhotoLightbox(photos)
+
   return (
     <section
       id="salle"
@@ -18,13 +29,14 @@ export function ContactRoomSection() {
       />
 
       <div className="mx-auto grid w-full max-w-[84rem] items-center gap-12 px-5 sm:px-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16 xl:gap-20">
-        <div>
-          <SectionEyebrow label="Le lieu" className="w-fit" />
+        <div className="flex flex-col items-center text-center">
+          <SectionEyebrow label="L’espace bien-être" />
           <h2
             id="salle-title"
             className="mt-4 text-[clamp(2.2rem,7vw,3.6rem)] font-normal leading-[1.06] tracking-[-0.025em] text-[#fff5df]"
           >
-            Un cocon pour <em className="font-normal text-[#e5bd42]">se ressourcer</em>
+            <span className="block">Un cocon pour</span>
+            <em className="block font-normal text-[#e5bd42]">se ressourcer</em>
           </h2>
           <p className="mt-6 max-w-[32rem] text-pretty text-base leading-7 text-[#fff9ec]/82 sm:text-lg sm:leading-8">
             Une pièce aménagée chez Sabrina, au calme, pour se ressourcer en toute simplicité. Les
@@ -38,38 +50,30 @@ export function ContactRoomSection() {
         </div>
 
         <div className="grid grid-cols-2 gap-3 sm:gap-4">
-          <figure className="col-span-2 aspect-[16/10] overflow-hidden rounded-2xl border border-[#d4af37]/60 shadow-[0_28px_60px_rgba(0,0,0,0.35)]">
-            <img
-              src={tableImage}
-              alt="La table de massage préparée, serviettes roulées et bougies, devant la fenêtre"
-              className="size-full object-cover"
-              width={1600}
-              height={1200}
-              loading="lazy"
-            />
-          </figure>
-          <figure className="aspect-[4/3] overflow-hidden rounded-2xl border border-[#d4af37]/60 shadow-[0_20px_45px_rgba(0,0,0,0.3)]">
-            <img
-              src={roomImage}
-              alt="La salle de massage, ses murs végétalisés et sa table drapée de blanc"
-              className="size-full object-cover"
-              width={1600}
-              height={1114}
-              loading="lazy"
-            />
-          </figure>
-          <figure className="aspect-[4/3] overflow-hidden rounded-2xl border border-[#d4af37]/60 shadow-[0_20px_45px_rgba(0,0,0,0.3)]">
-            <img
-              src={duoImage}
-              alt="Deux tables de massage côte à côte dans la salle"
-              className="size-full object-cover"
-              width={1600}
-              height={1200}
-              loading="lazy"
-            />
-          </figure>
+          <ZoomablePhoto
+            photo={photos[0]}
+            onOpen={() => openAt(0)}
+            className={`col-span-2 aspect-[16/10] shadow-[0_28px_60px_rgba(0,0,0,0.35)] ${frame}`}
+            width={1600}
+            height={1200}
+          />
+          <ZoomablePhoto
+            photo={photos[1]}
+            onOpen={() => openAt(1)}
+            className={`aspect-[4/3] shadow-[0_20px_45px_rgba(0,0,0,0.3)] ${frame}`}
+            width={1600}
+            height={1114}
+          />
+          <ZoomablePhoto
+            photo={photos[2]}
+            onOpen={() => openAt(2)}
+            className={`aspect-[4/3] shadow-[0_20px_45px_rgba(0,0,0,0.3)] ${frame}`}
+            width={1600}
+            height={1200}
+          />
         </div>
       </div>
+      {lightbox}
     </section>
   )
 }

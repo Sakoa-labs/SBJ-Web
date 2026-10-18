@@ -2,6 +2,7 @@ import type { FormEvent } from 'react'
 import { Bus, Navigation } from 'lucide-react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { usePhotoLightbox, ZoomablePhoto } from '#/components/layout/photo-lightbox'
 import { contact, mapsLink } from '#/data/contact'
 import { cn } from '#/lib/utils'
 import parkingImage from '../../../design/contact/acces-parking.jpg'
@@ -22,9 +23,9 @@ function GoogleMapsIcon({ className }: { className?: string }) {
 }
 
 const arrivalSteps = [
-  { image: parkingImage, alt: 'Le chemin d’accès, la place de parking et l’entrée signalées par des flèches', caption: 'Garez-vous sur la place de parking' },
-  { image: bannerImage, alt: 'La bannière violette « Votre praticienne bien-être » sur le mur d’entrée', caption: 'Repérez la bannière Joie d’Être' },
-  { image: gateImage, alt: 'Le portail gris de la maison', caption: 'Entrez par le portail' },
+  { src: parkingImage, alt: 'Le chemin d’accès, la place de parking et l’entrée signalées par des flèches', caption: 'Garez-vous sur la place de parking' },
+  { src: bannerImage, alt: 'La bannière violette « Votre praticienne bien-être » sur le mur d’entrée', caption: 'Repérez la bannière Joie d’Être' },
+  { src: gateImage, alt: 'Le portail gris de la maison', caption: 'Entrez par le portail' },
 ] as const
 
 const field =
@@ -45,8 +46,10 @@ function sendByEmail(event: FormEvent<HTMLFormElement>) {
 }
 
 // The contact form next to the directions: GPS, bus lines and the three photos that show
-// where to park and which gate to ring at.
+// where to park and which gate to ring at, each opening larger on click.
 export function ContactFormSection() {
+  const { openAt, lightbox } = usePhotoLightbox(arrivalSteps)
+
   return (
     <section
       className="relative isolate border-t border-[#d4af37]/30 bg-[#fffdf8] py-16 text-[#0d3a2f] sm:py-20 lg:py-24"
@@ -135,12 +138,17 @@ export function ContactFormSection() {
             {arrivalSteps.map((step, index) => (
               <li key={step.caption}>
                 <figure>
-                  <div className="relative aspect-square overflow-hidden rounded-xl border border-[#d4af37]/50 shadow-[0_12px_28px_rgba(103,70,31,0.12)]">
-                    <img src={step.image} alt={step.alt} className="size-full object-cover" width={1600} height={1200} loading="lazy" />
+                  <ZoomablePhoto
+                    photo={step}
+                    onOpen={() => openAt(index)}
+                    className="aspect-square rounded-xl border border-[#d4af37]/50 shadow-[0_12px_28px_rgba(103,70,31,0.12)]"
+                    width={1600}
+                    height={1200}
+                  >
                     <span className="absolute left-2 top-2 grid size-7 place-items-center rounded-full bg-[#0d3a2f] font-heading text-sm text-[#e5bd42] shadow-md">
                       {index + 1}
                     </span>
-                  </div>
+                  </ZoomablePhoto>
                   <figcaption className="mt-2 text-xs leading-5 text-[#40574f] sm:text-sm">{step.caption}</figcaption>
                 </figure>
               </li>
@@ -148,6 +156,7 @@ export function ContactFormSection() {
           </ol>
         </div>
       </div>
+      {lightbox}
     </section>
   )
 }
