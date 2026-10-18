@@ -74,13 +74,15 @@ export function NotFoundPage() {
 
         <div className="mx-auto grid w-full max-w-[84rem] items-center gap-14 px-5 pb-20 pt-32 sm:px-8 sm:pt-36 lg:min-h-svh lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:gap-16 lg:pb-14 lg:pt-36 xl:gap-24">
           <div className="hero-stagger">
-            <FlowerCode />
-            <div className="mt-4 flex items-center gap-4">
-              <p className="text-xs font-bold uppercase tracking-[0.24em] text-[#c09027]">
-                Page introuvable
-              </p>
-              <GoldDivider card />
-            </div>
+            {/* The 404, its ornament and label are centred over the headline. */}
+            <div className="w-fit max-w-full">
+              <div className="flex flex-col items-center">
+                <FlowerCode />
+                <GoldDivider compact className="mt-4" />
+                <p className="mt-3 text-xs font-bold uppercase tracking-[0.24em] text-[#c09027]">
+                  Page introuvable
+                </p>
+              </div>
 
             <h1
               id="not-found-title"
@@ -90,6 +92,7 @@ export function NotFoundPage() {
               <em className="block pb-1 font-normal text-[#c09027]">nulle part…</em>
               <span className="mt-1 block text-[0.72em] font-medium">mais celui-ci, si.</span>
             </h1>
+            </div>
 
             <p className="mt-6 max-w-[32rem] border-l-2 border-[#d4af37]/70 pl-5 text-pretty text-base leading-7 text-[#1f3a32] sm:pl-6 sm:text-lg sm:leading-8">
               Le site a fait peau neuve&nbsp;: certaines anciennes adresses ont changé. Laissez-nous
