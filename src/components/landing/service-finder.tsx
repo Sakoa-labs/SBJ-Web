@@ -222,8 +222,8 @@ export function ServiceFinder({ trigger }: { trigger: React.ReactNode }) {
           className={cn(
             'fixed left-1/2 top-1/2 z-[95] max-h-[calc(100dvh-1.5rem)] w-[calc(100vw-1.5rem)] -translate-x-1/2 -translate-y-1/2 overflow-y-auto overscroll-contain rounded-[1.75rem] border border-[#d4af37]/80 bg-[#fff9ec] text-[#0d3a2f] shadow-[0_40px_100px_rgba(2,20,16,0.45),inset_0_1px_0_rgba(255,255,255,0.9)] [scrollbar-width:none] focus:outline-none [&::-webkit-scrollbar]:hidden',
             'duration-200 ease-[cubic-bezier(0.23,1,0.32,1)] data-[state=closed]:animate-out data-[state=closed]:fade-out data-[state=closed]:zoom-out-[0.97] data-[state=open]:animate-in data-[state=open]:fade-in data-[state=open]:zoom-in-[0.97] motion-reduce:animate-none',
-            // As wide as the suggestion cards need, no wider.
-            suggestions.length >= 3 ? 'max-w-[56rem]' : suggestions.length === 2 ? 'max-w-[46rem]' : 'max-w-[42rem]',
+            // A little wider for the suggestion cards than for the questions.
+            suggestions.length > 0 ? 'max-w-[48rem]' : 'max-w-[42rem]',
           )}
           aria-describedby={undefined}
         >
@@ -243,7 +243,7 @@ export function ServiceFinder({ trigger }: { trigger: React.ReactNode }) {
             aria-hidden="true"
           />
 
-          <div className="relative px-4 pb-6 pt-4 sm:px-8 sm:pb-8 sm:pt-5">
+          <div className="relative px-4 pb-6 pt-4 sm:px-8 sm:pb-8 sm:pt-5 short:pb-5 short:pt-3">
             <div className="flex h-10 items-center justify-between">
               {answers.length > 0 ? (
                 <button
@@ -363,7 +363,7 @@ function Results({
         Selon vos réponses, nous vous suggérons…
       </p>
 
-      <ul className="mt-5 grid gap-3 sm:mt-7 sm:flex sm:items-stretch sm:justify-center sm:gap-4">
+      <ul className="mt-5 grid gap-3 sm:mt-6 sm:gap-3.5 short:mt-4 short:gap-3">
         {suggestions.map((suggestion, index) => (
           <SuggestionCard
             key={suggestion.service.slug}
@@ -374,7 +374,7 @@ function Results({
         ))}
       </ul>
 
-      <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm sm:mt-7">
+      <div className="mt-5 flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm sm:mt-7 short:mt-4">
         <button
           type="button"
           onClick={onRestart}
@@ -397,9 +397,8 @@ function Results({
   )
 }
 
-// A suggestion: photo, name, length and price, then booking and details. The best match
-// stands out in deep green with a gold badge. Side by side on desktop; on a phone, a
-// compact row so all three fit on one screen.
+// A suggestion as a horizontal card: square photo, name, length and price, then booking
+// and details. The best match stands out in deep green with a gold badge.
 function SuggestionCard({
   suggestion: { service, variant },
   featured,
@@ -412,53 +411,50 @@ function SuggestionCard({
   return (
     <li
       className={cn(
-        'relative flex gap-3.5 rounded-2xl border p-3 sm:w-[15.5rem] sm:flex-col sm:gap-0 sm:p-3',
+        'relative flex items-center gap-3.5 rounded-2xl border p-3 sm:gap-5 sm:p-3.5 sm:pr-6 short:p-3',
         featured
-          ? 'border-[#d4af37] bg-[linear-gradient(160deg,#164a3c_0%,#0d3a2f_45%,#062b23_100%)] text-[#fff9ec] shadow-[inset_0_1px_0_rgba(255,249,236,0.18),0_22px_50px_rgba(6,43,35,0.35)] sm:-translate-y-2'
+          ? 'border-[#d4af37] bg-[linear-gradient(120deg,#164a3c_0%,#0d3a2f_45%,#062b23_100%)] text-[#fff9ec] shadow-[inset_0_1px_0_rgba(255,249,236,0.18),0_22px_50px_rgba(6,43,35,0.35)]'
           : cn('border-[#d4af37]/50 text-[#0d3a2f]', surface),
       )}
     >
       {featured && (
-        <span className="absolute -top-2.5 left-4 z-10 inline-flex whitespace-nowrap items-center gap-1 rounded-full border border-[#fff1c2]/70 bg-[linear-gradient(180deg,#f3d27a_0%,#d4af37_55%,#b58b22_100%)] px-2.5 py-1 text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[#14221e] shadow-[0_6px_14px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.6)] sm:left-5 sm:top-5 sm:px-3 sm:text-[0.62rem]">
+        <span className="absolute -top-2.5 left-4 z-10 inline-flex items-center gap-1 whitespace-nowrap rounded-full border border-[#fff1c2]/70 bg-[linear-gradient(180deg,#f3d27a_0%,#d4af37_55%,#b58b22_100%)] px-2.5 py-1 text-[0.58rem] font-bold uppercase tracking-[0.14em] text-[#14221e] shadow-[0_6px_14px_rgba(0,0,0,0.25),inset_0_1px_0_rgba(255,255,255,0.6)] sm:-top-3 sm:px-3 sm:text-[0.62rem]">
           <Sparkles aria-hidden="true" className="size-3" strokeWidth={2} />
           Idéal pour vous
         </span>
       )}
-      <div className="relative shrink-0">
-        <img
-          src={service.image.src}
-          alt=""
-          className={cn(
-            'aspect-square w-24 rounded-xl object-cover sm:w-full',
-            featured && 'ring-1 ring-[#d4af37]/60',
-          )}
-          width={480}
-          height={480}
-          loading="lazy"
-        />
-      </div>
 
-      <div className="flex min-w-0 flex-1 flex-col sm:px-1.5 sm:pt-3.5">
-        <p
-          className={cn(
-            'text-[0.62rem] font-bold uppercase tracking-[0.16em]',
-            featured ? 'text-[#e5bd42]' : 'text-[#9a6d2c]',
-          )}
-        >
-          {categoryInfo[service.category].label}
-        </p>
-        <h4 className={cn('mt-0.5 font-heading text-[1.25rem] leading-tight sm:text-[1.4rem]', featured && 'text-[#fff5df]')}>
-          {service.title}
-        </h4>
-        <p className={cn('mt-1 hidden text-sm leading-snug sm:line-clamp-2', featured ? 'text-[#fff9ec]/78' : 'text-[#40574f]')}>
-          {service.hook}
-        </p>
-        <p className={cn('mt-1 text-sm font-semibold sm:mt-2', featured ? 'text-[#fff9ec]' : 'text-[#0d3a2f]')}>
-          {formatDuration(variant.minutes)}
-          <span className={cn('mx-1.5', featured ? 'text-[#e5bd42]' : 'text-[#c09027]')}>·</span>
-          {formatPrice(variant.promoPrice ?? variant.price)}
-        </p>
-        <div className="mt-2.5 flex items-center gap-3 sm:mt-auto sm:flex-col sm:items-stretch sm:gap-2 sm:pt-4">
+      <img
+        src={service.image.src}
+        alt=""
+        className={cn(
+          'aspect-square w-24 shrink-0 self-start rounded-xl object-cover sm:w-32 sm:self-center short:w-24',
+          featured && 'ring-1 ring-[#d4af37]/60',
+        )}
+        width={480}
+        height={480}
+        loading="lazy"
+      />
+
+      <div className="flex min-w-0 flex-1 flex-col sm:flex-row sm:items-center sm:gap-6">
+        <div className="min-w-0 flex-1">
+          <p className={cn('text-[0.62rem] font-bold uppercase tracking-[0.16em]', featured ? 'text-[#e5bd42]' : 'text-[#9a6d2c]')}>
+            {categoryInfo[service.category].label}
+          </p>
+          <h4 className={cn('mt-0.5 font-heading text-[1.25rem] leading-tight sm:text-[1.5rem]', featured && 'text-[#fff5df]')}>
+            {service.title}
+          </h4>
+          <p className={cn('mt-1 hidden text-sm leading-snug sm:line-clamp-2 short:line-clamp-1', featured ? 'text-[#fff9ec]/78' : 'text-[#40574f]')}>
+            {service.hook}
+          </p>
+          <p className={cn('mt-1 text-sm font-semibold sm:mt-2', featured ? 'text-[#fff9ec]' : 'text-[#0d3a2f]')}>
+            {formatDuration(variant.minutes)}
+            <span className={cn('mx-1.5', featured ? 'text-[#e5bd42]' : 'text-[#c09027]')}>·</span>
+            {formatPrice(variant.promoPrice ?? variant.price)}
+          </p>
+        </div>
+
+        <div className="mt-2.5 flex shrink-0 items-center gap-3 sm:mt-0 sm:w-36 sm:flex-col sm:items-stretch sm:gap-1.5">
           <EmbossedCta
             href="#reserver"
             data-booksy-variant={variant.booksyId}
