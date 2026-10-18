@@ -5,8 +5,9 @@ import {
   GoldDivider,
   SectionEyebrow,
 } from '#/components/landing/section-ornaments'
+import { cn } from '#/lib/utils'
 import { reviews } from '#/data/reviews'
-import type { Review } from '#/data/reviews'
+import type { Review, ReviewSource } from '#/data/reviews'
 import defaultAvatar from '#/assets/testimonials/avatar-defaut.jpg'
 import booksyLogo from '#/assets/review-logos/booksy.png'
 import foliageLeft from '../../../design/section temoignages/ChatGPT Image 24 août 2026, 22_13_34.png'
@@ -50,10 +51,10 @@ function GoogleLogo({ className }: { className?: string }) {
   )
 }
 
-function ReviewSourceBadge({ review }: { review: Review }) {
+function ReviewSourceBadge({ source, verified }: { source: ReviewSource; verified?: boolean }) {
   return (
     <span className="flex items-center gap-2">
-      {review.source === 'Google' ? (
+      {source === 'Google' ? (
         <GoogleLogo className="size-[1.1rem] shrink-0" />
       ) : (
         <img
@@ -65,12 +66,16 @@ function ReviewSourceBadge({ review }: { review: Review }) {
           height={64}
         />
       )}
-      {review.verified ? `Avis vérifié ${review.source}` : `Avis client ${review.source}`}
+      {verified ? `Avis vérifié ${source}` : `Avis client ${source}`}
     </span>
   )
 }
 
-function TestimonialCard({ review }: { review: Review }) {
+// A quote shown in the scrolling band: a customer review, or a student's testimonial
+// (no source badge then).
+export type Testimonial = Omit<Review, 'source'> & { source?: ReviewSource }
+
+function TestimonialCard({ review }: { review: Testimonial }) {
   return (
     <article className="testimonial-card relative flex min-h-[20rem] w-[min(82vw,24rem)] shrink-0 snap-start flex-col rounded-[1.75rem] border border-[#c99442]/55 bg-[#fffdf8] px-6 py-6 shadow-[inset_0_1px_0_rgba(255,255,255,0.95)] sm:w-[24rem] sm:px-7 sm:py-7 lg:w-[27rem]">
       <span
@@ -108,7 +113,11 @@ function TestimonialCard({ review }: { review: Review }) {
       </blockquote>
 
       <p className="mt-5 flex items-center justify-between gap-3 border-t border-[#d4af37]/30 pt-4 text-xs font-semibold uppercase tracking-[0.12em] text-[#40574f]">
-        <ReviewSourceBadge review={review} />
+        {review.source ? (
+          <ReviewSourceBadge source={review.source} verified={review.verified} />
+        ) : (
+          <span />
+        )}
         <Stars className="flex gap-0.5" />
       </p>
     </article>
@@ -171,29 +180,49 @@ export function TestimonialsSection() {
           </h2>
         </header>
 
-        {/* The duration grows with the number of reviews to keep the same scrolling speed. */}
-        <div
-          className="testimonials-marquee mt-12 sm:mt-14"
-          aria-label="Avis de nos clients"
-          style={{ '--marquee-duration': `${reviews.length * 12}s` } as CSSProperties}
-        >
-          <div className="testimonials-track py-4">
-            <div className="flex shrink-0 gap-5 pr-5 sm:gap-6 sm:pr-6">
-              {reviews.map((review) => (
-                <TestimonialCard key={review.name} review={review} />
-              ))}
-            </div>
-            <div
-              className="testimonials-copy flex shrink-0 gap-5 pr-5 sm:gap-6 sm:pr-6"
-              aria-hidden="true"
-            >
-              {reviews.map((review) => (
-                <TestimonialCard key={`copy-${review.name}`} review={review} />
-              ))}
-            </div>
-          </div>
-        </div>
+        <TestimonialsMarquee
+          items={reviews}
+          label="Avis de nos clients"
+          className="mt-12 sm:mt-14"
+        />
       </div>
     </section>
+  )
+}
+
+// Endless band of cards, paused on hover or focus. The list is rendered twice so the loop is seamless;
+// it needs enough cards to be wider than the screen.
+export function TestimonialsMarquee({
+  items,
+  label,
+  className,
+}: {
+  items: ReadonlyArray<Testimonial>
+  label: string
+  className?: string
+}) {
+  return (
+    // The duration grows with the number of cards to keep the same scrolling speed.
+    <div
+      className={cn('testimonials-marquee', className)}
+      aria-label={label}
+      style={{ '--marquee-duration': `${items.length * 12}s` } as CSSProperties}
+    >
+      <div className="testimonials-track py-4">
+        <div className="flex shrink-0 gap-5 pr-5 sm:gap-6 sm:pr-6">
+          {items.map((item) => (
+            <TestimonialCard key={item.name} review={item} />
+          ))}
+        </div>
+        <div
+          className="testimonials-copy flex shrink-0 gap-5 pr-5 sm:gap-6 sm:pr-6"
+          aria-hidden="true"
+        >
+          {items.map((item) => (
+            <TestimonialCard key={`copy-${item.name}`} review={item} />
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
