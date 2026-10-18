@@ -1,8 +1,9 @@
 import type { SVGProps } from 'react'
 
+import { guides } from '#/data/guides'
 import logoImage from '../../../design/sbj-logo.png'
 
-// Absolute links (/#…) so every entry also works from the inner pages.
+// Only links to pages, never to a section within one.
 const footerGroups = [
   {
     title: 'Prestations',
@@ -10,32 +11,26 @@ const footerGroups = [
       { label: 'Massages', href: '/massages' },
       { label: 'Soins du visage', href: '/soins' },
       { label: 'Épilation', href: '/epilation' },
-      { label: 'Réserver en ligne', href: '#reserver' },
     ],
   },
   {
-    title: 'Formations',
+    title: 'Apprendre',
     links: [
-      { label: 'Le parcours', href: '/formation#parcours' },
-      { label: 'En présentiel', href: '/formation#presentiel' },
-      { label: 'En ligne', href: '/formation#en-ligne' },
+      { label: 'Formations', href: '/formation' },
+      { label: 'Guides', href: '/guides' },
+      { label: 'Coffret des guides', href: '/guides/coffret' },
     ],
   },
   {
-    title: 'Guides',
-    links: [
-      { label: 'Les guides', href: '/guides#collection' },
-      { label: 'Le coffret', href: '/guides/coffret' },
-      { label: 'L’auteure', href: '/guides#auteure' },
-    ],
+    title: 'Les guides',
+    links: guides.map((guide) => ({ label: guide.title, href: `/guides/${guide.slug}` })),
   },
   {
-    title: 'À propos',
+    title: 'Informations',
     links: [
-      { label: 'Sabrina', href: '/#a-propos' },
-      { label: 'Témoignages', href: '/#temoignages' },
-      { label: 'FAQ', href: '/#faq' },
-      { label: 'Contact', href: '/#contact' },
+      { label: 'Mentions légales', href: '/mentions-legales' },
+      { label: 'Conditions de vente', href: '/conditions-generales' },
+      { label: 'Confidentialité', href: '/politique-de-confidentialite' },
     ],
   },
 ]
@@ -169,22 +164,8 @@ export function SiteFooter() {
           </nav>
         </div>
 
-        <div data-footer-legal className="mt-14 flex flex-col gap-4 border-t border-[#d4af37]/38 pt-6 text-xs text-[#fff9ec]/65 sm:mt-16 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
+        <div data-footer-legal className="mt-14 border-t border-[#d4af37]/38 pt-6 text-center text-xs text-[#fff9ec]/65 sm:mt-16 sm:text-sm">
           <p>© 2026 Joie d’Être. Tous droits réservés.</p>
-          <div className="flex flex-wrap gap-x-7 gap-y-2 sm:justify-end">
-            <a href="/mentions-legales" className="transition-colors hover:text-[#e5bd42]">
-              Mentions légales
-            </a>
-            <a href="/conditions-generales" className="transition-colors hover:text-[#e5bd42]">
-              Conditions générales de vente
-            </a>
-            <a
-              href="/politique-de-confidentialite"
-              className="transition-colors hover:text-[#e5bd42]"
-            >
-              Politique de confidentialité
-            </a>
-          </div>
         </div>
       </div>
     </footer>
