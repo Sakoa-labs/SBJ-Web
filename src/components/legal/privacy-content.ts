@@ -12,7 +12,7 @@ export const privacySections: ReadonlyArray<LegalSection> = [
     blocks: [
       {
         type: 'p',
-        text: `Les données personnelles collectées sur le Site sont traitées par Sabrina Joie d’Être, ${contact.address}.`,
+        text: `Les données personnelles collectées sur le Site sont traitées par Sabrina Ikhlef EI (Sabrina Joie d’Être), ${contact.address}.`,
       },
       {
         type: 'p',

@@ -16,6 +16,7 @@ import { Route as EpilationRouteImport } from './routes/epilation'
 import { Route as FormationRouteImport } from './routes/formation'
 import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as MassagesRouteImport } from './routes/massages'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
 import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as SoinsRouteImport } from './routes/soins'
 import { Route as EpilationSlugRouteImport } from './routes/epilation_.$slug'
@@ -57,6 +58,11 @@ const GuidesRoute = GuidesRouteImport.update({
 const MassagesRoute = MassagesRouteImport.update({
   id: '/massages',
   path: '/massages',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PolitiqueDeConfidentialiteRoute =
@@ -104,6 +110,7 @@ export interface FileRoutesByFullPath {
   '/formation': typeof FormationRoute
   '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
   '/epilation/$slug': typeof EpilationSlugRoute
@@ -120,6 +127,7 @@ export interface FileRoutesByTo {
   '/formation': typeof FormationRoute
   '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
   '/epilation/$slug': typeof EpilationSlugRoute
@@ -137,6 +145,7 @@ export interface FileRoutesById {
   '/formation': typeof FormationRoute
   '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
   '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
   '/epilation_/$slug': typeof EpilationSlugRoute
@@ -155,6 +164,7 @@ export interface FileRouteTypes {
     | '/formation'
     | '/guides'
     | '/massages'
+    | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/soins'
     | '/epilation/$slug'
@@ -171,6 +181,7 @@ export interface FileRouteTypes {
     | '/formation'
     | '/guides'
     | '/massages'
+    | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/soins'
     | '/epilation/$slug'
@@ -187,6 +198,7 @@ export interface FileRouteTypes {
     | '/formation'
     | '/guides'
     | '/massages'
+    | '/mentions-legales'
     | '/politique-de-confidentialite'
     | '/soins'
     | '/epilation_/$slug'
@@ -204,6 +216,7 @@ export interface RootRouteChildren {
   FormationRoute: typeof FormationRoute
   GuidesRoute: typeof GuidesRoute
   MassagesRoute: typeof MassagesRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
   PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   SoinsRoute: typeof SoinsRoute
   EpilationSlugRoute: typeof EpilationSlugRoute
@@ -262,6 +275,13 @@ declare module '@tanstack/react-router' {
       path: '/massages'
       fullPath: '/massages'
       preLoaderRoute: typeof MassagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/politique-de-confidentialite': {
@@ -324,6 +344,7 @@ const rootRouteChildren: RootRouteChildren = {
   FormationRoute: FormationRoute,
   GuidesRoute: GuidesRoute,
   MassagesRoute: MassagesRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
   PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   SoinsRoute: SoinsRoute,
   EpilationSlugRoute: EpilationSlugRoute,

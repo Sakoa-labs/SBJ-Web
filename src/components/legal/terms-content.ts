@@ -4,8 +4,8 @@ import type { LegalSection } from '#/components/legal/legal-page'
 const email = { label: contact.email, href: `mailto:${contact.email}` }
 
 // Taken from the previous site's terms of sale, regrouped by theme. Template placeholders
-// ("société … (dénomination sociale)", "RCS de Paris XXXX") were removed: the legal form
-// and registration number of the business still have to be added to the definitions.
+// ("société … (dénomination sociale)", "RCS de Paris XXXX") were replaced by the real
+// business details from the company register.
 export const termsSections: ReadonlyArray<LegalSection> = [
   {
     id: 'objet',
@@ -32,7 +32,7 @@ export const termsSections: ReadonlyArray<LegalSection> = [
       {
         type: 'list',
         items: [
-          `Sabrina Joie d’Être : le centre de bien-être Sabrina Joie d’Être, ${contact.address}.`,
+          `Sabrina Joie d’Être : Sabrina Ikhlef EI, entrepreneur individuel exerçant sous le nom Sabrina Joie d’Être, SIRET 841 169 667 00034, ${contact.address}.`,
           'Site : le site internet sabrinajoiedetre.com, sur lequel les prestations de massage bien-être, les soins beauté, les formations et les programmes en ligne sont présentés et vendus.',
           'Produits : les produits commercialisés par Sabrina Joie d’Être et proposés à la vente sur le Site.',
           'Soins : les prestations de massage et d’esthétique de Sabrina Joie d’Être proposées à la vente sur le Site.',
