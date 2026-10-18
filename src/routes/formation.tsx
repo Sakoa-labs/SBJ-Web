@@ -67,7 +67,7 @@ function Formation() {
         }
       >
         <EmbossedCta
-          href="#reserver"
+          href="#inscription"
           tone="gold"
           className="h-14 w-full text-sm tracking-[0.16em] sm:w-auto sm:min-w-[22rem]"
         >

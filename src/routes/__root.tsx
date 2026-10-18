@@ -3,6 +3,7 @@ import { TanStackRouterDevtoolsPanel } from '@tanstack/react-router-devtools'
 import { TanStackDevtools } from '@tanstack/react-devtools'
 
 import { FloatingActions } from '#/components/landing/floating-actions'
+import { BooksyBooking } from '#/components/layout/booksy-booking'
 import { ScrollReveal } from '#/components/layout/scroll-reveal'
 import { SiteFooter } from '#/components/layout/site-footer'
 import appCss from '../styles.css?url'
@@ -63,6 +64,7 @@ function RootDocument({ children }: { children: React.ReactNode }) {
         <SiteFooter />
         <FloatingActions />
         <ScrollReveal />
+        <BooksyBooking />
         <TanStackDevtools
           config={{
             position: 'bottom-right',

@@ -10,7 +10,7 @@ const formats = [
     id: 'presentiel',
     title: 'En présentiel',
     points: ['Petits groupes', 'Pratique accompagnée', 'Gestes et posture', 'Suivi et certificat'],
-    cta: { label: 'Voir les dates', href: '#reserver' },
+    cta: { label: 'Voir les dates', href: '#inscription' },
     image: inPersonImage,
     imageAlt: 'La salle de formation, deux tables de massage préparées devant de grandes fenêtres sur le jardin',
     dark: false,
