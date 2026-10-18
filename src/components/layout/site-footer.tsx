@@ -6,9 +6,9 @@ const footerGroups = [
   {
     title: 'Formations',
     links: [
-      { label: 'Formations', href: '#formation' },
-      { label: 'Ateliers', href: '#formation' },
-      { label: 'E-learning', href: '#formation' },
+      { label: 'Formations', href: '/formation' },
+      { label: 'Ateliers', href: '/formation#presentiel' },
+      { label: 'E-learning', href: '/formation#en-ligne' },
     ],
   },
   {

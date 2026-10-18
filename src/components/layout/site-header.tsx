@@ -11,7 +11,7 @@ const primaryLinks = [
   { label: 'Massage', href: '/massages' },
   { label: 'Soins', href: '/soins' },
   { label: 'Épilation', href: '/epilation' },
-  { label: 'Formation', href: '/#formation' },
+  { label: 'Formation', href: '/formation' },
   { label: 'Mes guides', href: '/guides' },
 ]
 

@@ -18,7 +18,7 @@ export function ClosingCtaSection() {
       description="Formations, ateliers, e-learning et guides pratiques : découvrez un accompagnement pensé pour apprendre, pratiquer et transmettre."
     >
       <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
-        <EmbossedCta href="#formation" className="w-full sm:w-auto sm:min-w-72">
+        <EmbossedCta href="/formation" className="w-full sm:w-auto sm:min-w-72">
           Découvrir les formations
         </EmbossedCta>
         <EmbossedCta

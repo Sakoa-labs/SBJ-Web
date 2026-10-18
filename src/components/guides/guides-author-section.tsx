@@ -62,7 +62,7 @@ export function GuidesAuthorSection() {
               </p>
             </figcaption>
           </figure>
-          <EmbossedCta href="/#formation" className="ml-14 mt-8 sm:ml-20 sm:min-w-72">
+          <EmbossedCta href="/formation" className="ml-14 mt-8 sm:ml-20 sm:min-w-72">
             Découvrir les formations
           </EmbossedCta>
         </div>

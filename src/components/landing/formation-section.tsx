@@ -116,7 +116,7 @@ export function FormationSection() {
               et votre confiance, en présentiel comme en ligne.
             </p>
 
-            <EmbossedCta href="#programme-formations" className="mt-9">
+            <EmbossedCta href="/formation" className="mt-9">
               Découvrir le programme
             </EmbossedCta>
           </div>
