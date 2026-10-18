@@ -40,6 +40,11 @@ const questions: ReadonlyArray<FaqQuestion> = [
       'Choisissez la prestation qui vous correspond puis utilisez le bouton de réservation pour sélectionner votre créneau.',
   },
   {
+    question: 'Où se déroulent les soins ?',
+    answer:
+      'Chez Sabrina, à La Bretagne (Saint-Denis), dans une pièce aménagée pour les soins, au calme et en toute discrétion. Elle ne se déplace pas à domicile, mais peut intervenir lors d’animations ou de journées bien-être.',
+  },
+  {
     question: 'Puis-je offrir une formation ou un guide ?',
     answer:
       'Oui. Contactez Sabrina pour choisir la formule et recevoir un bon cadeau personnalisé.',
@@ -59,7 +64,7 @@ export function FaqSection() {
         </>
       }
       titleClassName="md:whitespace-nowrap"
-      intro="Tout ce que vous souhaitez savoir avant de rejoindre une formation ou de découvrir les guides."
+      intro="Tout ce que vous souhaitez savoir avant de réserver un soin, de rejoindre une formation ou de découvrir les guides."
       questions={questions}
       decorations={<FaqFoliage />}
       aside={
@@ -232,7 +237,7 @@ export function FaqAsideCard({
   return (
     <aside
       className={cn(
-        'relative isolate self-start overflow-hidden rounded-[2rem] border border-[#d4af37]/80 bg-[#0d3a2f] text-center text-[#fff9ec] shadow-[0_24px_65px_rgba(51,37,18,0.2),inset_0_1px_0_rgba(255,255,255,0.12)]',
+        'relative isolate self-start overflow-hidden rounded-[2rem] lg:sticky lg:top-28 border border-[#d4af37]/80 bg-[#0d3a2f] text-center text-[#fff9ec] shadow-[0_24px_65px_rgba(51,37,18,0.2),inset_0_1px_0_rgba(255,255,255,0.12)]',
         className,
       )}
     >

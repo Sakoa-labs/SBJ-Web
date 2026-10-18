@@ -64,10 +64,23 @@ function YoutubeIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+function GoogleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M21.35 11.1H12v3.2h5.35c-.5 2.4-2.6 3.85-5.35 3.85a6.15 6.15 0 1 1 0-12.3c1.55 0 2.95.57 4.03 1.5l2.4-2.4A9.55 9.55 0 0 0 12 2.45a9.55 9.55 0 1 0 0 19.1c5.5 0 9.5-3.87 9.5-9.45 0-.33-.05-.68-.15-1Z" />
+    </svg>
+  )
+}
+
 const socialLinks = [
-  { label: 'Instagram', href: '#instagram', Icon: InstagramIcon },
-  { label: 'Facebook', href: '#facebook', Icon: FacebookIcon },
-  { label: 'YouTube', href: '#youtube', Icon: YoutubeIcon },
+  { label: 'Instagram', href: 'https://www.instagram.com/sabrinajoiedetre/', Icon: InstagramIcon },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/sabrinajoiedetre.massagesbienetre',
+    Icon: FacebookIcon,
+  },
+  { label: 'YouTube', href: 'https://www.youtube.com/@sabrinajoiedetremassages', Icon: YoutubeIcon },
+  { label: 'Avis Google', href: 'https://g.co/kgs/eRLmbRU', Icon: GoogleIcon },
 ]
 
 export function SiteFooter() {
@@ -107,6 +120,8 @@ export function SiteFooter() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={label}
                   className="grid size-11 place-items-center rounded-full border border-[#d4af37]/75 text-[#e5bd42] transition-colors duration-200 hover:border-[#e5bd42] hover:bg-[#d4af37]/12 hover:text-[#fff4cf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d4af37]"
                 >

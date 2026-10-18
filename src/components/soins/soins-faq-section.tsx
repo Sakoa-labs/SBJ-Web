@@ -19,6 +19,16 @@ const questions: ReadonlyArray<FaqQuestion> = [
       'Des gestes ciblés pour détendre les traits, relâcher les tensions et redonner de l’éclat au visage.',
   },
   {
+    question: 'Quels produits utilisez-vous ?',
+    answer:
+      'Des produits 100 % naturels, principalement Celyxir, marque réunionnaise sans additif chimique, et Isomarine, cosmétiques bretons à base d’algues. Ils sont aussi disponibles à la vente sur commande.',
+  },
+  {
+    question: 'Y a-t-il des contre-indications ?',
+    answer:
+      'Signalez à Sabrina toute allergie, fièvre, maladie infectieuse, plaie ouverte ou injection esthétique de moins de 3 mois. Vous convenez ensemble de ce qui est possible avant le soin.',
+  },
+  {
     question: 'Comment réserver mon soin ?',
     answer:
       'Choisissez votre soin puis utilisez le bouton de réservation pour sélectionner votre créneau.',
