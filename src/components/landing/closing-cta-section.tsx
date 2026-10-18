@@ -2,8 +2,8 @@ import type { ReactNode } from 'react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { GoldDivider, SectionEyebrow } from '#/components/landing/section-ornaments'
-import foliageLeft from '../../../design/section cta + footer/ChatGPT Image 24 août 2026, 22_21_25.png'
-import foliageRight from '../../../design/section cta + footer/ChatGPT Image 24 août 2026, 22_24_48.png'
+import foliageLeft from '../../../design/section cta + footer/ChatGPT Image 24 août 2026, 22_21_25.png'
+import foliageRight from '../../../design/section cta + footer/ChatGPT Image 24 août 2026, 22_24_48.png'
 
 export function ClosingCtaSection() {
   return (
