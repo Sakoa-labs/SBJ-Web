@@ -9,6 +9,9 @@ import { SiteFooter } from '#/components/layout/site-footer'
 import { NotFoundPage } from '#/components/not-found/not-found-page'
 import appCss from '../styles.css?url'
 
+// Social networks need absolute URLs for the share preview image.
+const SITE_URL = 'https://sabrinajoiedetre.com'
+
 export const Route = createRootRoute({
   head: () => ({
     meta: [
@@ -26,6 +29,25 @@ export const Route = createRootRoute({
         name: 'theme-color',
         content: '#062b23',
       },
+      // Preview shown when a link to the site is shared (WhatsApp, Facebook, LinkedIn, X…).
+      { property: 'og:type', content: 'website' },
+      { property: 'og:site_name', content: 'Joie d’Être par Sabrina' },
+      { property: 'og:locale', content: 'fr_FR' },
+      { property: 'og:title', content: 'Joie d’Être par Sabrina · L’art du bien-être à la française' },
+      {
+        property: 'og:description',
+        content:
+          'Massages, soins du visage, épilation et formations à Saint-Denis, La Réunion. Réservez votre moment de détente en ligne.',
+      },
+      { property: 'og:image', content: `${SITE_URL}/og-image.jpg` },
+      { property: 'og:image:width', content: '1200' },
+      { property: 'og:image:height', content: '630' },
+      {
+        property: 'og:image:alt',
+        content: 'Joie d’Être par Sabrina, l’art du bien-être à la française : table de massage face à la mer au coucher du soleil',
+      },
+      { name: 'twitter:card', content: 'summary_large_image' },
+      { name: 'twitter:image', content: `${SITE_URL}/og-image.jpg` },
     ],
     links: [
       {
