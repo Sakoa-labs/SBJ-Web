@@ -30,11 +30,6 @@ const questions: ReadonlyArray<FaqQuestion> = [
       'Oui. Certaines formations sont proposées en e-learning afin de progresser à votre rythme, où que vous soyez.',
   },
   {
-    question: 'Les guides sont-ils téléchargeables ?',
-    answer:
-      'Oui. Les guides numériques sont accessibles après l’achat et peuvent être consultés facilement sur vos appareils.',
-  },
-  {
     question: 'Comment réserver une prestation ?',
     answer:
       'Choisissez la prestation qui vous correspond puis utilisez le bouton de réservation pour sélectionner votre créneau.',
