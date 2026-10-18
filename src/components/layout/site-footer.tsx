@@ -1,38 +1,50 @@
 import type { SVGProps } from 'react'
+import { Navigation, Phone } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
+import { contact, mapsLink } from '#/data/contact'
+import { cn } from '#/lib/utils'
+import { guides } from '#/data/guides'
 import logoImage from '../../../design/sbj-logo.png'
 
-const footerGroups = [
-  {
-    title: 'Formations',
-    links: [
-      { label: 'Formations', href: '#formation' },
-      { label: 'Ateliers', href: '#formation' },
-      { label: 'E-learning', href: '#formation' },
-    ],
-  },
-  {
-    title: 'Guides',
-    links: [
-      { label: 'Guides', href: '#guides' },
-      { label: 'PDF', href: '#guides' },
-      { label: 'Amazon KDP', href: '#guides' },
-    ],
-  },
+type FooterLink = {
+  // Several entries for a label on several lines (the address).
+  label: string | ReadonlyArray<string>
+  href: string
+  // Shown in a gold disc before the label, as for the phone and the address.
+  icon?: LucideIcon
+  external?: boolean
+}
+
+// Only links to pages (or to call, or to open the address in Maps), never to a section
+// within one.
+const footerGroups: ReadonlyArray<{ title: string; links: ReadonlyArray<FooterLink> }> = [
   {
     title: 'Prestations',
     links: [
-      { label: 'Massages', href: '#massage' },
-      { label: 'Soins du visage', href: '#soins' },
-      { label: 'Épilation', href: '#epilation' },
+      { label: 'Massages', href: '/massages' },
+      { label: 'Soins du visage', href: '/soins' },
+      { label: 'Épilation', href: '/epilation' },
     ],
   },
   {
-    title: 'À propos',
+    title: 'Apprendre',
     links: [
-      { label: 'Contact', href: '#contact' },
-      { label: 'À propos', href: '#a-propos' },
-      { label: 'FAQ', href: '#faq' },
+      { label: 'Formations', href: '/formation' },
+      { label: 'Guides', href: '/guides' },
+      { label: 'Coffret des guides', href: '/guides/coffret' },
+    ],
+  },
+  {
+    title: 'Les guides',
+    links: guides.map((guide) => ({ label: guide.title, href: `/guides/${guide.slug}` })),
+  },
+  {
+    title: 'Contact',
+    links: [
+      { label: 'Nous contacter', href: '/contact' },
+      { label: contact.phone, href: contact.phoneHref, icon: Phone },
+      { label: contact.addressLines, href: mapsLink, icon: Navigation, external: true },
     ],
   },
 ]
@@ -64,10 +76,23 @@ function YoutubeIcon(props: SVGProps<SVGSVGElement>) {
   )
 }
 
+function GoogleIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M21.35 11.1H12v3.2h5.35c-.5 2.4-2.6 3.85-5.35 3.85a6.15 6.15 0 1 1 0-12.3c1.55 0 2.95.57 4.03 1.5l2.4-2.4A9.55 9.55 0 0 0 12 2.45a9.55 9.55 0 1 0 0 19.1c5.5 0 9.5-3.87 9.5-9.45 0-.33-.05-.68-.15-1Z" />
+    </svg>
+  )
+}
+
 const socialLinks = [
-  { label: 'Instagram', href: '#instagram', Icon: InstagramIcon },
-  { label: 'Facebook', href: '#facebook', Icon: FacebookIcon },
-  { label: 'YouTube', href: '#youtube', Icon: YoutubeIcon },
+  { label: 'Instagram', href: 'https://www.instagram.com/sabrinajoiedetre/', Icon: InstagramIcon },
+  {
+    label: 'Facebook',
+    href: 'https://www.facebook.com/sabrinajoiedetre.massagesbienetre',
+    Icon: FacebookIcon,
+  },
+  { label: 'YouTube', href: 'https://www.youtube.com/@sabrinajoiedetremassages', Icon: YoutubeIcon },
+  { label: 'Avis Google', href: 'https://g.co/kgs/eRLmbRU', Icon: GoogleIcon },
 ]
 
 export function SiteFooter() {
@@ -85,7 +110,7 @@ export function SiteFooter() {
         <div className="grid gap-12 xl:grid-cols-[1.35fr_3fr] xl:items-center xl:gap-12 2xl:gap-16">
           <div className="flex flex-col items-center text-center">
             <a
-              href="#accueil"
+              href="/"
               className="inline-flex justify-center"
               aria-label="Joie d'être par Sabrina, accueil"
             >
@@ -107,6 +132,8 @@ export function SiteFooter() {
                 <a
                   key={label}
                   href={href}
+                  target="_blank"
+                  rel="noreferrer"
                   aria-label={label}
                   className="grid size-11 place-items-center rounded-full border border-[#d4af37]/75 text-[#e5bd42] transition-colors duration-200 hover:border-[#e5bd42] hover:bg-[#d4af37]/12 hover:text-[#fff4cf] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#d4af37]"
                 >
@@ -121,12 +148,12 @@ export function SiteFooter() {
             aria-label="Navigation du pied de page"
           >
             {footerGroups.map((group, index) => (
-              <div key={group.title} className="relative lg:px-4 xl:px-2 2xl:px-5">
+              <div key={group.title} className="relative flex flex-col lg:px-4 xl:px-2 2xl:px-5">
                 <h2 className="font-heading text-lg font-medium uppercase tracking-[0.06em] text-[#e5bd42] sm:text-xl sm:tracking-[0.08em]">
                   {group.title}
                 </h2>
                 <span className="mt-4 block h-px w-12 bg-[#d4af37]/55" aria-hidden="true" />
-                <div className="relative mt-5">
+                <div className="relative mt-5 flex-1">
                   {index < footerGroups.length - 1 && (
                     <span
                       className="absolute -right-4 top-1/2 hidden h-20 w-px -translate-y-1/2 bg-[#d4af37]/24 lg:block xl:-right-2 2xl:-right-4"
@@ -134,13 +161,32 @@ export function SiteFooter() {
                     />
                   )}
                   <ul className="space-y-3">
-                    {group.links.map((link) => (
-                      <li key={`${group.title}-${link.label}`}>
+                    {group.links.map(({ label, href, icon: Icon, external }) => (
+                      <li key={href}>
                         <a
-                          href={link.href}
-                          className="text-sm text-[#fff9ec]/78 transition-colors hover:text-[#e5bd42] sm:text-base"
+                          href={href}
+                          {...(external && { target: '_blank', rel: 'noreferrer' })}
+                          className={cn(
+                            'group text-sm text-[#fff9ec]/78 transition-colors hover:text-[#e5bd42] sm:text-base',
+                            Icon && 'flex items-start gap-3',
+                          )}
                         >
-                          {link.label}
+                          {Icon && (
+                            <span className="mt-px grid size-7 shrink-0 place-items-center rounded-full bg-[#d4af37] text-[#062b23] transition-colors group-hover:bg-[#e5bd42]">
+                              <Icon aria-hidden="true" className="size-3.5" strokeWidth={2.2} fill={Icon === Navigation ? 'currentColor' : 'none'} />
+                            </span>
+                          )}
+                          {typeof label === 'string' ? (
+                            <span className={cn(Icon && 'pt-0.5')}>{label}</span>
+                          ) : (
+                            <span className="pt-0.5 text-[0.78rem] leading-6 sm:text-sm">
+                              {label.map((line) => (
+                                <span key={line} className="block whitespace-nowrap">
+                                  {line}
+                                </span>
+                              ))}
+                            </span>
+                          )}
                         </a>
                       </li>
                     ))}
@@ -154,14 +200,17 @@ export function SiteFooter() {
         <div data-footer-legal className="mt-14 flex flex-col gap-4 border-t border-[#d4af37]/38 pt-6 text-xs text-[#fff9ec]/65 sm:mt-16 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
           <p>© 2026 Joie d’Être. Tous droits réservés.</p>
           <div className="flex flex-wrap gap-x-7 gap-y-2 sm:justify-end">
-            <a href="#mentions-legales" className="transition-colors hover:text-[#e5bd42]">
+            <a href="/mentions-legales" className="transition-colors hover:text-[#e5bd42]">
               Mentions légales
             </a>
+            <a href="/conditions-generales" className="transition-colors hover:text-[#e5bd42]">
+              Conditions générales de vente
+            </a>
             <a
-              href="#conditions-utilisation"
+              href="/politique-de-confidentialite"
               className="transition-colors hover:text-[#e5bd42]"
             >
-              Conditions d’utilisation
+              Politique de confidentialité
             </a>
           </div>
         </div>

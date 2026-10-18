@@ -4,6 +4,7 @@ import { UserRound } from 'lucide-react'
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { NavigationDrawer } from '#/components/layout/navigation-drawer'
 import { Button } from '#/components/ui/button'
+import { learnerSpaceOpen } from '#/lib/features'
 import { cn } from '#/lib/utils'
 import logoImage from '../../../design/sbj-logo.png'
 
@@ -11,8 +12,8 @@ const primaryLinks = [
   { label: 'Massage', href: '/massages' },
   { label: 'Soins', href: '/soins' },
   { label: 'Épilation', href: '/epilation' },
-  { label: 'Formation', href: '/#formation' },
-  { label: 'Mes guides', href: '/#guides' },
+  { label: 'Formation', href: '/formation' },
+  { label: 'Mes guides', href: '/guides' },
 ]
 
 // Render as the first element of the page, outside any isolated hero, so the fixed header
@@ -43,9 +44,11 @@ export function SiteHeader({
 
   return (
     <>
+      {/* Over a cream hero the transparent header would let the content show through it,
+          so it turns green on the very first pixel of scroll. */}
       <span
         ref={navSentinelRef}
-        className="pointer-events-none absolute left-0 top-16 size-px"
+        className={cn('pointer-events-none absolute left-0 size-px', onLight ? 'top-px' : 'top-16')}
         aria-hidden="true"
       />
 
@@ -105,10 +108,12 @@ export function SiteHeader({
             >
               <a href="#reserver">Réserver</a>
             </Button>
-            <a href="#espace-apprenant" className="nav-link items-center gap-1.5">
-              <UserRound aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
-              Espace apprenant
-            </a>
+            {learnerSpaceOpen && (
+              <a href="#espace-apprenant" className="nav-link items-center gap-1.5">
+                <UserRound aria-hidden="true" className="size-3.5" strokeWidth={1.5} />
+                Espace apprenant
+              </a>
+            )}
           </div>
 
           <NavigationDrawer

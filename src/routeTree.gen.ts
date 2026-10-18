@@ -10,14 +10,35 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as ConditionsGeneralesRouteImport } from './routes/conditions-generales'
+import { Route as ContactRouteImport } from './routes/contact'
 import { Route as DesignSystemRouteImport } from './routes/design-system'
 import { Route as EpilationRouteImport } from './routes/epilation'
+import { Route as FormationRouteImport } from './routes/formation'
+import { Route as GuidesRouteImport } from './routes/guides'
 import { Route as MassagesRouteImport } from './routes/massages'
+import { Route as MentionsLegalesRouteImport } from './routes/mentions-legales'
+import { Route as PolitiqueDeConfidentialiteRouteImport } from './routes/politique-de-confidentialite'
 import { Route as SoinsRouteImport } from './routes/soins'
+import { Route as EpilationSlugRouteImport } from './routes/epilation_.$slug'
+import { Route as GuidesSlugRouteImport } from './routes/guides_.$slug'
+import { Route as GuidesCoffretRouteImport } from './routes/guides_.coffret'
+import { Route as MassagesSlugRouteImport } from './routes/massages_.$slug'
+import { Route as SoinsSlugRouteImport } from './routes/soins_.$slug'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ConditionsGeneralesRoute = ConditionsGeneralesRouteImport.update({
+  id: '/conditions-generales',
+  path: '/conditions-generales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ContactRoute = ContactRouteImport.update({
+  id: '/contact',
+  path: '/contact',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DesignSystemRoute = DesignSystemRouteImport.update({
@@ -30,54 +51,192 @@ const EpilationRoute = EpilationRouteImport.update({
   path: '/epilation',
   getParentRoute: () => rootRouteImport,
 } as any)
+const FormationRoute = FormationRouteImport.update({
+  id: '/formation',
+  path: '/formation',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesRoute = GuidesRouteImport.update({
+  id: '/guides',
+  path: '/guides',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const MassagesRoute = MassagesRouteImport.update({
   id: '/massages',
   path: '/massages',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MentionsLegalesRoute = MentionsLegalesRouteImport.update({
+  id: '/mentions-legales',
+  path: '/mentions-legales',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PolitiqueDeConfidentialiteRoute =
+  PolitiqueDeConfidentialiteRouteImport.update({
+    id: '/politique-de-confidentialite',
+    path: '/politique-de-confidentialite',
+    getParentRoute: () => rootRouteImport,
+  } as any)
 const SoinsRoute = SoinsRouteImport.update({
   id: '/soins',
   path: '/soins',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EpilationSlugRoute = EpilationSlugRouteImport.update({
+  id: '/epilation_/$slug',
+  path: '/epilation/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesSlugRoute = GuidesSlugRouteImport.update({
+  id: '/guides_/$slug',
+  path: '/guides/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GuidesCoffretRoute = GuidesCoffretRouteImport.update({
+  id: '/guides_/coffret',
+  path: '/guides/coffret',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const MassagesSlugRoute = MassagesSlugRouteImport.update({
+  id: '/massages_/$slug',
+  path: '/massages/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SoinsSlugRoute = SoinsSlugRouteImport.update({
+  id: '/soins_/$slug',
+  path: '/soins/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/conditions-generales': typeof ConditionsGeneralesRoute
+  '/contact': typeof ContactRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
+  '/formation': typeof FormationRoute
+  '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
+  '/epilation/$slug': typeof EpilationSlugRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/guides/coffret': typeof GuidesCoffretRoute
+  '/massages/$slug': typeof MassagesSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/conditions-generales': typeof ConditionsGeneralesRoute
+  '/contact': typeof ContactRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
+  '/formation': typeof FormationRoute
+  '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
+  '/epilation/$slug': typeof EpilationSlugRoute
+  '/guides/$slug': typeof GuidesSlugRoute
+  '/guides/coffret': typeof GuidesCoffretRoute
+  '/massages/$slug': typeof MassagesSlugRoute
+  '/soins/$slug': typeof SoinsSlugRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/conditions-generales': typeof ConditionsGeneralesRoute
+  '/contact': typeof ContactRoute
   '/design-system': typeof DesignSystemRoute
   '/epilation': typeof EpilationRoute
+  '/formation': typeof FormationRoute
+  '/guides': typeof GuidesRoute
   '/massages': typeof MassagesRoute
+  '/mentions-legales': typeof MentionsLegalesRoute
+  '/politique-de-confidentialite': typeof PolitiqueDeConfidentialiteRoute
   '/soins': typeof SoinsRoute
+  '/epilation_/$slug': typeof EpilationSlugRoute
+  '/guides_/$slug': typeof GuidesSlugRoute
+  '/guides_/coffret': typeof GuidesCoffretRoute
+  '/massages_/$slug': typeof MassagesSlugRoute
+  '/soins_/$slug': typeof SoinsSlugRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/design-system' | '/epilation' | '/massages' | '/soins'
+  fullPaths:
+    | '/'
+    | '/conditions-generales'
+    | '/contact'
+    | '/design-system'
+    | '/epilation'
+    | '/formation'
+    | '/guides'
+    | '/massages'
+    | '/mentions-legales'
+    | '/politique-de-confidentialite'
+    | '/soins'
+    | '/epilation/$slug'
+    | '/guides/$slug'
+    | '/guides/coffret'
+    | '/massages/$slug'
+    | '/soins/$slug'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/design-system' | '/epilation' | '/massages' | '/soins'
+  to:
+    | '/'
+    | '/conditions-generales'
+    | '/contact'
+    | '/design-system'
+    | '/epilation'
+    | '/formation'
+    | '/guides'
+    | '/massages'
+    | '/mentions-legales'
+    | '/politique-de-confidentialite'
+    | '/soins'
+    | '/epilation/$slug'
+    | '/guides/$slug'
+    | '/guides/coffret'
+    | '/massages/$slug'
+    | '/soins/$slug'
   id:
-    '__root__' | '/' | '/design-system' | '/epilation' | '/massages' | '/soins'
+    | '__root__'
+    | '/'
+    | '/conditions-generales'
+    | '/contact'
+    | '/design-system'
+    | '/epilation'
+    | '/formation'
+    | '/guides'
+    | '/massages'
+    | '/mentions-legales'
+    | '/politique-de-confidentialite'
+    | '/soins'
+    | '/epilation_/$slug'
+    | '/guides_/$slug'
+    | '/guides_/coffret'
+    | '/massages_/$slug'
+    | '/soins_/$slug'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  ConditionsGeneralesRoute: typeof ConditionsGeneralesRoute
+  ContactRoute: typeof ContactRoute
   DesignSystemRoute: typeof DesignSystemRoute
   EpilationRoute: typeof EpilationRoute
+  FormationRoute: typeof FormationRoute
+  GuidesRoute: typeof GuidesRoute
   MassagesRoute: typeof MassagesRoute
+  MentionsLegalesRoute: typeof MentionsLegalesRoute
+  PolitiqueDeConfidentialiteRoute: typeof PolitiqueDeConfidentialiteRoute
   SoinsRoute: typeof SoinsRoute
+  EpilationSlugRoute: typeof EpilationSlugRoute
+  GuidesSlugRoute: typeof GuidesSlugRoute
+  GuidesCoffretRoute: typeof GuidesCoffretRoute
+  MassagesSlugRoute: typeof MassagesSlugRoute
+  SoinsSlugRoute: typeof SoinsSlugRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -87,6 +246,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/conditions-generales': {
+      id: '/conditions-generales'
+      path: '/conditions-generales'
+      fullPath: '/conditions-generales'
+      preLoaderRoute: typeof ConditionsGeneralesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/contact': {
+      id: '/contact'
+      path: '/contact'
+      fullPath: '/contact'
+      preLoaderRoute: typeof ContactRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/design-system': {
@@ -103,11 +276,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof EpilationRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/formation': {
+      id: '/formation'
+      path: '/formation'
+      fullPath: '/formation'
+      preLoaderRoute: typeof FormationRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides': {
+      id: '/guides'
+      path: '/guides'
+      fullPath: '/guides'
+      preLoaderRoute: typeof GuidesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/massages': {
       id: '/massages'
       path: '/massages'
       fullPath: '/massages'
       preLoaderRoute: typeof MassagesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/mentions-legales': {
+      id: '/mentions-legales'
+      path: '/mentions-legales'
+      fullPath: '/mentions-legales'
+      preLoaderRoute: typeof MentionsLegalesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/politique-de-confidentialite': {
+      id: '/politique-de-confidentialite'
+      path: '/politique-de-confidentialite'
+      fullPath: '/politique-de-confidentialite'
+      preLoaderRoute: typeof PolitiqueDeConfidentialiteRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/soins': {
@@ -117,15 +318,61 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SoinsRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/epilation_/$slug': {
+      id: '/epilation_/$slug'
+      path: '/epilation/$slug'
+      fullPath: '/epilation/$slug'
+      preLoaderRoute: typeof EpilationSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides_/$slug': {
+      id: '/guides_/$slug'
+      path: '/guides/$slug'
+      fullPath: '/guides/$slug'
+      preLoaderRoute: typeof GuidesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/guides_/coffret': {
+      id: '/guides_/coffret'
+      path: '/guides/coffret'
+      fullPath: '/guides/coffret'
+      preLoaderRoute: typeof GuidesCoffretRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/massages_/$slug': {
+      id: '/massages_/$slug'
+      path: '/massages/$slug'
+      fullPath: '/massages/$slug'
+      preLoaderRoute: typeof MassagesSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/soins_/$slug': {
+      id: '/soins_/$slug'
+      path: '/soins/$slug'
+      fullPath: '/soins/$slug'
+      preLoaderRoute: typeof SoinsSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  ConditionsGeneralesRoute: ConditionsGeneralesRoute,
+  ContactRoute: ContactRoute,
   DesignSystemRoute: DesignSystemRoute,
   EpilationRoute: EpilationRoute,
+  FormationRoute: FormationRoute,
+  GuidesRoute: GuidesRoute,
   MassagesRoute: MassagesRoute,
+  MentionsLegalesRoute: MentionsLegalesRoute,
+  PolitiqueDeConfidentialiteRoute: PolitiqueDeConfidentialiteRoute,
   SoinsRoute: SoinsRoute,
+  EpilationSlugRoute: EpilationSlugRoute,
+  GuidesSlugRoute: GuidesSlugRoute,
+  GuidesCoffretRoute: GuidesCoffretRoute,
+  MassagesSlugRoute: MassagesSlugRoute,
+  SoinsSlugRoute: SoinsSlugRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

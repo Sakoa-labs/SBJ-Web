@@ -37,23 +37,27 @@ export function SectionEyebrow({
   label,
   className,
 }: {
-  label: string
+  // Without a label, only the lotus and the gold divider are shown.
+  label?: string
   className?: string
 }) {
   return (
     <div className={cn('flex flex-col items-center text-[#e5bd42]', className)}>
+      {/* The lotus artwork has empty space under it; the label is pulled up into it. */}
       <img
         src={lotusOrnament}
         alt=""
         aria-hidden="true"
-        className="size-16 object-contain sm:size-18"
+        className="-mb-2 size-16 object-contain sm:size-18"
         width={256}
         height={256}
       />
-      <p className="mt-3 text-xs font-semibold uppercase tracking-[0.28em]">
-        {label}
-      </p>
-      <GoldDivider className="mt-4" />
+      {label && (
+        <p className="mt-0.5 text-xs font-semibold uppercase tracking-[0.28em]">
+          {label}
+        </p>
+      )}
+      <GoldDivider className={label ? 'mt-2.5' : 'mt-1.5'} />
     </div>
   )
 }

@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
-import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { ServiceFinder } from '#/components/landing/service-finder'
+import { Button } from '#/components/ui/button'
 
 // Space kept between the floating CTA and the footer legal row.
 const LEGAL_GAP = 16
@@ -40,12 +41,17 @@ export function FloatingActions() {
       style={{ transform: `translateY(${-lift}px)` }}
       className="fixed bottom-[max(0.75rem,env(safe-area-inset-bottom))] right-3 z-40 sm:bottom-6 sm:right-6"
     >
-      <EmbossedCta
-        href="/#prestations"
-        className="h-10 px-3 text-[0.58rem] tracking-[0.11em] shadow-xl sm:h-12 sm:px-6 sm:text-[0.68rem] sm:tracking-[0.16em]"
-      >
-        Quel soin pour moi&nbsp;?
-      </EmbossedCta>
+      <ServiceFinder
+        trigger={
+          <Button
+            type="button"
+            size="lg"
+            className="embossed-dark-cta h-10 rounded-sm border border-[#d4af37]/85 px-3 text-[0.58rem] font-bold uppercase tracking-[0.11em] text-[#fff9ec] shadow-xl transition-[transform,box-shadow,border-color,filter] hover:border-[#e5bd42] hover:text-[#fff9ec] sm:h-12 sm:px-6 sm:text-[0.68rem] sm:tracking-[0.16em]"
+          >
+            Quelle prestation pour moi&nbsp;?
+          </Button>
+        }
+      />
     </div>
   )
 }
