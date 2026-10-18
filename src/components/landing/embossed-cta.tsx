@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import type { ComponentProps, ReactNode } from 'react'
 
 import { Button } from '#/components/ui/button'
 import { cn } from '#/lib/utils'
@@ -8,7 +8,8 @@ export function EmbossedCta({
   children,
   className,
   tone = 'dark',
-}: {
+  ...linkProps
+}: Omit<ComponentProps<'a'>, 'href' | 'children' | 'className'> & {
   href: string
   children: ReactNode
   className?: string
@@ -29,7 +30,9 @@ export function EmbossedCta({
         className,
       )}
     >
-      <a href={href}>{children}</a>
+      <a href={href} {...linkProps}>
+        {children}
+      </a>
     </Button>
   )
 }

@@ -254,7 +254,12 @@ function ServiceDetail({ service }: { service: Service }) {
               </p>
 
               <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                <EmbossedCta href="#reserver" tone="gold" className="w-full">
+                <EmbossedCta
+                  href="#reserver"
+                  data-booksy-variant={selected.booksyId}
+                  tone="gold"
+                  className="w-full"
+                >
                   {category.bookLabel}
                 </EmbossedCta>
                 <EmbossedCta href="#offrir" className="w-full">

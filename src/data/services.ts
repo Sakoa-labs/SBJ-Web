@@ -57,6 +57,8 @@ export type ServiceVariant = {
   price: number
   // Discounted price when a promotion runs.
   promoPrice?: number
+  // Booksy service variant: the booking window opens straight on this option.
+  booksyId: number
 }
 
 export type Service = {
@@ -97,11 +99,17 @@ const epilationGallery = [
   { src: epilationSmallImage, alt: 'Bol de cire dorée, spatules en bois et fleur de frangipanier' },
 ] as const
 
-const variant = (label: string, minutes: number, price: number): ServiceVariant => ({
+const variant = (
+  label: string,
+  minutes: number,
+  price: number,
+  booksyId: number,
+): ServiceVariant => ({
   label,
   minutes,
   price,
   promoPrice: promo15(price),
+  booksyId,
 })
 
 export const services: ReadonlyArray<Service> = [
@@ -121,10 +129,10 @@ export const services: ReadonlyArray<Service> = [
     icon: massageCalifornienIcon,
     promotion: '-15 %',
     variants: [
-      variant('Face arrière', 30, 55),
-      variant('Face arrière', 45, 69),
-      variant('Corps entier', 60, 85),
-      variant('Corps entier', 75, 95),
+      variant('Face arrière', 30, 55, 1486921),
+      variant('Face arrière', 45, 69, 1486920),
+      variant('Corps entier', 60, 85, 1486919),
+      variant('Corps entier', 75, 95, 1501401),
     ],
   },
   {
@@ -141,7 +149,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massageEtoileIcon,
     promotion: '-15 %',
-    variants: [variant('Massage étoile', 60, 69)],
+    variants: [variant('Massage étoile', 60, 69, 1531045)],
   },
   {
     slug: 'cranien-visage-buste',
@@ -157,7 +165,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massageCranienIcon,
     promotion: '-15 %',
-    variants: [variant('Visage, crâne et nuque', 40, 65)],
+    variants: [variant('Visage, crâne et nuque', 40, 65, 1501404)],
   },
   {
     slug: 'dos-cire-bougie',
@@ -173,7 +181,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massageCireBougieIcon,
     promotion: '-15 %',
-    variants: [variant('Dos, nuque et épaules', 30, 59)],
+    variants: [variant('Dos, nuque et épaules', 30, 59, 1501462)],
   },
   {
     slug: 'dos-pierres-chaudes',
@@ -189,7 +197,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massageDosPierresIcon,
     promotion: '-15 %',
-    variants: [variant('Dos, bras, nuque et cuir chevelu', 30, 59)],
+    variants: [variant('Dos, bras, nuque et cuir chevelu', 30, 59, 1501402)],
   },
   {
     slug: 'jambes-legeres',
@@ -205,7 +213,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massageJambesLegeresIcon,
     promotion: '-15 %',
-    variants: [variant('Jambes', 30, 55)],
+    variants: [variant('Jambes', 30, 55, 963660)],
   },
   {
     slug: 'pierres-chaudes',
@@ -221,7 +229,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massagePierresChaudesIcon,
     promotion: '-15 %',
-    variants: [variant('Une face', 45, 75), variant('Corps entier', 120, 179)],
+    variants: [variant('Une face', 45, 75, 1531047), variant('Corps entier', 120, 179, 1531048)],
   },
   {
     slug: 'joie-detre-signature',
@@ -237,7 +245,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: massageGallery,
     icon: massageSignatureIcon,
     promotion: '-15 %',
-    variants: [variant('Face arrière', 45, 75), variant('Corps entier', 120, 179)],
+    variants: [variant('Face arrière', 45, 75, 1486927), variant('Corps entier', 120, 179, 795080)],
   },
 
   // Soins visage
@@ -255,7 +263,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: soinsGallery,
     icon: soinExpressDetoxIcon,
     promotion: '-15 %',
-    variants: [variant('Coup d’éclat express', 40, 55)],
+    variants: [variant('Coup d’éclat express', 40, 55, 1531050)],
   },
   {
     slug: 'essentiel',
@@ -270,7 +278,7 @@ export const services: ReadonlyArray<Service> = [
     image: { src: essentielImage, alt: 'Masque à l’argile appliqué au pinceau sur le visage' },
     gallery: soinsGallery,
     icon: soinEssentielIcon,
-    variants: [{ label: 'Soin purifiant', minutes: 75, price: 89 }],
+    variants: [{ label: 'Soin purifiant', minutes: 75, price: 89, booksyId: 1550012 }],
   },
   {
     slug: 'precieux',
@@ -286,7 +294,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: soinsGallery,
     icon: soinPrecieuxIcon,
     promotion: '-15 %',
-    variants: [variant('Le Précieux', 75, 95), variant('Le Précieux, version longue', 120, 160)],
+    variants: [variant('Le Précieux', 75, 95, 1531053), variant('Le Précieux, version longue', 120, 160, 1531054)],
   },
   {
     slug: 'massage-anti-age-visage',
@@ -302,7 +310,7 @@ export const services: ReadonlyArray<Service> = [
     gallery: soinsGallery,
     icon: soinMassageVisageIcon,
     promotion: '-15 %',
-    variants: [variant('Massage du visage', 40, 65)],
+    variants: [variant('Massage du visage', 40, 65, 1531057)],
   },
 
   // Épilation, par zone
@@ -321,10 +329,10 @@ export const services: ReadonlyArray<Service> = [
     icon: epilationVisageIcon,
     promotion: '-15 %',
     variants: [
-      variant('Sourcils', 15, 10),
-      variant('Lèvres', 10, 10),
-      variant('Menton', 10, 10),
-      variant('Visage complet', 30, 29),
+      variant('Sourcils', 15, 10, 1501408),
+      variant('Lèvres', 10, 10, 1501409),
+      variant('Menton', 10, 10, 1501410),
+      variant('Visage complet', 30, 29, 1487335),
     ],
   },
   {
@@ -342,12 +350,12 @@ export const services: ReadonlyArray<Service> = [
     icon: epilationCorpsIcon,
     promotion: '-15 %',
     variants: [
-      variant('Aisselles', 10, 13),
-      variant('Demi-bras', 15, 15),
-      variant('Bras entiers', 20, 22),
-      variant('Demi-jambes', 20, 20),
-      variant('Cuisses', 20, 20),
-      variant('Jambes entières', 30, 30),
+      variant('Aisselles', 10, 13, 1501407),
+      variant('Demi-bras', 15, 15, 1501467),
+      variant('Bras entiers', 20, 22, 1501468),
+      variant('Demi-jambes', 20, 20, 1501465),
+      variant('Cuisses', 20, 20, 1501466),
+      variant('Jambes entières', 30, 30, 1501463),
     ],
   },
   {
@@ -365,9 +373,9 @@ export const services: ReadonlyArray<Service> = [
     icon: epilationMaillotIcon,
     promotion: '-15 %',
     variants: [
-      variant('Maillot simple', 15, 15),
-      variant('Maillot échancré', 20, 20),
-      variant('Maillot semi ou intégral', 30, 30),
+      variant('Maillot simple', 15, 15, 1501469),
+      variant('Maillot échancré', 20, 20, 1501470),
+      variant('Maillot semi ou intégral', 30, 30, 1501471),
     ],
   },
 
@@ -386,7 +394,7 @@ export const services: ReadonlyArray<Service> = [
     image: { src: maillotSimpleImage, alt: 'Bas de maillot classique posé sur une serviette, à côté d’un bol de cire' },
     gallery: epilationGallery,
     promotion: '-15 %',
-    variants: [variant('Maillot simple + 4 zones', 60, 60)],
+    variants: [variant('Maillot simple + 4 zones', 60, 60, 1501475)],
   },
   {
     slug: 'forfait-maillot-echancre',
@@ -402,7 +410,7 @@ export const services: ReadonlyArray<Service> = [
     image: { src: maillotEchancreImage, alt: 'Bas de maillot échancré posé sur une serviette, à côté d’un bol de cire' },
     gallery: epilationGallery,
     promotion: '-15 %',
-    variants: [variant('Maillot échancré + 4 zones', 70, 65)],
+    variants: [variant('Maillot échancré + 4 zones', 70, 65, 1501476)],
   },
   {
     slug: 'forfait-maillot-semi-integral',
@@ -418,7 +426,7 @@ export const services: ReadonlyArray<Service> = [
     image: { src: maillotIntegralImage, alt: 'Bas de maillot brésilien posé sur une serviette, à côté d’un bol de cire' },
     gallery: epilationGallery,
     promotion: '-15 %',
-    variants: [variant('Maillot semi ou intégral + 4 zones', 80, 70)],
+    variants: [variant('Maillot semi ou intégral + 4 zones', 80, 70, 1501478)],
   },
 ]
 
