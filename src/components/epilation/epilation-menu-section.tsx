@@ -2,6 +2,7 @@ import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
+import type { ServiceMenuContent } from '#/data/pages/services'
 import { serviceHref, servicesIn } from '#/data/services'
 import frangipaniersDuo from '#/assets/decor/frangipaniers-duo.png'
 
@@ -15,10 +16,10 @@ const items: ReadonlyArray<ServiceMenuItem> = servicesIn('epilation').map((servi
   href: serviceHref(service),
 }))
 
-export function EpilationMenuSection() {
+export function EpilationMenuSection({ eyebrow, title, subtitle, button }: ServiceMenuContent) {
   return (
     <ServiceMenuSection
-      eyebrow="Nos épilations"
+      eyebrow={eyebrow}
       decor={
         <>
           <LeafShadow leaf="monstera" className="-right-64 top-[8%] w-[44rem] -rotate-[28deg]" />
@@ -26,9 +27,10 @@ export function EpilationMenuSection() {
         </>
       }
       id="carte-des-epilations"
-      accent="épilations"
-      subtitle="Choisissez votre zone."
+      richTitle={title}
+      subtitle={subtitle}
       items={items}
+      ctaLabel={button}
       imageWidth={1536}
       imageHeight={1024}
       imageClassName="aspect-[1.6/1]"
