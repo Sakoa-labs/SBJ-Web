@@ -6,11 +6,11 @@ import { FormationPathSection } from '#/components/formation/formation-path-sect
 import { FormationTestimonialsSection } from '#/components/formation/formation-testimonials-section'
 import { ClosingCta } from '#/components/landing/closing-cta-section'
 import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { PageSections } from '#/components/layout/page-sections'
 import { ServiceHero } from '#/components/services/service-hero'
-import heroLargeImage from '../../design/formation/hero-principale.png'
-import heroGroupImage from '../../design/formation/hero-groupe.png'
-import heroOnlineImage from '../../design/formation/hero-elearning.png'
-import heroCertificateImage from '../../design/formation/hero-certificat.png'
+import { RichTitle, WideScreenBreaks } from '#/components/ui/rich-text'
+import { formationPage } from '#/data/pages/learning'
+import type { FormationClosingContent, FormationSection } from '#/data/pages/learning'
 
 export const Route = createFileRoute('/formation')({
   head: () => ({
@@ -26,54 +26,55 @@ export const Route = createFileRoute('/formation')({
   component: Formation,
 })
 
+function FormationClosing({ eyebrow, title, text, button }: FormationClosingContent) {
+  return (
+    <ClosingCta
+      eyebrow={eyebrow}
+      showDivider={false}
+      title={<RichTitle text={title} accentClassName="pb-1 text-[#e5bd42]" />}
+      description={<WideScreenBreaks text={text} />}
+    >
+      <EmbossedCta
+        href="#inscription"
+        tone="gold"
+        className="h-14 w-full text-sm tracking-[0.16em] sm:w-auto sm:min-w-[22rem]"
+      >
+        {button}
+      </EmbossedCta>
+    </ClosingCta>
+  )
+}
+
+function FormationSectionContent({ section }: { section: FormationSection }) {
+  switch (section._type) {
+    case 'formationPath':
+      return <FormationPathSection {...section} />
+    case 'formationFormats':
+      return <FormationFormatsSection {...section} />
+    case 'formationReviews':
+      return <FormationTestimonialsSection {...section} />
+    case 'formationFaq':
+      return <FormationFaqSection {...section} />
+    case 'formationClosing':
+      return <FormationClosing {...section} />
+  }
+}
+
 function Formation() {
+  const { hero, sections } = formationPage
   return (
     <main className="overflow-x-clip bg-background">
       <ServiceHero
         activeHref="/formation"
-        title="Apprenez l’art du toucher."
-        accent="À votre rythme."
-        intro="Des formations guidées par Sabrina, en présentiel comme en ligne."
-        largeImage={{
-          src: heroLargeImage,
-          alt: 'Sabrina guide les mains d’une élève sur le dos d’une cliente',
-        }}
-        squareImages={[
-          { src: heroGroupImage, alt: 'Sabrina fait une démonstration devant un petit groupe d’élèves' },
-          { src: heroOnlineImage, alt: 'Une leçon vidéo de massage sur un ordinateur portable, à côté d’un carnet de notes' },
-          { src: heroCertificateImage, alt: 'Un certificat de formation au sceau doré, posé à côté d’une fleur de frangipanier' },
-        ]}
-        primaryCta={{ label: 'Voir les formations', href: '#parcours' }}
-        secondaryCta={{ label: 'Télécharger le programme', href: '#programme' }}
+        title={hero.title}
+        accent={hero.accent}
+        intro={hero.intro}
+        largeImage={hero.largePhoto}
+        squareImages={hero.squarePhotos}
+        primaryCta={{ label: hero.primaryButton, href: '#parcours' }}
+        secondaryCta={{ label: hero.secondaryButton, href: '#programme' }}
       />
-      <FormationPathSection />
-      <FormationFormatsSection />
-      <FormationTestimonialsSection />
-      <FormationFaqSection />
-      <ClosingCta
-        eyebrow="Votre parcours Joie d’Être"
-        showDivider={false}
-        title={
-          <>
-            <span className="block">Prête à</span>
-            <em className="block pb-1 font-normal text-[#e5bd42]">vous lancer ?</em>
-          </>
-        }
-        description={
-          <>
-            Échangez avec Sabrina
-            <br className="hidden sm:block" /> pour choisir la formation qui vous ressemble.
-          </>
-        }
-      >
-        <EmbossedCta
-          href="#inscription"
-          tone="gold"
-          className="h-14 w-full text-sm tracking-[0.16em] sm:w-auto sm:min-w-[22rem]"
-        >
-          Réserver ma place
-        </EmbossedCta>
-      </ClosingCta>
+      <PageSections sections={sections} render={(section) => <FormationSectionContent section={section} />} />
     </main>
   )
 }
