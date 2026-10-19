@@ -2,10 +2,12 @@ import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
+import { RichTitle } from '#/components/ui/rich-text'
 import coupelleHuile from '#/assets/decor/coupelle-huile.png'
 import flaconPompe from '#/assets/decor/flacon-pompe.png'
 import { guideHref, guides } from '#/data/guides'
 import type { Guide } from '#/data/guides'
+import type { GuidesCollectionContent } from '#/data/pages/learning'
 import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
 import foliageTopRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
 import foliageBottomLeft from '../../../design/massage/decorations/feuillage-bas-gauche.png'
@@ -18,7 +20,7 @@ const foliage = [
   { src: foliageBottomRight, side: 'right', className: '-bottom-16 -right-20 w-[13rem] xl:w-[15rem]' },
 ] as const
 
-export function GuidesCollectionSection() {
+export function GuidesCollectionSection({ eyebrow, title, cardButton }: GuidesCollectionContent) {
   return (
     <section
       id="collection"
@@ -51,18 +53,17 @@ export function GuidesCollectionSection() {
       <DecorObject src={flaconPompe} className="-right-8 bottom-[16%] w-20 -rotate-[24deg]" />
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-16">
-        <SectionEyebrow label="La collection" />
+        <SectionEyebrow label={eyebrow} />
         <h2
           id="collection-title"
           className="mt-5 text-center text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.08] tracking-[-0.025em] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
         >
-          Le guide qui{' '}
-          <em className="inline-block pb-1 font-normal text-[#c09027]">vous ressemble</em>
+          <RichTitle text={title} accentClassName="inline-block pb-1 text-[#c09027]" />
         </h2>
 
         <div className="mx-auto mt-10 grid max-w-[92rem] gap-6 sm:mt-12 sm:grid-cols-2 lg:mt-14 lg:grid-cols-3 xl:gap-8">
           {guides.map((guide) => (
-            <GuideCard key={guide.slug} guide={guide} />
+            <GuideCard key={guide.slug} guide={guide} button={cardButton} />
           ))}
         </div>
       </div>
@@ -70,7 +71,7 @@ export function GuidesCollectionSection() {
   )
 }
 
-function GuideCard({ guide }: { guide: Guide }) {
+function GuideCard({ guide, button }: { guide: Guide; button: string }) {
   return (
     <article
       id={guide.slug}
@@ -100,7 +101,7 @@ function GuideCard({ guide }: { guide: Guide }) {
         </p>
         {/* Pushed down so the buttons line up when a title wraps to two lines. */}
         <EmbossedCta href={guideHref(guide)} tone="gold" className="mt-auto h-12 min-w-52">
-          Découvrir
+          {button}
           <span className="sr-only"> : {guide.title}</span>
         </EmbossedCta>
       </div>

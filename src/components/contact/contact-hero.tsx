@@ -6,7 +6,9 @@ import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { GoldDivider } from '#/components/landing/section-ornaments'
 import { SiteHeader } from '#/components/layout/site-header'
 import { LeafShadow } from '#/components/services/leaf-shadow'
+import { RichTitle, WideScreenBreaks } from '#/components/ui/rich-text'
 import { contact, openingHours } from '#/data/contact'
+import type { ContactHeroContent } from '#/data/pages/contact'
 import lotusOrnament from '#/assets/formation-icons/massage-wellness.png'
 
 function InfoRow({ icon: Icon, label, children }: { icon: LucideIcon; label: string; children: ReactNode }) {
@@ -25,7 +27,19 @@ function InfoRow({ icon: Icon, label, children }: { icon: LucideIcon; label: str
 
 // First screen of the contact page: an invitation to call or book on the left, the
 // practical details (hours, address, phone, email, payment) on a deep green card.
-export function ContactHero() {
+export function ContactHero({
+  title,
+  text,
+  button,
+  note,
+  infoTitle,
+  hoursLabel,
+  addressLabel,
+  phoneLabel,
+  emailLabel,
+  paymentLabel,
+  paymentText,
+}: ContactHeroContent) {
   return (
     <>
       <SiteHeader activeHref="/contact" onLight />
@@ -41,23 +55,21 @@ export function ContactHero() {
 
         <div className="mx-auto grid w-full max-w-[84rem] items-center gap-12 px-5 pb-16 pt-32 sm:px-8 sm:pb-20 sm:pt-36 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:gap-16 lg:pb-24 lg:pt-40 xl:gap-24">
           <div className="hero-stagger">
+            {/* Upright lines are medium weight; the gold line keeps its normal weight. */}
             <h1
               id="contact-title"
-              className="text-[clamp(2.4rem,9vw,4.4rem)] font-normal leading-[1.06] tracking-[-0.03em]"
+              className="text-[clamp(2.4rem,9vw,4.4rem)] font-medium leading-[1.06] tracking-[-0.03em]"
             >
-              <span className="block font-medium">Parlons de</span>
-              <em className="block pb-1 font-normal text-[#c09027]">votre bien-être.</em>
+              <RichTitle text={title} accentClassName="pb-1 text-[#c09027]" />
             </h1>
             <p className="mt-8 max-w-[34rem] border-l-2 border-[#d4af37]/70 pl-5 text-pretty text-base leading-7 text-[#1f3a32] sm:pl-6 sm:text-lg sm:leading-8">
-              Une question, un conseil, une réservation&nbsp;? Sabrina vous répond et vous accueille
-              à La Bretagne, à Saint-Denis.
+              <WideScreenBreaks text={text} />
             </p>
             <EmbossedCta href="#reserver" tone="gold" className="mt-10 w-full sm:h-14 sm:w-auto sm:min-w-64 sm:text-[0.8rem]">
-              Réserver en ligne
+              {button}
             </EmbossedCta>
             <p className="mt-6 max-w-[34rem] text-sm leading-6 text-[#40574f]">
-              Pendant un soin, Sabrina ne peut pas décrocher&nbsp;: le plus simple est de réserver
-              votre créneau directement en ligne.
+              <WideScreenBreaks text={note} />
             </p>
           </div>
 
@@ -65,12 +77,12 @@ export function ContactHero() {
             <div className="flex flex-col items-center text-center">
               <img src={lotusOrnament} alt="" aria-hidden="true" className="size-12 object-contain" width={256} height={256} />
               <h2 className="mt-1 font-heading text-[1.9rem] font-normal leading-tight text-[#fff5df]">
-                Infos <em className="font-normal text-[#e5bd42]">pratiques</em>
+                <RichTitle text={infoTitle} accentClassName="text-[#e5bd42]" />
               </h2>
               <GoldDivider compact className="mt-3" />
             </div>
             <dl className="mt-4">
-              <InfoRow icon={Clock} label="Horaires">
+              <InfoRow icon={Clock} label={hoursLabel}>
                 <ul>
                   {openingHours.map((slot) => (
                     <li key={slot.days} className="flex justify-between gap-4">
@@ -80,21 +92,21 @@ export function ContactHero() {
                   ))}
                 </ul>
               </InfoRow>
-              <InfoRow icon={MapPin} label="Adresse">
+              <InfoRow icon={MapPin} label={addressLabel}>
                 {contact.address}
               </InfoRow>
-              <InfoRow icon={Phone} label="Téléphone">
+              <InfoRow icon={Phone} label={phoneLabel}>
                 <a href={contact.phoneHref} className="transition-colors hover:text-[#e5bd42]">
                   {contact.phone}
                 </a>
               </InfoRow>
-              <InfoRow icon={Mail} label="Email">
+              <InfoRow icon={Mail} label={emailLabel}>
                 <a href={`mailto:${contact.email}`} className="break-all transition-colors hover:text-[#e5bd42]">
                   {contact.email}
                 </a>
               </InfoRow>
-              <InfoRow icon={CreditCard} label="Règlement">
-                En ligne à la réservation, ou sur place par carte bancaire, espèces ou virement.
+              <InfoRow icon={CreditCard} label={paymentLabel}>
+                {paymentText}
               </InfoRow>
             </dl>
           </aside>

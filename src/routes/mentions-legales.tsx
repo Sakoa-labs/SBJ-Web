@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
-import { legalNoticeSections } from '#/components/legal/legal-notice-content'
 import { LegalPage } from '#/components/legal/legal-page'
+import { legalNoticePage } from '#/data/pages/contact'
 
 export const Route = createFileRoute('/mentions-legales')({
   head: () => ({
@@ -17,13 +17,5 @@ export const Route = createFileRoute('/mentions-legales')({
 })
 
 function MentionsLegales() {
-  return (
-    <LegalPage
-      title="Mentions"
-      accent="légales"
-      intro="Qui édite et héberge ce site, et comment nous joindre."
-      sections={legalNoticeSections}
-      contactTitle="Une question sur le site ?"
-    />
-  )
+  return <LegalPage {...legalNoticePage} />
 }

@@ -1,10 +1,12 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
-import guidesBooks from '../../../design/section guides/ChatGPT Image 24 août 2026, 15_47_59.png'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { HomeGuidesContent } from '#/data/pages/home'
+import type { Photo } from '#/data/pages/types'
 import guidesLeavesLeft from '../../../design/section guides/ChatGPT Image 24 août 2026, 15_55_27.png'
 import guidesLeavesRight from '../../../design/section guides/ChatGPT Image 24 août 2026, 15_58_41.png'
 
-function GuidesVisual({ className = '' }: { className?: string }) {
+function GuidesVisual({ photo, className = '' }: { photo: Photo; className?: string }) {
   return (
     <figure className={`relative isolate mx-auto w-full max-w-[55rem] ${className}`}>
       <div
@@ -16,18 +18,18 @@ function GuidesVisual({ className = '' }: { className?: string }) {
         aria-hidden="true"
       />
       <img
-        src={guidesBooks}
-        alt="Trois guides Joie d'Être consacrés au massage relaxant, aux rituels du visage et à la pratique professionnelle"
+        src={photo.src}
+        alt={photo.alt}
         className="relative z-10 h-auto w-full object-contain drop-shadow-[0_22px_18px_rgba(72,48,19,0.13)]"
-        width={1448}
-        height={1086}
+        width={photo.width}
+        height={photo.height}
         loading="lazy"
       />
     </figure>
   )
 }
 
-export function GuidesSection() {
+export function GuidesSection({ eyebrow, title, text, button, photo }: HomeGuidesContent) {
   return (
     <section
       id="guides"
@@ -68,33 +70,28 @@ export function GuidesSection() {
 
       <div className="mx-auto grid w-full max-w-[98rem] items-center gap-14 px-5 sm:px-8 lg:grid-cols-[0.82fr_1.18fr] lg:gap-8 xl:gap-10 xl:px-12">
         <div className="mx-auto w-full max-w-[39rem] text-center lg:pl-6 xl:pl-10">
-          <SectionEyebrow label="Mes guides" />
+          <SectionEyebrow label={eyebrow} />
 
           <span id="guides-disponibles" className="block scroll-mt-28" />
-          <GuidesVisual className="mt-7 max-w-[42rem] lg:hidden" />
+          <GuidesVisual photo={photo} className="mt-7 max-w-[42rem] lg:hidden" />
 
           <h2
             id="guides-title"
             className="mx-auto mt-8 text-[clamp(1.5rem,7.5vw,2.65rem)] font-normal leading-[1.08] tracking-[-0.018em] text-[#0d3a2f] sm:text-[clamp(2.5rem,6vw,3.25rem)] lg:text-[clamp(2.65rem,3.15vw,3.65rem)]"
           >
-            <span className="block sm:whitespace-nowrap">Des ressources expertes</span>
-            <span className="block sm:whitespace-nowrap">pour progresser</span>
-            <em className="block pb-1 font-normal text-[#d4af37] sm:whitespace-nowrap">
-              à votre rythme
-            </em>
+            <RichTitle text={title} lineClassName="sm:whitespace-nowrap" accentClassName="pb-1 text-[#d4af37]" />
           </h2>
 
           <p className="mx-auto mt-8 max-w-[34rem] text-pretty text-base leading-8 text-[#29443c] sm:text-lg">
-            Des guides pratiques à télécharger pour approfondir les gestes, la
-            posture et les protocoles, puis bientôt disponibles sur Amazon KDP.
+            {text}
           </p>
 
           <EmbossedCta href="/guides" className="mt-8">
-            Explorer les guides
+            {button}
           </EmbossedCta>
         </div>
 
-        <GuidesVisual className="hidden lg:-mr-4 lg:block xl:-mr-8" />
+        <GuidesVisual photo={photo} className="hidden lg:-mr-4 lg:block xl:-mr-8" />
       </div>
     </section>
   )

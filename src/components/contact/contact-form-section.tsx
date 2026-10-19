@@ -3,11 +3,11 @@ import { Bus, Navigation } from 'lucide-react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { usePhotoLightbox, ZoomablePhoto } from '#/components/layout/photo-lightbox'
+import { RichTitle, WideScreenBreaks } from '#/components/ui/rich-text'
 import { contact, mapsLink } from '#/data/contact'
+import { withCaptions } from '#/data/pages/contact'
+import type { ContactFormContent } from '#/data/pages/contact'
 import { cn } from '#/lib/utils'
-import parkingImage from '../../../design/contact/acces-parking.jpg'
-import bannerImage from '../../../design/contact/acces-banniere.jpg'
-import gateImage from '../../../design/contact/acces-portail.jpg'
 
 // The Google Maps app icon (2020 pin).
 function GoogleMapsIcon({ className }: { className?: string }) {
@@ -21,12 +21,6 @@ function GoogleMapsIcon({ className }: { className?: string }) {
     </svg>
   )
 }
-
-const arrivalSteps = [
-  { src: parkingImage, alt: 'Le chemin d’accès, la place de parking et l’entrée signalées par des flèches', caption: 'Garez-vous sur la place de parking' },
-  { src: bannerImage, alt: 'La bannière violette « Votre praticienne bien-être » sur le mur d’entrée', caption: 'Repérez la bannière Joie d’Être' },
-  { src: gateImage, alt: 'Le portail gris de la maison', caption: 'Entrez par le portail' },
-] as const
 
 const field =
   'mt-2 w-full rounded-xl border border-[#d4af37]/45 bg-[#fffdf8] px-4 py-3 text-base text-[#0d3a2f] shadow-[inset_0_1px_2px_rgba(103,70,31,0.06)] outline-none transition-[border-color,box-shadow] placeholder:text-[#8a958f] focus:border-[#c09027] focus:shadow-[0_0_0_3px_rgba(212,175,55,0.2)]'
@@ -47,7 +41,24 @@ function sendByEmail(event: FormEvent<HTMLFormElement>) {
 
 // The contact form next to the directions: GPS, bus lines and the three photos that show
 // where to park and which gate to ring at, each opening larger on click.
-export function ContactFormSection() {
+export function ContactFormSection({
+  formTitle,
+  nameLabel,
+  emailLabel,
+  subjectLabel,
+  subjectPlaceholder,
+  messageLabel,
+  submitButton,
+  accessTitle,
+  carTitle,
+  carText,
+  mapsButton,
+  busTitle,
+  busLines,
+  onSiteTitle,
+  arrivalSteps: steps,
+}: ContactFormContent) {
+  const arrivalSteps = withCaptions(steps)
   const { openAt, lightbox } = usePhotoLightbox(arrivalSteps)
 
   return (
@@ -58,7 +69,7 @@ export function ContactFormSection() {
       <div className="mx-auto grid w-full max-w-[84rem] gap-12 px-5 sm:px-8 lg:grid-cols-2 lg:gap-16 xl:gap-20">
         <div>
           <h2 className="text-[clamp(2rem,6vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em]">
-            Un message, <em className="font-normal text-[#c09027]">une question</em>
+            <RichTitle text={formTitle} accentClassName="text-[#c09027]" />
           </h2>
           <form
             onSubmit={sendByEmail}
@@ -66,20 +77,20 @@ export function ContactFormSection() {
           >
             <div className="grid gap-5 sm:grid-cols-2">
               <label className="block">
-                <span className={label}>Votre nom</span>
+                <span className={label}>{nameLabel}</span>
                 <input name="nom" type="text" autoComplete="name" required className={field} />
               </label>
               <label className="block">
-                <span className={label}>Votre email</span>
+                <span className={label}>{emailLabel}</span>
                 <input name="email" type="email" autoComplete="email" required className={field} />
               </label>
             </div>
             <label className="mt-5 block">
-              <span className={label}>Objet</span>
-              <input name="objet" type="text" placeholder="Réservation, formation, bon cadeau…" className={field} />
+              <span className={label}>{subjectLabel}</span>
+              <input name="objet" type="text" placeholder={subjectPlaceholder} className={field} />
             </label>
             <label className="mt-5 block">
-              <span className={label}>Votre message</span>
+              <span className={label}>{messageLabel}</span>
               <textarea name="message" rows={5} required className={cn(field, 'resize-y')} />
             </label>
             <button
@@ -87,24 +98,24 @@ export function ContactFormSection() {
               data-slot="button"
               className="embossed-gold-cta mt-6 inline-flex h-13 w-full items-center justify-center rounded-sm border border-[#e5bd42]/95 px-7 text-xs font-bold uppercase tracking-[0.18em] text-[#14221e] transition-[transform,box-shadow,border-color,filter] sm:w-auto sm:min-w-64"
             >
-              Envoyer le message
+              {submitButton}
             </button>
           </form>
         </div>
 
         <div>
           <h2 className="text-[clamp(2rem,6vw,3rem)] font-normal leading-[1.08] tracking-[-0.025em]">
-            Comment <em className="font-normal text-[#c09027]">venir&nbsp;?</em>
+            <RichTitle text={accessTitle} accentClassName="text-[#c09027]" />
           </h2>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2">
             <div className="rounded-2xl border border-[#d4af37]/45 bg-[#fff9ec] p-5">
               <p className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-[#9a6d2c]">
                 <Navigation aria-hidden="true" className="size-4" strokeWidth={1.6} />
-                En voiture
+                {carTitle}
               </p>
               <p className="mt-2 text-sm leading-6 text-[#40574f]">
-                Dans votre GPS, cherchez «&nbsp;{contact.mapsQuery}&nbsp;».
+                <WideScreenBreaks text={carText.replace('{gps}', contact.mapsQuery)} />
               </p>
               <EmbossedCta
                 href={mapsLink}
@@ -114,36 +125,35 @@ export function ContactFormSection() {
                 className="mt-4 h-11 gap-2.5 px-5 text-[0.66rem] tracking-[0.14em]"
               >
                 <GoogleMapsIcon className="size-5" />
-                Ouvrir dans Maps
+                {mapsButton}
               </EmbossedCta>
             </div>
             <div className="rounded-2xl border border-[#d4af37]/45 bg-[#fff9ec] p-5">
               <p className="flex items-center gap-2.5 text-xs font-bold uppercase tracking-[0.16em] text-[#9a6d2c]">
                 <Bus aria-hidden="true" className="size-4" strokeWidth={1.6} />
-                En bus
+                {busTitle}
               </p>
               <ul className="mt-2 space-y-1.5 text-sm leading-6 text-[#40574f]">
-                <li>
-                  <strong className="font-semibold text-[#0d3a2f]">Ligne 27</strong>, arrêt «&nbsp;Case Bretagne&nbsp;»
-                </li>
-                <li>
-                  <strong className="font-semibold text-[#0d3a2f]">Ligne 26a</strong>, arrêt «&nbsp;Mairie annexe&nbsp;»
-                </li>
+                {busLines.map((bus) => (
+                  <li key={bus._key}>
+                    <strong className="font-semibold text-[#0d3a2f]">{bus.line}</strong>, arrêt «&nbsp;{bus.stop}&nbsp;»
+                  </li>
+                ))}
               </ul>
             </div>
           </div>
 
-          <p className="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-[#9a6d2c]">Sur place</p>
+          <p className="mt-8 text-xs font-bold uppercase tracking-[0.16em] text-[#9a6d2c]">{onSiteTitle}</p>
           <ol className="mt-4 grid grid-cols-3 gap-3 sm:gap-4">
             {arrivalSteps.map((step, index) => (
-              <li key={step.caption}>
+              <li key={step._key}>
                 <figure>
                   <ZoomablePhoto
                     photo={step}
                     onOpen={() => openAt(index)}
                     className="aspect-square rounded-xl border border-[#d4af37]/50 shadow-[0_12px_28px_rgba(103,70,31,0.12)]"
-                    width={1600}
-                    height={1200}
+                    width={step.width}
+                    height={step.height}
                   >
                     <span className="absolute left-2 top-2 grid size-7 place-items-center rounded-full bg-[#0d3a2f] font-heading text-sm text-[#e5bd42] shadow-md">
                       {index + 1}

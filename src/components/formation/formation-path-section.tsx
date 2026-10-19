@@ -3,45 +3,12 @@ import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import frangipanier from '#/assets/decor/frangipanier.png'
 import pierresDuo from '#/assets/decor/pierres-duo.png'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { FormationPathContent } from '#/data/pages/learning'
 import lotusOrnament from '#/assets/formation-icons/massage-wellness.png'
-import discoverImage from '../../../design/formation/parcours-decouvrir.png'
-import learnImage from '../../../design/formation/parcours-apprendre.png'
-import deepenImage from '../../../design/formation/parcours-approfondir.png'
-import launchImage from '../../../design/formation/parcours-lancer.png'
 
 // The four steps from a first workshop to a first client, each tied to one of Sabrina's formats.
-const steps = [
-  {
-    title: 'Découvrir',
-    format: 'Ateliers en présentiel',
-    description: 'Une journée en petit groupe pour poser vos premiers gestes.',
-    image: discoverImage,
-    imageAlt: 'Sabrina accueillant un petit groupe d’élèves dans la salle de formation',
-  },
-  {
-    title: 'Apprendre',
-    format: 'Formation massage bien-être',
-    description: 'Plusieurs jours aux côtés de Sabrina pour ancrer les protocoles et la posture.',
-    image: learnImage,
-    imageAlt: 'Une élève masse le dos d’une cliente sous le regard de Sabrina, qui corrige son geste',
-  },
-  {
-    title: 'Approfondir',
-    format: 'E-learning premium',
-    description: 'Des modules vidéo et des supports PDF pour réviser chaque geste chez vous.',
-    image: deepenImage,
-    imageAlt: 'Une élève suit une leçon vidéo de massage sur son ordinateur et prend des notes',
-  },
-  {
-    title: 'Se lancer',
-    format: 'Suivi et certificat',
-    description: 'Un certificat de formation et un accompagnement pour vos premiers clients.',
-    image: launchImage,
-    imageAlt: 'Sabrina remet son certificat de formation à une élève souriante',
-  },
-] as const
-
-export function FormationPathSection() {
+export function FormationPathSection({ eyebrow, title, steps }: FormationPathContent) {
   return (
     <section
       id="parcours"
@@ -57,18 +24,17 @@ export function FormationPathSection() {
       <DecorObject src={pierresDuo} className="-right-14 top-[30%] w-36 -rotate-[12deg]" />
 
       <div className="mx-auto w-full max-w-[92rem] px-5 sm:px-8 xl:px-16">
-        <SectionEyebrow label="Le parcours" />
+        <SectionEyebrow label={eyebrow} />
         <h2
           id="parcours-title"
           className="mt-5 text-center text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.08] tracking-[-0.025em] sm:text-[clamp(3.2rem,5.6vw,4.4rem)]"
         >
-          Du premier geste{' '}
-          <em className="inline-block pb-1 font-normal text-[#c09027]">au premier client</em>
+          <RichTitle text={title} accentClassName="inline-block pb-1 text-[#c09027]" />
         </h2>
 
         <ol className="mt-12 grid gap-12 [--step-gap:1.5rem] sm:mt-14 sm:grid-cols-2 sm:gap-x-(--step-gap) lg:mt-16 lg:grid-cols-4 xl:[--step-gap:2rem]">
           {steps.map((step, index) => (
-            <li key={step.title} className="relative flex flex-col items-center text-center">
+            <li key={step._key} className="relative flex flex-col items-center text-center">
               {/* Lotus marker, joined to the next step's by a gold thread stopping short of both. */}
               <span className="hidden lg:block" aria-hidden="true">
                 <img
@@ -85,11 +51,11 @@ export function FormationPathSection() {
               </span>
               <figure className="aspect-[4/3] w-full overflow-hidden rounded-sm bg-[#e8dcc8] shadow-[0_18px_40px_rgba(77,51,22,0.1)] lg:mt-6">
                 <img
-                  src={step.image}
-                  alt={step.imageAlt}
+                  src={step.photo.src}
+                  alt={step.photo.alt}
                   className="size-full object-cover"
-                  width={1448}
-                  height={1086}
+                  width={step.photo.width}
+                  height={step.photo.height}
                   loading="lazy"
                 />
               </figure>

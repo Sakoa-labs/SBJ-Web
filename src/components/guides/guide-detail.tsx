@@ -3,6 +3,7 @@ import type { ReactNode } from 'react'
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { SiteHeader } from '#/components/layout/site-header'
+import { RichTitle } from '#/components/ui/rich-text'
 import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import { InfoRow } from '#/components/services/service-detail'
@@ -10,6 +11,7 @@ import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
 import { formatEuros, guideHref, guides, guidesBundle } from '#/data/guides'
 import type { Guide, GuideImage } from '#/data/guides'
+import { fillLabel, guideDetailLabels as labels } from '#/data/pages/learning'
 import coupelleHuile from '#/assets/decor/coupelle-huile.png'
 import frangipanier from '#/assets/decor/frangipanier.png'
 import formatIcon from '#/assets/info-icons/info-format.png'
@@ -53,10 +55,10 @@ export function GuideDetailPage({ guide }: { guide: Guide }) {
         description={guide.description}
         photo={guide.photo}
         gallery={guide.gallery}
-        format={{ label: 'Format', value: `PDF illustré, ${guide.pages} pages` }}
+        format={{ label: labels.guideFormatLabel, value: fillLabel(labels.guideFormatValue, { pages: guide.pages }) }}
         price={guide.price}
-        buyLabel="Acheter le guide"
-        giftLabel="Offrir ce guide"
+        buyLabel={labels.guideBuyButton}
+        giftLabel={labels.guideGiftButton}
       />
       <ChaptersSection>
         <ol className="mx-auto mt-10 grid max-w-[64rem] gap-x-16 sm:mt-12 md:grid-flow-col md:grid-cols-2 md:grid-rows-3">
@@ -75,9 +77,9 @@ export function GuideDetailPage({ guide }: { guide: Guide }) {
       </ChaptersSection>
       <GuideCardsSection
         id="vous-aimerez-aussi"
-        eyebrow="Suggestions"
-        title="Vous aimerez"
-        accent="aussi"
+        eyebrow={labels.relatedEyebrow}
+        title={labels.relatedTitle}
+        accent={labels.relatedAccent}
         items={related}
       />
     </main>
@@ -98,14 +100,14 @@ export function BundleDetailPage() {
         photo={guidesBundle.photo}
         gallery={guidesBundle.gallery}
         format={{
-          label: 'Contenu',
-          value: `${guides.length} guides PDF, ${guidesBundle.pages} pages`,
+          label: labels.bundleFormatLabel,
+          value: fillLabel(labels.bundleFormatValue, { guides: guides.length, pages: guidesBundle.pages }),
         }}
         price={guidesBundle.price}
         separatePrice={guidesBundle.separatePrice}
-        priceNote={`Soit ${formatEuros(savings)} d’économie par rapport aux guides achetés séparément`}
-        buyLabel="Acheter le coffret"
-        giftLabel="Offrir le coffret"
+        priceNote={fillLabel(labels.bundlePriceNote, { economie: formatEuros(savings) })}
+        buyLabel={labels.bundleBuyButton}
+        giftLabel={labels.bundleGiftButton}
       />
       <ChaptersSection>
         <div className="mt-10 grid gap-10 sm:mt-12 lg:grid-cols-3 lg:gap-12">
@@ -133,9 +135,9 @@ export function BundleDetailPage() {
       </ChaptersSection>
       <GuideCardsSection
         id="dans-le-coffret"
-        eyebrow="Dans le coffret"
-        title="Les trois"
-        accent="guides"
+        eyebrow={labels.bundleGuidesEyebrow}
+        title={labels.bundleGuidesTitle}
+        accent={labels.bundleGuidesAccent}
         items={guides.map(guideCard)}
       />
     </main>
@@ -219,7 +221,7 @@ function ProductHero({
             <ol className="flex flex-wrap items-center gap-2">
               <li>
                 <a href="/guides" className="transition-colors hover:text-[#a87d16]">
-                  Mes guides
+                  {labels.breadcrumb}
                 </a>
               </li>
               <li aria-hidden="true">/</li>
@@ -250,8 +252,8 @@ function ProductHero({
 
           <dl className="mt-4 border-t border-[#d4af37]/35 short:mt-3 short:[&>div]:py-2">
             <InfoRow icon={formatIcon} label={format.label} value={format.value} />
-            <InfoRow icon={readingIcon} label="Lecture" value="Mobile, tablette, ordinateur" />
-            <InfoRow icon={downloadIcon} label="Livraison" value="Téléchargement immédiat" />
+            <InfoRow icon={readingIcon} label={labels.readingLabel} value={labels.readingValue} />
+            <InfoRow icon={downloadIcon} label={labels.deliveryLabel} value={labels.deliveryValue} />
           </dl>
 
           <div className="mt-5 rounded-md border border-[#d4af37]/70 bg-[#fffdf8] p-5 shadow-[0_18px_40px_rgba(77,51,22,0.08)] short:mt-4 short:p-4">
@@ -275,7 +277,7 @@ function ProductHero({
                 {giftLabel}
               </EmbossedCta>
             </div>
-            <p className="mt-4 text-center text-sm text-[#40574f] short:mt-3">Paiement sécurisé · Accès à vie</p>
+            <p className="mt-4 text-center text-sm text-[#40574f] short:mt-3">{labels.paymentNote}</p>
           </div>
         </div>
       </div>
@@ -317,12 +319,12 @@ function ChaptersSection({ children }: { children: ReactNode }) {
       />
 
       <div className="mx-auto w-full max-w-[84rem] px-5 sm:px-8">
-        <SectionEyebrow label="Au sommaire" />
+        <SectionEyebrow label={labels.chaptersEyebrow} />
         <h2
           id="sommaire-title"
           className="mt-5 text-center text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#fff5df] sm:text-[clamp(3.2rem,5.6vw,4.2rem)]"
         >
-          Ce que vous allez <em className="inline-block pb-1 font-normal text-[#e5bd42]">apprendre</em>
+          <RichTitle text={labels.chaptersTitle} accentClassName="inline-block pb-1 text-[#e5bd42]" />
         </h2>
         {children}
       </div>
@@ -350,7 +352,7 @@ function GuideCardsSection({
       accent={accent}
       eyebrow={eyebrow}
       variant="card"
-      ctaLabel="Découvrir"
+      ctaLabel={labels.cardButton}
       decor={
         <>
           <LeafShadow leaf="monstera" className="-right-44 top-[16%] w-[42rem] -rotate-[28deg]" />

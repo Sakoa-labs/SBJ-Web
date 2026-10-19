@@ -6,10 +6,10 @@ import { ServiceFinder } from '#/components/landing/service-finder'
 import { SiteHeader } from '#/components/layout/site-header'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import { Button } from '#/components/ui/button'
+import { RichTitle, WideScreenBreaks } from '#/components/ui/rich-text'
+import { notFoundPage } from '#/data/pages/contact'
 import frangipani from '#/assets/decor/frangipanier.png'
 import palmLeaf from '../../../design/massage/decorations/palme-faq-gauche.png'
-import pathImage from '../../../design/404/sentier.png'
-import candleImage from '../../../design/404/bougie.png'
 
 const links = [
   { label: 'Massages', href: '/massages' },
@@ -50,6 +50,7 @@ function FlowerCode() {
 // Shown for any address that no longer exists: the site was rebuilt, so old links
 // (from Google or bookmarks) land here and are guided back to the services.
 export function NotFoundPage() {
+  const { label, title, titleEnd, text, finderButton, homeButton, photo, smallPhoto } = notFoundPage
   return (
     <main className="overflow-x-clip bg-background">
       <SiteHeader onLight />
@@ -80,23 +81,22 @@ export function NotFoundPage() {
                 <FlowerCode />
                 <GoldDivider compact className="mt-4" />
                 <p className="mt-3 text-xs font-bold uppercase tracking-[0.24em] text-[#c09027]">
-                  Page introuvable
+                  {label}
                 </p>
               </div>
 
+            {/* Upright lines are medium weight; the gold line keeps its normal weight. */}
             <h1
               id="not-found-title"
-              className="mt-6 text-[clamp(2.3rem,7.5vw,3.9rem)] font-normal leading-[1.05] tracking-[-0.03em]"
+              className="mt-6 text-[clamp(2.3rem,7.5vw,3.9rem)] font-medium leading-[1.05] tracking-[-0.03em]"
             >
-              <span className="block font-medium">Ce chemin ne mène</span>
-              <em className="block pb-1 font-normal text-[#c09027]">nulle part…</em>
-              <span className="mt-1 block text-[0.72em] font-medium">mais celui-ci, si.</span>
+              <RichTitle text={title} accentClassName="pb-1 text-[#c09027]" />
+              <span className="mt-1 block text-[0.72em] font-medium">{titleEnd}</span>
             </h1>
             </div>
 
             <p className="mt-6 max-w-[32rem] border-l-2 border-[#d4af37]/70 pl-5 text-pretty text-base leading-7 text-[#1f3a32] sm:pl-6 sm:text-lg sm:leading-8">
-              Le site a fait peau neuve&nbsp;: certaines anciennes adresses ont changé. Laissez-nous
-              vous guider.
+              <WideScreenBreaks text={text} />
             </p>
 
             <div className="mt-8 flex flex-col gap-4 sm:flex-row sm:gap-5">
@@ -107,12 +107,12 @@ export function NotFoundPage() {
                     size="lg"
                     className="embossed-gold-cta h-13 rounded-sm border border-[#e5bd42]/95 px-7 text-xs font-bold uppercase tracking-[0.18em] text-[#14221e] transition-[transform,box-shadow,border-color,filter] hover:text-[#14221e] sm:h-14 sm:min-w-72"
                   >
-                    Quelle prestation pour moi&nbsp;?
+                    <WideScreenBreaks text={finderButton} />
                   </Button>
                 }
               />
               <EmbossedCta href="/" tone="light" className="sm:h-14 sm:min-w-60">
-                Retour à l’accueil
+                {homeButton}
               </EmbossedCta>
             </div>
 
@@ -141,21 +141,21 @@ export function NotFoundPage() {
           <div className="relative mx-auto w-full max-w-[30rem] pb-10 pl-10 lg:max-w-none lg:pb-12 lg:pl-14">
             <figure className="hero-photo aspect-[4/5] overflow-hidden rounded-t-full border-[3px] border-[#d4af37] bg-[#e8dcc8] shadow-[0_30px_70px_rgba(77,51,22,0.2)]">
               <img
-                src={pathImage}
-                alt="Un sentier de pierres à travers un jardin tropical, menant à la porte d’un petit spa"
+                src={photo.src}
+                alt={photo.alt}
                 className="size-full object-cover"
-                width={1122}
-                height={1402}
+                width={photo.width}
+                height={photo.height}
                 fetchPriority="high"
               />
             </figure>
             <figure className="hero-photo hero-photo-delayed absolute bottom-0 left-0 aspect-square w-[38%] overflow-hidden border-[3px] border-[#d4af37] bg-[#e8dcc8] shadow-[0_22px_48px_rgba(77,51,22,0.24)]">
               <img
-                src={candleImage}
-                alt="Une bougie allumée et une fleur de frangipanier posée sur une serviette roulée"
+                src={smallPhoto.src}
+                alt={smallPhoto.alt}
                 className="size-full object-cover"
-                width={1254}
-                height={1254}
+                width={smallPhoto.width}
+                height={smallPhoto.height}
               />
             </figure>
           </div>
