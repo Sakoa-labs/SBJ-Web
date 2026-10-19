@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
-import { buttonField, textField, titleField } from './pages/shared.ts'
+import { buttonField, stringField, textField, titleField } from './pages/shared.ts'
 
 export const settings = defineType({
   name: 'settings',
@@ -55,6 +55,20 @@ export const settings = defineType({
       type: 'object',
       description: 'Affiché à côté des questions fréquentes, sur toutes les pages qui en ont.',
       fields: [titleField(), textField('text', 'Texte'), buttonField('button')],
+    }),
+    defineField({
+      name: 'footer',
+      title: 'Pied de page',
+      type: 'object',
+      description: 'Les liens du pied de page sont fixes ; seuls ces textes changent.',
+      fields: [
+        stringField('tagline', 'Phrase sous le logo'),
+        stringField('servicesHeading', 'Titre de la colonne « Prestations »'),
+        stringField('learnHeading', 'Titre de la colonne « Apprendre »'),
+        stringField('guidesHeading', 'Titre de la colonne des guides'),
+        stringField('contactHeading', 'Titre de la colonne « Contact »'),
+        stringField('copyright', 'Mention en bas de page', 'Ex. « © 2026 Joie d’Être. Tous droits réservés. »'),
+      ],
     }),
   ],
   preview: { prepare: () => ({ title: 'Coordonnées et horaires' }) },

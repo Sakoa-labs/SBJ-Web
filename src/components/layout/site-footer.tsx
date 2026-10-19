@@ -2,7 +2,7 @@ import type { SVGProps } from 'react'
 import { Navigation, Phone } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
-import { contact, mapsLink } from '#/data/contact'
+import { contact, footer, mapsLink } from '#/data/contact'
 import { cn } from '#/lib/utils'
 import { guides } from '#/data/guides'
 import logoImage from '../../../design/sbj-logo.png'
@@ -17,10 +17,10 @@ type FooterLink = {
 }
 
 // Only links to pages (or to call, or to open the address in Maps), never to a section
-// within one.
+// within one. The column headings are edited in Sanity.
 const footerGroups: ReadonlyArray<{ title: string; links: ReadonlyArray<FooterLink> }> = [
   {
-    title: 'Prestations',
+    title: footer.servicesHeading,
     links: [
       { label: 'Massages', href: '/massages' },
       { label: 'Soins du visage', href: '/soins' },
@@ -28,7 +28,7 @@ const footerGroups: ReadonlyArray<{ title: string; links: ReadonlyArray<FooterLi
     ],
   },
   {
-    title: 'Apprendre',
+    title: footer.learnHeading,
     links: [
       { label: 'Formations', href: '/formation' },
       { label: 'Guides', href: '/guides' },
@@ -36,11 +36,11 @@ const footerGroups: ReadonlyArray<{ title: string; links: ReadonlyArray<FooterLi
     ],
   },
   {
-    title: 'Les guides',
+    title: footer.guidesHeading,
     links: guides.map((guide) => ({ label: guide.title, href: `/guides/${guide.slug}` })),
   },
   {
-    title: 'Contact',
+    title: footer.contactHeading,
     links: [
       { label: 'Nous contacter', href: '/contact' },
       { label: contact.phone, href: contact.phoneHref, icon: Phone },
@@ -124,7 +124,7 @@ export function SiteFooter() {
               />
             </a>
             <p className="mt-5 max-w-[24rem] text-sm leading-7 text-[#fff9ec]/78 sm:text-base">
-              Apprendre, pratiquer et transmettre l’art du bien-être au naturel.
+              {footer.tagline}
             </p>
 
             <div className="mt-7 flex justify-center gap-3" aria-label="Réseaux sociaux">
@@ -198,7 +198,7 @@ export function SiteFooter() {
         </div>
 
         <div data-footer-legal className="mt-14 flex flex-col gap-4 border-t border-[#d4af37]/38 pt-6 text-xs text-[#fff9ec]/65 sm:mt-16 sm:flex-row sm:items-center sm:justify-between sm:text-sm">
-          <p>© 2026 Joie d’Être. Tous droits réservés.</p>
+          <p>{footer.copyright}</p>
           <div className="flex flex-wrap gap-x-7 gap-y-2 sm:justify-end">
             <a href="/mentions-legales" className="transition-colors hover:text-[#e5bd42]">
               Mentions légales

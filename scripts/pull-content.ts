@@ -44,7 +44,8 @@ const query = `{
     name, service, source, verified, text, "avatar": avatar.asset->url
   },
   "settings": *[_id == "settings"][0] {
-    email, phone, addressLines, mapsQuery, openingHours[]{ days, hours }, faqAside{ title, text, button }
+    email, phone, addressLines, mapsQuery, openingHours[]{ days, hours }, faqAside{ title, text, button },
+    footer{ tagline, servicesHeading, learnHeading, guidesHeading, contactHeading, copyright }
   }
 }`
 
@@ -230,6 +231,9 @@ check(
   'Coordonnées',
   'Encadré « Une autre question ? »',
 )
+for (const field of ['tagline', 'servicesHeading', 'learnHeading', 'guidesHeading', 'contactHeading', 'copyright']) {
+  check(text(settings.footer?.[field]), 'Pied de page', field)
+}
 const contact = {
   email: settings.email,
   phone: settings.phone,
@@ -264,6 +268,7 @@ writeFileSync(
       contact,
       openingHours: settings.openingHours,
       faqAside: settings.faqAside,
+      footer: settings.footer,
       faqs,
       pages,
     },
