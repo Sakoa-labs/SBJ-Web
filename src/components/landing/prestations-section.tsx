@@ -1,51 +1,18 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
-import epilationIcon from '#/assets/prestations-icons/epilation.png'
-import facialIcon from '#/assets/prestations-icons/facial.png'
-import massageIcon from '#/assets/prestations-icons/massage.png'
-import massageImage from '../../../design/section prestations/ChatGPT Image 24 août 2026, 16_06_04 (1).png'
-import facialImage from '../../../design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (2).png'
-import epilationImage from '../../../design/section prestations/ChatGPT Image 24 août 2026, 16_06_05 (3).png'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { HomeServicesContent } from '#/data/pages/home'
 import tropicalLeaves from '../../../design/section prestations/ChatGPT Image 24 août 2026, 16_10_12.png'
 import aboutLeaves from '../../../design/section a propos/ChatGPT Image 24 août 2026, 17_04_40.png'
 
-const prestations = [
-  {
-    id: 'massage',
-    title: 'Massages',
-    description: 'Techniques expertes pour relâcher, rééquilibrer et revitaliser.',
-    image: massageImage,
-    imageAlt: 'Femme profitant de la chaleur et du calme avant un massage',
-    icon: massageIcon,
-    href: '/massages',
-    cta: 'Découvrir les massages',
-    imagePosition: 'object-[50%_43%]',
-  },
-  {
-    id: 'soins',
-    title: 'Soins visage',
-    description: 'Soins sur-mesure pour purifier, hydrater et illuminer la peau.',
-    image: facialImage,
-    imageAlt: 'Soin du visage dans une atmosphère tropicale lumineuse',
-    icon: facialIcon,
-    href: '/soins',
-    cta: 'Découvrir les soins',
-    imagePosition: 'object-[50%_44%]',
-  },
-  {
-    id: 'epilation',
-    title: 'Épilation',
-    description: 'Méthodes douces et précises pour une peau nette et soignée.',
-    image: epilationImage,
-    imageAlt: 'Peau soignée dans une lumière naturelle aux ombres tropicales',
-    icon: epilationIcon,
-    href: '/epilation',
-    cta: 'Découvrir l’épilation',
-    imagePosition: 'object-[50%_51%]',
-  },
-]
+// Links and photo framing stay with each card, whatever its place in Sanity.
+const cardLinks = {
+  massage: { href: '/massages', imagePosition: 'object-[50%_43%]' },
+  soins: { href: '/soins', imagePosition: 'object-[50%_44%]' },
+  epilation: { href: '/epilation', imagePosition: 'object-[50%_51%]' },
+} as const
 
-export function PrestationsSection() {
+export function PrestationsSection({ eyebrow, title, text, cards }: HomeServicesContent) {
   return (
     <section
       id="prestations"
@@ -90,46 +57,45 @@ export function PrestationsSection() {
 
       <div className="mx-auto w-full max-w-[100rem] px-5 sm:px-8 xl:px-12">
         <header className="mx-auto max-w-[61rem] text-center">
-          <SectionEyebrow label="Nos prestations" />
+          <SectionEyebrow label={eyebrow} />
 
           <h2
             id="prestations-title"
             className="mx-auto mt-6 text-[clamp(1.6rem,7.4vw,2.2rem)] font-normal leading-[1.16] tracking-[-0.02em] text-[#0d3a2f] sm:text-[clamp(2.75rem,7vw,3.8rem)] sm:leading-[1.14] sm:tracking-[-0.025em] lg:text-[clamp(3.5rem,4.1vw,4.65rem)]"
           >
-            <span className="block">Des prestations pensées</span>
-            <em className="block pb-1 font-normal text-[#d4af37]">avec expertise.</em>
+            <RichTitle text={title} accentClassName="pb-1 text-[#d4af37]" />
           </h2>
 
           <p className="mx-auto mt-6 max-w-[48rem] text-pretty text-base leading-8 text-[#29443c] sm:text-lg">
-            Des soins ciblés, réalisés avec précision et bienveillance pour révéler
-            l’éclat naturel.
+            {text}
           </p>
         </header>
 
         <div className="mt-12 grid gap-12 sm:grid-cols-2 sm:gap-7 lg:mt-14 lg:grid-cols-3 lg:gap-8 xl:gap-10">
-          {prestations.map((prestation, index) => {
+          {cards.map((prestation, index) => {
+            const { href, imagePosition } = cardLinks[prestation.key]
             return (
               <article
-                key={prestation.id}
-                id={prestation.id}
-                className={`group flex scroll-mt-24 flex-col text-center ${index === prestations.length - 1 ? 'sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.875rem)] lg:col-span-1 lg:w-auto' : ''}`}
-                aria-labelledby={`${prestation.id}-title`}
+                key={prestation.key}
+                id={prestation.key}
+                className={`group flex scroll-mt-24 flex-col text-center ${index === cards.length - 1 ? 'sm:col-span-2 sm:mx-auto sm:w-[calc(50%-0.875rem)] lg:col-span-1 lg:w-auto' : ''}`}
+                aria-labelledby={`${prestation.key}-title`}
               >
                 <div className="relative">
                   <div className="aspect-[1.92/1] overflow-hidden bg-[#e8dcc8] shadow-[0_18px_36px_rgba(77,51,22,0.12)]">
                     <img
-                      src={prestation.image}
-                      alt={prestation.imageAlt}
-                      className={`size-full object-cover ${prestation.imagePosition} transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.025]`}
-                      width={1672}
-                      height={941}
+                      src={prestation.photo.src}
+                      alt={prestation.photo.alt}
+                      className={`size-full object-cover ${imagePosition} transition-transform duration-700 ease-out motion-safe:group-hover:scale-[1.025]`}
+                      width={prestation.photo.width}
+                      height={prestation.photo.height}
                       loading="lazy"
                     />
                   </div>
 
                   <div className="absolute left-1/2 top-full flex size-16 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-[#fff9ec] shadow-[0_8px_20px_rgba(91,61,23,0.12)]">
                     <img
-                      src={prestation.icon}
+                      src={prestation.icon.src}
                       alt=""
                       aria-hidden="true"
                       className="size-11 object-contain"
@@ -141,7 +107,7 @@ export function PrestationsSection() {
 
                 <div className="mx-auto mt-12 flex w-full max-w-[23rem] flex-1 flex-col items-center px-2 sm:mt-14">
                   <h3
-                    id={`${prestation.id}-title`}
+                    id={`${prestation.key}-title`}
                     className="text-[2.1rem] font-normal leading-none tracking-[-0.02em] text-[#0d3a2f] lg:text-[2.35rem]"
                   >
                     {prestation.title}
@@ -154,10 +120,10 @@ export function PrestationsSection() {
                     aria-hidden="true"
                   />
                   <EmbossedCta
-                    href={prestation.href}
+                    href={href}
                     className="mt-6 h-11 w-full max-w-[16rem] px-5 text-[0.66rem] tracking-[0.16em]"
                   >
-                    {prestation.cta}
+                    {prestation.button}
                   </EmbossedCta>
                 </div>
               </article>

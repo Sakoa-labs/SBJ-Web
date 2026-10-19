@@ -2,6 +2,7 @@ import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
+import type { ServiceMenuContent } from '#/data/pages/services'
 import { serviceHref, servicesIn } from '#/data/services'
 import frangipanier from '#/assets/decor/frangipanier.png'
 import pierresEmpilees from '#/assets/decor/pierres-empilees.png'
@@ -16,10 +17,10 @@ const items: ReadonlyArray<ServiceMenuItem> = servicesIn('massages').map((servic
   href: serviceHref(service),
 }))
 
-export function MassageMenuSection() {
+export function MassageMenuSection({ eyebrow, title, subtitle, button }: ServiceMenuContent) {
   return (
     <ServiceMenuSection
-      eyebrow="Nos massages"
+      eyebrow={eyebrow}
       decor={
         <>
           <LeafShadow leaf="monstera" className="-right-64 top-[8%] w-[44rem] -rotate-[28deg]" />
@@ -28,8 +29,10 @@ export function MassageMenuSection() {
         </>
       }
       id="carte-des-massages"
-      accent="massages"
+      richTitle={title}
+      subtitle={subtitle}
       items={items}
+      ctaLabel={button}
       imageWidth={1727}
       imageHeight={911}
       imageClassName="aspect-[1.9/1]"

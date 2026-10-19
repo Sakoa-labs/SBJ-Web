@@ -1,30 +1,10 @@
-import kindnessIcon from '#/assets/about-icons/bienveillance.png'
-import lotusIcon from '#/assets/about-icons/exigence.png'
-import transmissionIcon from '#/assets/about-icons/transmission.png'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
-import sabrinaPortrait from '../../../design/section a propos/ChatGPT Image 24 août 2026, 00_23_41 1.png'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { HomeAboutContent } from '#/data/pages/home'
 import aboutLeavesRight from '../../../design/section a propos/ChatGPT Image 24 août 2026, 17_04_40.png'
 import guidesLeavesLeft from '../../../design/section guides/ChatGPT Image 24 août 2026, 15_55_27.png'
 
-const values = [
-  {
-    title: 'Transmission',
-    description: 'Partager un savoir-faire précieux pour faire grandir chaque praticien.ne.',
-    icon: transmissionIcon,
-  },
-  {
-    title: 'Exigence',
-    description: 'Des contenus rigoureux et actualisés pour une pratique professionnelle.',
-    icon: lotusIcon,
-  },
-  {
-    title: 'Bienveillance',
-    description: 'Une pédagogie à l’écoute, centrée sur l’humain et le respect.',
-    icon: kindnessIcon,
-  },
-]
-
-export function AboutSection() {
+export function AboutSection({ eyebrow, title, text, values, photo }: HomeAboutContent) {
   return (
     <section
       id="a-propos"
@@ -55,33 +35,27 @@ export function AboutSection() {
       <div className="relative z-10 grid w-full items-stretch xl:h-[53rem] xl:grid-cols-[1.04fr_0.96fr]">
         <div className="relative flex h-full min-h-full self-stretch items-center px-5 py-20 text-center sm:px-8 sm:py-24 xl:px-16 xl:py-24 xl:text-left 2xl:pl-32 2xl:pr-20">
           <div className="relative z-10 mx-auto w-full max-w-[47rem] xl:mx-0">
-            <SectionEyebrow label="À propos" className="w-full max-w-[46rem]" />
+            <SectionEyebrow label={eyebrow} className="w-full max-w-[46rem]" />
 
             <h2
               id="about-title"
               className="mx-auto mt-7 max-w-[46rem] text-balance text-[clamp(1.6rem,7.6vw,2.4rem)] font-normal leading-[1.14] tracking-[-0.02em] text-[#0d3a2f] sm:text-[clamp(2.6rem,6vw,4.5rem)] sm:leading-[1.12] sm:tracking-[-0.025em] xl:mx-0 xl:text-[clamp(3rem,3.6vw,4.5rem)]"
             >
-              Une approche humaine,
-                <span className="block">
-                exigeante et{' '}
-                <em className="pb-1 font-normal text-[#d4af37]">passionnée</em>
-              </span>
+              <RichTitle text={title} accentClassName="pb-1 text-[#d4af37]" />
             </h2>
 
             <p className="mx-auto mt-8 max-w-[42rem] text-pretty text-base leading-8 text-[#29443c] sm:text-lg sm:leading-8 xl:mx-0">
-              Sabrina transmet son savoir-faire à travers des formations, des ateliers
-              et des ressources conçues avec soin. Son objectif : allier maîtrise
-              technique, sens du geste et bienveillance.
+              {text}
             </p>
 
             <div className="mt-9 grid gap-3 sm:grid-cols-3 sm:gap-4">
               {values.map((value) => (
                 <article
-                  key={value.title}
+                  key={value._key}
                   className="flex min-h-48 flex-col items-center justify-start rounded-xl border border-[#b98232]/25 bg-[#fffaf0]/48 px-4 py-6 text-center shadow-[inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-[1px]"
                 >
                   <img
-                    src={value.icon}
+                    src={value.icon.src}
                     alt=""
                     aria-hidden="true"
                     className="size-16 object-contain"
@@ -107,11 +81,11 @@ export function AboutSection() {
           className="relative h-full min-h-[32rem] self-stretch scroll-mt-24 overflow-hidden bg-[#fff9ed] sm:min-h-[40rem] xl:min-h-0"
         >
           <img
-            src={sabrinaPortrait}
-            alt="Sabrina dans son espace de soin"
+            src={photo.src}
+            alt={photo.alt}
             className="absolute inset-0 size-full object-cover object-[50%_32%] lg:object-[50%_34%]"
-            width={1122}
-            height={1402}
+            width={photo.width}
+            height={photo.height}
             loading="lazy"
           />
           <div

@@ -1,69 +1,37 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { GoldDivider, SectionEyebrow } from '#/components/landing/section-ornaments'
-import flexibleAccessIcon from '#/assets/formation-icons/flexible-access.png'
-import guidedBySabrinaIcon from '#/assets/formation-icons/guided-by-sabrina.png'
-import inPersonWorkshopIcon from '#/assets/formation-icons/in-person-workshop.png'
-import massageWellnessIcon from '#/assets/formation-icons/massage-wellness.png'
-import practicalApproachIcon from '#/assets/formation-icons/practical-approach.png'
-import premiumElearningIcon from '#/assets/formation-icons/premium-elearning.png'
-import formationPhoto from '../../../design/section formation/ChatGPT Image 24 août 2026, 15_27_21.png'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { Photo } from '#/data/pages/types'
+import type { HomeFormationContent } from '#/data/pages/home'
 import leavesLeft from '../../../design/section formation/ChatGPT Image 24 août 2026, 15_30_12.png'
 import leavesRight from '../../../design/section formation/ChatGPT Image 24 août 2026, 15_41_48.png'
 
-const benefits = [
-  {
-    title: 'Guidée par Sabrina',
-    description: 'Une expertise et une pédagogie au service de votre progression.',
-    icon: guidedBySabrinaIcon,
-  },
-  {
-    title: 'Accès flexible',
-    description: 'En présentiel ou en ligne, à votre rythme.',
-    icon: flexibleAccessIcon,
-  },
-  {
-    title: 'Approche concrète',
-    description: 'Des méthodes éprouvées, ancrées dans la pratique.',
-    icon: practicalApproachIcon,
-  },
-]
-
-const programs = [
-  {
-    title: 'Formation massage bien-être',
-    description: 'Protocoles, posture, pratique encadrée.',
-    icon: massageWellnessIcon,
-  },
-  {
-    title: 'Ateliers en présentiel',
-    description: 'Petits groupes, démonstrations et mise en pratique.',
-    icon: inPersonWorkshopIcon,
-  },
-  {
-    title: 'E-learning premium',
-    description: 'Modules vidéo, supports PDF et accès flexible.',
-    icon: premiumElearningIcon,
-  },
-]
-
-function FormationVisual({ className = '' }: { className?: string }) {
+function FormationVisual({ photo, className = '' }: { photo: Photo; className?: string }) {
   return (
     <figure
       className={`overflow-hidden rounded-[1.75rem] border border-[#d4af37]/60 bg-[#0b3d33] shadow-[0_24px_70px_rgba(2,20,16,0.34)] ${className}`}
     >
       <img
-        src={formationPhoto}
-        alt="Sabrina transmettant une technique de massage à un groupe en formation"
+        src={photo.src}
+        alt={photo.alt}
         className="aspect-[16/9] size-full object-cover"
-        width={1672}
-        height={941}
+        width={photo.width}
+        height={photo.height}
         loading="lazy"
       />
     </figure>
   )
 }
 
-export function FormationSection() {
+export function FormationSection({
+  eyebrow,
+  title,
+  text,
+  button,
+  photo,
+  benefits,
+  programs,
+}: HomeFormationContent) {
   return (
     <section
       id="formation"
@@ -94,42 +62,35 @@ export function FormationSection() {
       <div className="mx-auto grid w-full max-w-[98rem] gap-14 px-5 sm:px-8 lg:grid-cols-[0.92fr_1.08fr] lg:gap-12 xl:gap-16 xl:px-12">
         <div className="flex flex-col justify-between">
           <div className="mx-auto max-w-[42rem] text-center lg:pt-6">
-            <SectionEyebrow label="Nos formations" className="mb-7 sm:mb-8" />
+            <SectionEyebrow label={eyebrow} className="mb-7 sm:mb-8" />
 
-            <FormationVisual className="mx-auto mb-8 w-full max-w-[42rem] lg:hidden" />
+            <FormationVisual photo={photo} className="mx-auto mb-8 w-full max-w-[42rem] lg:hidden" />
 
             <h2
               id="formation-title"
               className="mx-auto w-full text-[clamp(1.3rem,7vw,2rem)] font-normal leading-[1.16] tracking-[-0.008em] text-[#fff5df] sm:text-[clamp(2rem,5vw,2.55rem)] lg:text-[clamp(2.15rem,3vw,3.25rem)]"
             >
-              <span className="block whitespace-nowrap">Des parcours pensés</span>
-              <span className="block whitespace-nowrap">
-                pour <em className="font-normal text-[#e5bd42]">apprendre, pratiquer</em>
-              </span>
-              <span className="block whitespace-nowrap">
-                et <em className="font-normal text-[#e5bd42]">transmettre</em>
-              </span>
+              <RichTitle text={title} lineClassName="whitespace-nowrap" accentClassName="text-[#e5bd42]" />
             </h2>
 
             <p className="mx-auto mt-7 max-w-[39rem] text-pretty text-base leading-8 text-[#fff9ec]/78 lg:text-lg">
-              Des formations structurées pour développer votre geste, votre posture
-              et votre confiance, en présentiel comme en ligne.
+              {text}
             </p>
 
             <EmbossedCta href="/formation" className="mt-9">
-              Découvrir le programme
+              {button}
             </EmbossedCta>
           </div>
 
           <div className="mt-14 grid gap-7 sm:grid-cols-3 sm:gap-4 lg:mt-18 lg:gap-0">
-            {benefits.map(({ title, description, icon }, index) => (
+            {benefits.map(({ _key, title, description, icon }, index) => (
               <div
-                key={title}
+                key={_key}
                 className={`grid grid-cols-[auto_1fr] items-start gap-x-4 border-b border-[#d4af37]/25 pb-5 text-left sm:block sm:border-b-0 sm:pb-0 sm:text-center ${index > 0 ? 'lg:border-l lg:border-[#d4af37]/35 lg:pl-5 xl:pl-7' : ''} ${index < benefits.length - 1 ? 'lg:pr-5 xl:pr-7' : ''}`}
               >
                 <span className="row-span-2 flex size-14 items-center justify-center rounded-full border border-[#d4af37]/70 sm:mx-auto sm:mb-4">
                   <img
-                    src={icon}
+                    src={icon.src}
                     alt=""
                     aria-hidden="true"
                     className="size-11 object-contain"
@@ -148,17 +109,17 @@ export function FormationSection() {
         </div>
 
         <div className="space-y-5 lg:space-y-6">
-          <FormationVisual className="hidden lg:block" />
+          <FormationVisual photo={photo} className="hidden lg:block" />
 
           <div id="programme-formations" className="mx-auto grid w-full max-w-xl gap-4 md:max-w-none md:grid-cols-3 lg:gap-3 xl:gap-4">
-            {programs.map(({ title, description, icon }) => (
+            {programs.map(({ _key, title, description, icon }) => (
               <article
-                key={title}
+                key={_key}
                 className="formation-card relative flex items-center gap-5 rounded-[1.5rem] border border-[#d4af37]/70 bg-[#0a382f]/95 px-5 py-5 text-left md:block md:min-h-[20rem] md:rounded-[1.75rem] md:py-8 md:text-center md:bg-[#0a382f]/82 md:px-5 lg:min-h-[21rem] xl:px-7"
               >
                 <div className="flex size-16 shrink-0 items-center justify-center rounded-full border border-[#d4af37]/75 md:mx-auto md:size-19">
                   <img
-                    src={icon}
+                    src={icon.src}
                     alt=""
                     aria-hidden="true"
                     className="size-11 object-contain md:size-14"

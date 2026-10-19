@@ -1,0 +1,3 @@
+# Separate workspace from the website, so the site's builds do not install the Studio.
+allowBuilds:
+  esbuild: true

@@ -12,3 +12,9 @@ dist-ssr
 __unconfig*
 todos.json
 .pnpm-store
+
+# Downloaded from Sanity by scripts/pull-content.ts
+src/content
+
+# Agent worktrees
+.claude/worktrees

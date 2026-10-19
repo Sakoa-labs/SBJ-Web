@@ -7,6 +7,7 @@ import { DecorObject } from '#/components/services/decor-object'
 import { LeafShadow } from '#/components/services/leaf-shadow'
 import { ServiceMenuSection } from '#/components/services/service-menu-section'
 import type { ServiceMenuItem } from '#/components/services/service-menu-section'
+import { serviceButtons, serviceDetailPage } from '#/data/pages/services'
 import {
   categoryInfo,
   formatDuration,
@@ -93,9 +94,9 @@ export function ServiceDetailPage({ service }: { service: Service }) {
       {related.length > 0 && (
         <ServiceMenuSection
           id="vous-aimerez-aussi"
-          title="Vous aimerez"
-          accent="aussi"
-          eyebrow="Suggestions"
+          richTitle={serviceDetailPage.related.title}
+          eyebrow={serviceDetailPage.related.eyebrow}
+          ctaLabel={serviceDetailPage.related.button}
           compact
           decor={relatedDecor[service.category]}
           items={related}
@@ -110,6 +111,8 @@ function ServiceDetail({ service }: { service: Service }) {
   const [selectedIndex, setSelectedIndex] = useState(0)
   const selected = service.variants[selectedIndex]
   const category = categoryInfo[service.category]
+  const buttons = serviceButtons(service.category)
+  const labels = serviceDetailPage
   const hasOptions = service.variants.length > 1
   const finalPrice = selected.promoPrice ?? selected.price
 
@@ -189,15 +192,16 @@ function ServiceDetail({ service }: { service: Service }) {
           </p>
 
           <dl className="mt-4 border-t border-[#d4af37]/35">
-            <InfoRow icon={durationIcon} label="Durée" value={formatDuration(selected.minutes)} />
-            <InfoRow icon={paymentIcon} label="Paiement" value="Sur place ou en ligne" />
-            <InfoRow icon={cancellationIcon} label="Annulation" value="Gratuite jusqu’à 24 h avant" />
+            <InfoRow icon={durationIcon} label={labels.durationLabel} value={formatDuration(selected.minutes)} />
+            <InfoRow icon={paymentIcon} label={labels.paymentLabel} value={labels.paymentValue} />
+            <InfoRow icon={cancellationIcon} label={labels.cancellationLabel} value={labels.cancellationValue} />
           </dl>
 
           <div className="mt-5 overflow-hidden rounded-md border border-[#d4af37]/70 bg-[#fffdf8] shadow-[0_18px_40px_rgba(77,51,22,0.08)]">
             {service.promotion && (
               <p className="bg-[#0d3a2f] px-5 py-2.5 text-center text-xs font-semibold uppercase tracking-[0.24em] text-[#e5bd42]">
-                Offre du moment · {service.promotion}
+                {`${labels.offerLabel} · `}
+                {service.promotion}
               </p>
             )}
 
@@ -205,7 +209,7 @@ function ServiceDetail({ service }: { service: Service }) {
               {hasOptions && (
                 <fieldset>
                   <legend className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#40574f]">
-                    Choisissez votre formule
+                    {labels.optionsLabel}
                   </legend>
                   <div className="grid gap-2 sm:grid-cols-2">
                     {service.variants.map((option, index) => {
@@ -260,10 +264,10 @@ function ServiceDetail({ service }: { service: Service }) {
                   tone="gold"
                   className="w-full"
                 >
-                  {category.bookLabel}
+                  {buttons.book}
                 </EmbossedCta>
                 <EmbossedCta href="#offrir" className="w-full">
-                  {category.giftLabel}
+                  {buttons.gift}
                 </EmbossedCta>
               </div>
             </div>

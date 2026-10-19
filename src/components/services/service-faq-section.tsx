@@ -24,8 +24,6 @@ export function ServiceFaqSection({
     imageAlt: string
     imageWidth: number
     imageHeight: number
-    title?: ReactNode
-    text?: string
   }
 }) {
   return (

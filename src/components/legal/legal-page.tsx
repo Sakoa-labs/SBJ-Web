@@ -1,76 +1,73 @@
-import type { ReactNode } from 'react'
+import { PortableText } from '@portabletext/react'
+import type { PortableTextComponents } from '@portabletext/react'
 
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
 import { SiteHeader } from '#/components/layout/site-header'
 import { LeafShadow } from '#/components/services/leaf-shadow'
+import { RichTitle } from '#/components/ui/rich-text'
 import { contact } from '#/data/contact'
+import type { LegalPageContent, LegalSection } from '#/data/pages/contact'
 
-// A run of text, or a link inside it (email, phone, external page).
-export type LegalInline = string | { label: string; href: string }
-type LegalText = string | ReadonlyArray<LegalInline>
+const linkClassName =
+  'break-words text-[#9a6d2c] underline decoration-[#d4af37]/50 underline-offset-4 transition-colors hover:text-[#0d3a2f] hover:decoration-[#d4af37]'
 
-export type LegalBlock =
-  | { type: 'p'; text: LegalText }
-  | { type: 'h3'; text: string }
-  | { type: 'list'; items: ReadonlyArray<LegalText> }
-
-export type LegalSection = {
-  id: string
-  title: string
-  blocks: ReadonlyArray<LegalBlock>
-}
-
-function renderText(text: LegalText): ReactNode {
-  if (typeof text === 'string') return text
-  return text.map((part, index) =>
-    typeof part === 'string' ? (
-      part
-    ) : (
-      <a
-        key={index}
-        href={part.href}
-        className="break-words text-[#9a6d2c] underline decoration-[#d4af37]/50 underline-offset-4 transition-colors hover:text-[#0d3a2f] hover:decoration-[#d4af37]"
-        {...(part.href.startsWith('http') && { target: '_blank', rel: 'noreferrer' })}
-      >
-        {part.label}
-      </a>
+// The legal texts are written in the Studio. Email, phone and address are inserted as
+// « Coordonnée » elements, so they always match the contact details.
+const legalComponents: PortableTextComponents = {
+  block: {
+    normal: ({ children }) => <p>{children}</p>,
+    h3: ({ children }) => (
+      <h3 className="pt-3 font-sans text-base font-semibold text-[#0d3a2f] sm:text-[1.05rem]">{children}</h3>
     ),
-  )
-}
-
-function LegalBlockView({ block }: { block: LegalBlock }) {
-  if (block.type === 'h3') {
-    return (
-      <h3 className="pt-3 font-sans text-base font-semibold text-[#0d3a2f] sm:text-[1.05rem]">
-        {block.text}
-      </h3>
-    )
-  }
-  if (block.type === 'list') {
-    return (
-      <ul className="space-y-2.5">
-        {block.items.map((item, index) => (
-          <li key={index} className="flex gap-3.5">
-            <span
-              className="mt-[0.7rem] size-1.5 shrink-0 rotate-45 bg-[#d4af37]"
-              aria-hidden="true"
-            />
-            <span>{renderText(item)}</span>
-          </li>
-        ))}
-      </ul>
-    )
-  }
-  return <p>{renderText(block.text)}</p>
+  },
+  list: {
+    bullet: ({ children }) => <ul className="space-y-2.5">{children}</ul>,
+  },
+  listItem: {
+    bullet: ({ children }) => (
+      <li className="flex gap-3.5">
+        <span className="mt-[0.7rem] size-1.5 shrink-0 rotate-45 bg-[#d4af37]" aria-hidden="true" />
+        <span>{children}</span>
+      </li>
+    ),
+  },
+  marks: {
+    link: ({ value, children }) => {
+      const href: string = value?.href ?? ''
+      return (
+        <a
+          href={href}
+          className={linkClassName}
+          {...(href.startsWith('http') && { target: '_blank', rel: 'noreferrer' })}
+        >
+          {children}
+        </a>
+      )
+    },
+  },
+  types: {
+    contactDetail: ({ value }: { value: { detail: 'email' | 'phone' | 'address' } }) => {
+      if (value.detail === 'address') return <>{contact.address}</>
+      const link =
+        value.detail === 'email'
+          ? { href: `mailto:${contact.email}`, label: contact.email }
+          : { href: contact.phoneHref, label: contact.phone }
+      return (
+        <a href={link.href} className={linkClassName}>
+          {link.label}
+        </a>
+      )
+    },
+  },
 }
 
 function TableOfContents({ sections }: { sections: ReadonlyArray<LegalSection> }) {
   return (
     <ol className="space-y-1">
       {sections.map((section, index) => (
-        <li key={section.id}>
+        <li key={section._key}>
           <a
-            href={`#${section.id}`}
+            href={`#${section.anchor.current}`}
             className="flex gap-3 rounded-sm py-1.5 text-sm leading-5 text-[#355149] transition-colors hover:text-[#9a6d2c]"
           >
             <span className="w-5 shrink-0 font-heading text-[#c09027]">
@@ -86,19 +83,7 @@ function TableOfContents({ sections }: { sections: ReadonlyArray<LegalSection> }
 
 // Shared layout of the legal pages: a cream title band, then the text with a sticky
 // table of contents on desktop (folded into a "Sommaire" disclosure on mobile).
-export function LegalPage({
-  title,
-  accent,
-  intro,
-  sections,
-  contactTitle,
-}: {
-  title: string
-  accent: string
-  intro: ReactNode
-  sections: ReadonlyArray<LegalSection>
-  contactTitle: string
-}) {
+export function LegalPage({ eyebrow, title, intro, sections, contactTitle, contactText }: LegalPageContent) {
   return (
     <main className="overflow-x-clip bg-background">
       <SiteHeader onLight />
@@ -114,13 +99,12 @@ export function LegalPage({
         <LeafShadow leaf="monstera" className="-right-56 -top-48 w-[46rem] -rotate-[24deg]" />
 
         <div className="mx-auto w-full max-w-[56rem] px-5 text-center sm:px-8">
-          <SectionEyebrow label="Informations légales" />
+          <SectionEyebrow label={eyebrow} />
           <h1
             id="legal-title"
             className="mt-5 text-[clamp(2.4rem,10vw,3.2rem)] font-normal leading-[1.06] tracking-[-0.025em] sm:text-[clamp(3.2rem,6vw,4.6rem)]"
           >
-            {title}{' '}
-            <em className="inline-block pb-1 font-normal text-[#c09027]">{accent}</em>
+            <RichTitle text={title} accentClassName="inline-block pb-1 text-[#c09027]" />
           </h1>
           <p className="mx-auto mt-6 max-w-[40rem] text-pretty text-base leading-7 text-[#355149] sm:text-lg sm:leading-8">
             {intro}
@@ -156,36 +140,37 @@ export function LegalPage({
           </aside>
 
           <article className="max-w-[46rem]">
-            {sections.map((section, index) => (
-              <section
-                key={section.id}
-                id={section.id}
-                className="scroll-mt-24 border-b border-[#d4af37]/25 py-9 first:pt-0 last:border-b-0 sm:scroll-mt-28 sm:py-11"
-                aria-labelledby={`${section.id}-title`}
-              >
-                <h2
-                  id={`${section.id}-title`}
-                  className="flex items-baseline gap-4 text-[1.65rem] font-normal leading-tight tracking-[-0.015em] sm:text-[2rem]"
+            {sections.map((section, index) => {
+              const id = section.anchor.current
+              return (
+                <section
+                  key={section._key}
+                  id={id}
+                  className="scroll-mt-24 border-b border-[#d4af37]/25 py-9 first:pt-0 last:border-b-0 sm:scroll-mt-28 sm:py-11"
+                  aria-labelledby={`${id}-title`}
                 >
-                  <span className="font-heading text-[1.4rem] text-[#c09027] sm:text-[1.6rem]">
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
-                  {section.title}
-                </h2>
-                <div className="mt-5 space-y-4 text-pretty text-[0.97rem] leading-7 text-[#355149] sm:text-base sm:leading-[1.85rem]">
-                  {section.blocks.map((block, blockIndex) => (
-                    <LegalBlockView key={blockIndex} block={block} />
-                  ))}
-                </div>
-              </section>
-            ))}
+                  <h2
+                    id={`${id}-title`}
+                    className="flex items-baseline gap-4 text-[1.65rem] font-normal leading-tight tracking-[-0.015em] sm:text-[2rem]"
+                  >
+                    <span className="font-heading text-[1.4rem] text-[#c09027] sm:text-[1.6rem]">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    {section.title}
+                  </h2>
+                  <div className="mt-5 space-y-4 text-pretty text-[0.97rem] leading-7 text-[#355149] sm:text-base sm:leading-[1.85rem]">
+                    <PortableText value={section.body} components={legalComponents} />
+                  </div>
+                </section>
+              )
+            })}
 
             <div className="mt-6 rounded-sm bg-[#062b23] px-6 py-8 text-center text-[#fff9ec] sm:px-10 sm:py-10">
               <p className="font-heading text-[1.6rem] leading-tight text-[#fff5df] sm:text-[1.9rem]">
                 {contactTitle}
               </p>
               <p className="mt-3 text-sm leading-6 text-[#fff9ec]/75 sm:text-base">
-                Sabrina vous répond par email ou par téléphone.
+                {contactText}
               </p>
               <div className="mt-6 flex flex-col items-center justify-center gap-3 text-sm sm:flex-row sm:gap-8 sm:text-base">
                 <a

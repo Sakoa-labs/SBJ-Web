@@ -1,7 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 import { LegalPage } from '#/components/legal/legal-page'
-import { termsSections } from '#/components/legal/terms-content'
+import { termsPage } from '#/data/pages/contact'
 
 export const Route = createFileRoute('/conditions-generales')({
   head: () => ({
@@ -18,13 +18,5 @@ export const Route = createFileRoute('/conditions-generales')({
 })
 
 function ConditionsGenerales() {
-  return (
-    <LegalPage
-      title="Conditions générales"
-      accent="de vente"
-      intro="Les règles qui encadrent vos réservations de massages et de soins, vos formations et vos achats sur le site."
-      sections={termsSections}
-      contactTitle="Une question sur une commande ?"
-    />
-  )
+  return <LegalPage {...termsPage} />
 }
