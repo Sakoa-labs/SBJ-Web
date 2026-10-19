@@ -5,6 +5,7 @@ import { tanstackStart } from '@tanstack/react-start/plugin/vite'
 
 import viteReact from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import { imagetools } from 'vite-imagetools'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
@@ -15,6 +16,19 @@ const config = defineConfig({
       consolePiping: { enabled: false },
     }),
     tailwindcss(),
+    // Every PNG or JPEG imported by the code (decors, icons, logo) is converted to WebP and
+    // never wider than it is displayed: the sources stay untouched in design/ and src/assets.
+    // Files in public/ (favicons, social preview) are left as they are.
+    imagetools({
+      include: '**/*.{png,jpg,jpeg}',
+      defaultDirectives: (url) =>
+        new URLSearchParams({
+          format: 'webp',
+          quality: '80',
+          // The logo is shown at most 18rem wide; 640 px stays sharp on high-density screens.
+          w: url.pathname.includes('sbj-logo') ? '640' : '1280',
+        }),
+    }),
     tanstackStart({
       // Static hosting (Netlify for the preview, o2switch later): every page is rendered to
       // HTML at build time, following the site's own links from the home page.
