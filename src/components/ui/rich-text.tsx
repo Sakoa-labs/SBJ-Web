@@ -66,7 +66,9 @@ export function WideScreenBreaks({ text }: { text: string }) {
         .split('\n')
         .map((line, index) => (
           <Fragment key={index}>
+            {/* The space keeps the words apart on phones, where the break is hidden. */}
             {index > 0 && <br className="hidden sm:block" />}
+            {index > 0 && ' '}
             {line.trim()}
           </Fragment>
         ))}
