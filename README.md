@@ -55,7 +55,8 @@ pnpm deploy   # publier le Studio sur joiedetre.sanity.studio
 - `src/components/landing/` : sections de l'accueil, dont des briques réutilisées ailleurs (FAQ, CTA final, boutons).
 - `src/components/services/` : hero, carte et FAQ partagés par les pages Massages, Soins et Épilation.
 - `src/components/{massage,soins,epilation}/` : contenu propre à chaque page.
-- `src/assets/` : icônes et objets décoratifs détourés.
+- `src/assets/` : icônes et objets décoratifs détourés. Toute image PNG ou JPEG importée dans le code
+  est convertie en WebP au build (`vite-imagetools`, voir `vite.config.ts`) : on garde les originaux.
 - `design/` : maquettes, photos et décors sources.
 - `src/styles.css` : tokens du design system, boutons, animations.
 
