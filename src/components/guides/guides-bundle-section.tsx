@@ -1,9 +1,11 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
+import { RichTitle } from '#/components/ui/rich-text'
 import { formatEuros, guidesBundle } from '#/data/guides'
-import bundleImage from '../../../design/guides/coffret.png'
+import type { GuidesBundleSectionContent } from '#/data/pages/learning'
 import palmLeaf from '../../../design/massage/decorations/palme-faq-gauche.png'
 
-export function GuidesBundleSection() {
+// The photo and prices come from the bundle itself (Guides › Coffret des guides).
+export function GuidesBundleSection({ title, text, button }: GuidesBundleSectionContent) {
   return (
     <section
       id="coffret"
@@ -13,8 +15,8 @@ export function GuidesBundleSection() {
       {/* Below lg the photo sits above the text instead of behind it. */}
       <div className="relative aspect-[4/3] sm:aspect-[16/9] lg:absolute lg:inset-0 lg:-z-10 lg:aspect-auto">
         <img
-          src={bundleImage}
-          alt="Les trois guides réunis dans un coffret vert, entre papier de soie doré, bougies et fleurs de frangipanier"
+          src={guidesBundle.photo.src}
+          alt={guidesBundle.photo.alt}
           className="size-full object-cover object-[78%_center] lg:object-[70%_center]"
           width={1672}
           height={941}
@@ -43,11 +45,10 @@ export function GuidesBundleSection() {
             id="coffret-title"
             className="text-[clamp(2.4rem,10vw,3.1rem)] font-normal leading-[1.04] tracking-[-0.025em] text-[#fff5df] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
           >
-            <span className="block">Les trois guides,</span>
-            <em className="block pb-1 font-normal text-[#e5bd42]">réunis</em>
+            <RichTitle text={title} accentClassName="pb-1 text-[#e5bd42]" />
           </h2>
           <p className="mt-5 max-w-[28rem] text-pretty text-base leading-7 text-[#fff9ec]/90 sm:text-lg sm:leading-8">
-            La collection complète en un seul achat, à garder pour vous ou à offrir.
+            {text}
           </p>
 
           <p className="mt-7 flex items-baseline gap-4">
@@ -61,7 +62,7 @@ export function GuidesBundleSection() {
           </p>
 
           <EmbossedCta href={guidesBundle.href} tone="gold" className="mt-9 sm:min-w-72">
-            Choisir le coffret
+            {button}
           </EmbossedCta>
         </div>
       </div>

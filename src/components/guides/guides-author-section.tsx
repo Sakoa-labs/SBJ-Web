@@ -4,10 +4,10 @@ import { LeafShadow } from '#/components/services/leaf-shadow'
 import bougieLaiton from '#/assets/decor/bougie-laiton.png'
 import serviettesRoulees from '#/assets/decor/serviettes-roulees.png'
 import signature from '#/assets/guides/signature-sabrina.png'
-import sabrinaPortrait from '../../../design/guides/sabrina.png'
+import type { GuidesAuthorContent } from '#/data/pages/learning'
 import foliageRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
 
-export function GuidesAuthorSection() {
+export function GuidesAuthorSection({ quote, caption, button, photo }: GuidesAuthorContent) {
   return (
     <section
       id="auteure"
@@ -44,8 +44,7 @@ export function GuidesAuthorSection() {
                 “
               </span>
               <p className="font-heading text-[clamp(1.75rem,6vw,2.4rem)] italic leading-[1.18] tracking-[-0.015em] sm:text-[clamp(2.4rem,4.4vw,3.4rem)] lg:text-[clamp(2.4rem,3.4vw,3.6rem)]">
-                J’ai écrit ces guides pour que vous retrouviez chez vous les gestes que je
-                transmets en cabine et en formation.
+                {quote}
               </p>
             </blockquote>
             <figcaption className="mt-6 pl-14 sm:pl-20">
@@ -58,23 +57,23 @@ export function GuidesAuthorSection() {
                 loading="lazy"
               />
               <p className="mt-3 text-sm text-[#355149] sm:text-base">
-                Praticienne bien-être et formatrice à La Réunion
+                {caption}
               </p>
             </figcaption>
           </figure>
           <EmbossedCta href="/formation" className="ml-14 mt-8 sm:ml-20 sm:min-w-72">
-            Découvrir les formations
+            {button}
           </EmbossedCta>
         </div>
 
         <figure className="mx-auto w-full max-w-[30rem] lg:max-w-none">
           <div className="overflow-hidden rounded-t-full border-[3px] border-[#d4af37] bg-[#e8dcc8] shadow-[0_28px_60px_rgba(77,51,22,0.16)]">
             <img
-              src={sabrinaPortrait}
-              alt="Sabrina, souriante, dans son espace de soin"
+              src={photo.src}
+              alt={photo.alt}
               className="aspect-[3/4] size-full object-cover object-top"
-              width={1086}
-              height={1448}
+              width={photo.width}
+              height={photo.height}
               loading="lazy"
             />
           </div>
