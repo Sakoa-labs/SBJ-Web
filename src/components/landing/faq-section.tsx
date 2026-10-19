@@ -9,14 +9,16 @@ import {
 } from '#/components/landing/section-ornaments'
 import { RichTitle } from '#/components/ui/rich-text'
 import { faqAside } from '#/data/contact'
-import type { FaqQuestion } from '#/data/faq'
 import type { HomeFaqContent } from '#/data/pages/home'
 import { cn } from '#/lib/utils'
 import lotusOrnament from '#/assets/formation-icons/massage-wellness.png'
 import foliageLeft from '../../../design/section faq/ChatGPT Image 24 août 2026, 22_02_30.png'
 import foliageRight from '../../../design/section faq/ChatGPT Image 24 août 2026, 22_10_40.png'
 
-export type { FaqQuestion }
+export type FaqQuestion = {
+  question: string
+  answer: string
+}
 
 export function FaqSection({ title, intro, questions, photo }: HomeFaqContent) {
   return (

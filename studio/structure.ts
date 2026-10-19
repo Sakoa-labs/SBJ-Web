@@ -2,15 +2,7 @@ import type { StructureResolver } from 'sanity/structure'
 
 import { pageDocuments } from './schemaTypes/pages/index.ts'
 
-// Pages still using the former « page » type, until they move to their own document type.
-const legacyPages = [
-  { id: 'page-massages', title: 'Massages', schemaType: 'page' },
-  { id: 'page-soins', title: 'Soins visage', schemaType: 'page' },
-  { id: 'page-epilation', title: 'Épilation', schemaType: 'page' },
-  { id: 'page-formation', title: 'Formation', schemaType: 'page' },
-].filter(({ id }) => !pageDocuments.some((document) => document.id === id))
-
-export const pages = [...pageDocuments, ...legacyPages]
+export const pages = pageDocuments
 
 const servicesIn = (S: Parameters<StructureResolver>[0], title: string, filter: string) =>
   S.listItem()

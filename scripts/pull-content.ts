@@ -118,11 +118,6 @@ const pages: Record<string, any> = Object.fromEntries(
   }),
 )
 
-// Kept while the FAQ sections move into their page documents.
-const faqs = Object.fromEntries(
-  ['home', 'massages', 'soins', 'epilation', 'formation'].map((key) => [key, pages[key]?.faq ?? []]),
-)
-
 const galleries = Object.fromEntries(
   ['massages', 'soins', 'epilation'].map((key) => {
     const where = `Page ${pages[key]?.title ?? key}`
@@ -269,7 +264,6 @@ writeFileSync(
       openingHours: settings.openingHours,
       faqAside: settings.faqAside,
       footer: settings.footer,
-      faqs,
       pages,
     },
     null,
