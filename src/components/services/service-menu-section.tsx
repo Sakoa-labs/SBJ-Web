@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SectionEyebrow } from '#/components/landing/section-ornaments'
+import { RichTitle } from '#/components/ui/rich-text'
 import { cn } from '#/lib/utils'
 import foliageTopLeft from '../../../design/massage/decorations/feuillage-haut-gauche.png'
 import foliageTopRight from '../../../design/massage/decorations/feuillage-haut-droit.png'
@@ -26,6 +27,7 @@ export function ServiceMenuSection({
   eyebrow,
   title = 'La carte des',
   accent,
+  richTitle,
   subtitle,
   items,
   imageWidth,
@@ -40,7 +42,9 @@ export function ServiceMenuSection({
   // Small label under the lotus ornament, as on the FAQ.
   eyebrow: string
   title?: string
-  accent: string
+  accent?: string
+  // Title edited in Sanity, with its gold words between asterisks; replaces title and accent.
+  richTitle?: string
   subtitle?: string
   items: ReadonlyArray<ServiceMenuItem>
   imageWidth: number
@@ -128,8 +132,14 @@ export function ServiceMenuSection({
           id={`${id}-title`}
           className="mt-5 text-center text-[clamp(2.6rem,10vw,3.2rem)] font-normal leading-[1.08] tracking-[-0.025em] text-[#0d3a2f] sm:text-[clamp(3.4rem,6vw,4.4rem)] lg:text-[clamp(3.6rem,4.4vw,4.75rem)]"
         >
-          {title}{' '}
-          <em className="inline-block pb-1 font-normal text-[#d4af37]">{accent}</em>
+          {richTitle ? (
+            <RichTitle text={richTitle} accentClassName="inline-block pb-1 text-[#d4af37]" />
+          ) : (
+            <>
+              {title}{' '}
+              <em className="inline-block pb-1 font-normal text-[#d4af37]">{accent}</em>
+            </>
+          )}
         </h2>
         {subtitle && (
           <p className="mt-2 text-center text-base text-[#355149] sm:text-lg lg:text-xl">
