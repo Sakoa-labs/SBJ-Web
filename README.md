@@ -16,6 +16,25 @@ pnpm build    # build de production
 pnpm preview  # prévisualiser le build
 ```
 
+## Contenu (Sanity)
+
+Les prestations, guides, avis, FAQ, coordonnées et horaires se modifient dans le Studio Sanity :
+**https://joiedetre.sanity.studio** (projet `8pst1xci`, dataset public `production`).
+
+- `pnpm dev` et `pnpm build` téléchargent d'abord le contenu publié dans `src/content/content.json`
+  (non versionné) via `scripts/pull-content.ts`, qui vérifie aussi qu'aucun champ ne manque.
+- `pnpm content` retélécharge le contenu sans relancer le serveur.
+- Le site reste statique : une publication dans le Studio n'apparaît en ligne qu'après une nouvelle compilation.
+
+Le Studio est dans `studio/`, avec ses propres dépendances :
+
+```bash
+cd studio
+pnpm install
+pnpm dev      # Studio en local sur http://localhost:3333
+pnpm deploy   # publier le Studio sur joiedetre.sanity.studio
+```
+
 ## Pages
 
 | Route        | Contenu                                   |

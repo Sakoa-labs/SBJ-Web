@@ -7,44 +7,15 @@ import {
   GoldDivider,
   SectionEyebrow,
 } from '#/components/landing/section-ornaments'
+import { faqs } from '#/data/faq'
+import type { FaqQuestion } from '#/data/faq'
 import { cn } from '#/lib/utils'
 import lotusOrnament from '#/assets/formation-icons/massage-wellness.png'
 import faqAmbience from '../../../design/section faq/ChatGPT Image 24 août 2026, 21_58_47.png'
 import foliageLeft from '../../../design/section faq/ChatGPT Image 24 août 2026, 22_02_30.png'
 import foliageRight from '../../../design/section faq/ChatGPT Image 24 août 2026, 22_10_40.png'
 
-export type FaqQuestion = {
-  question: string
-  answer: string
-}
-
-const questions: ReadonlyArray<FaqQuestion> = [
-  {
-    question: 'À qui s’adressent les formations ?',
-    answer:
-      'Elles sont pensées pour les débutantes comme pour les personnes souhaitant approfondir leur pratique.',
-  },
-  {
-    question: 'Les cours sont-ils disponibles en ligne ?',
-    answer:
-      'Oui. Certaines formations sont proposées en e-learning afin de progresser à votre rythme, où que vous soyez.',
-  },
-  {
-    question: 'Comment réserver une prestation ?',
-    answer:
-      'Choisissez la prestation qui vous correspond puis utilisez le bouton de réservation pour sélectionner votre créneau.',
-  },
-  {
-    question: 'Où se déroulent les soins ?',
-    answer:
-      'Chez Sabrina, à La Bretagne (Saint-Denis), dans une pièce aménagée pour les soins, au calme et en toute discrétion. Elle ne se déplace pas à domicile, mais peut intervenir lors d’animations ou de journées bien-être.',
-  },
-  {
-    question: 'Puis-je offrir une formation ou un guide ?',
-    answer:
-      'Oui. Contactez Sabrina pour choisir la formule et recevoir un bon cadeau personnalisé.',
-  },
-]
+export type { FaqQuestion }
 
 export function FaqSection() {
   return (
@@ -60,7 +31,7 @@ export function FaqSection() {
       }
       titleClassName="md:whitespace-nowrap"
       intro="Tout ce que vous souhaitez savoir avant de réserver un soin, de rejoindre une formation ou de découvrir les guides."
-      questions={questions}
+      questions={faqs.home}
       decorations={<FaqFoliage />}
       aside={
         <FaqContactAside

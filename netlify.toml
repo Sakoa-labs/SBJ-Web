@@ -3,6 +3,10 @@
   command = "pnpm run build"
   publish = "dist/client"
 
+# The build scripts are TypeScript, run directly by Node.
+[build.environment]
+  NODE_VERSION = "24"
+
 # Addresses of the previous site that have a new home.
 [[redirects]]
   from = "/faq"
