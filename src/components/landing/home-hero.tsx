@@ -1,8 +1,9 @@
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { SiteHeader } from '#/components/layout/site-header'
-import heroImage from '../../../design/heros/accueil-v2.png'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { HomeHeroContent } from '#/data/pages/home'
 
-export function HomeHero() {
+export function HomeHero({ title, subtitle, primaryButton, secondaryButton, photo }: HomeHeroContent) {
   return (
     <>
       <SiteHeader />
@@ -12,11 +13,11 @@ export function HomeHero() {
       >
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <img
-            src={heroImage}
-            alt="Terrasse de soin tropicale au coucher du soleil, table de massage, bougies et feuillages"
+            src={photo.src}
+            alt={photo.alt}
             className="absolute inset-0 size-full object-cover object-[70%_center] sm:object-center"
-            width={1672}
-            height={941}
+            width={photo.width}
+            height={photo.height}
             fetchPriority="high"
           />
           <div
@@ -34,19 +35,18 @@ export function HomeHero() {
               id="hero-title"
               className="text-[clamp(2rem,9.6vw,3.6rem)] font-normal leading-[1.04] tracking-[-0.03em] text-[#fff5df] sm:text-[clamp(4rem,8vw,5.5rem)] lg:text-[clamp(4.75rem,6.4vw,7.25rem)]"
             >
-              <span className="block">L’art du bien-être</span>
-              <em className="block pb-2 font-normal text-[#e5bd42]">à la française</em>
+              <RichTitle text={title} accentClassName="pb-2 text-[#e5bd42]" />
             </h1>
             <p className="mt-4 max-w-[40rem] text-pretty text-base leading-7 text-[#fff9ec]/90 sm:text-lg xl:text-xl">
-              Soins d’exception inspirés par la nature tropicale.
+              {subtitle}
             </p>
 
             <div className="mt-9 flex flex-col gap-4 sm:flex-row sm:gap-5">
               <EmbossedCta href="#reserver" tone="gold" className="sm:min-w-64">
-                Réserver un soin
+                {primaryButton}
               </EmbossedCta>
               <EmbossedCta href="/soins" tone="light" className="sm:min-w-64">
-                Découvrir les soins
+                {secondaryButton}
               </EmbossedCta>
             </div>
           </div>

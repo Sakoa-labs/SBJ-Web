@@ -1,13 +1,16 @@
 import type { StructureResolver } from 'sanity/structure'
 
-// Pages, with their FAQ, in the order of the site's menu.
-export const pages = [
-  { id: 'page-home', title: 'Accueil' },
-  { id: 'page-massages', title: 'Massages' },
-  { id: 'page-soins', title: 'Soins visage' },
-  { id: 'page-epilation', title: 'Épilation' },
-  { id: 'page-formation', title: 'Formation' },
-]
+import { pageDocuments } from './schemaTypes/pages/index.ts'
+
+// Pages still using the former « page » type, until they move to their own document type.
+const legacyPages = [
+  { id: 'page-massages', title: 'Massages', schemaType: 'page' },
+  { id: 'page-soins', title: 'Soins visage', schemaType: 'page' },
+  { id: 'page-epilation', title: 'Épilation', schemaType: 'page' },
+  { id: 'page-formation', title: 'Formation', schemaType: 'page' },
+].filter(({ id }) => !pageDocuments.some((document) => document.id === id))
+
+export const pages = [...pageDocuments, ...legacyPages]
 
 const servicesIn = (S: Parameters<StructureResolver>[0], title: string, filter: string) =>
   S.listItem()
@@ -50,13 +53,13 @@ export const structure: StructureResolver = (S) =>
       S.documentTypeListItem('review').title('Avis clients'),
       S.divider(),
       S.listItem()
-        .title('Pages et FAQ')
+        .title('Pages')
         .child(
           S.list()
-            .title('Pages et FAQ')
+            .title('Pages')
             .items(
-              pages.map(({ id, title }) =>
-                S.listItem().title(title).id(id).child(S.document().schemaType('page').documentId(id).title(title)),
+              pages.map(({ id, title, schemaType }) =>
+                S.listItem().title(title).id(id).child(S.document().schemaType(schemaType).documentId(id).title(title)),
               ),
             ),
         ),

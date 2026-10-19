@@ -2,31 +2,28 @@ import type { ReactNode } from 'react'
 
 import { EmbossedCta } from '#/components/landing/embossed-cta'
 import { GoldDivider, SectionEyebrow } from '#/components/landing/section-ornaments'
+import { RichTitle, WideScreenBreaks } from '#/components/ui/rich-text'
+import type { HomeClosingContent } from '#/data/pages/home'
 import foliageLeft from '../../../design/section cta + footer/ChatGPT Image 24 août 2026, 22_21_25.png'
 import foliageRight from '../../../design/section cta + footer/ChatGPT Image 24 août 2026, 22_24_48.png'
 
-export function ClosingCtaSection() {
+export function ClosingCtaSection({ eyebrow, title, text, primaryButton, secondaryButton }: HomeClosingContent) {
   return (
     <ClosingCta
-      eyebrow="Prête à commencer ?"
-      title={
-        <>
-          Rejoignez l’univers{' '}
-          <em className="font-normal text-[#e5bd42]">Joie d’Être</em>
-        </>
-      }
-      description="Formations, ateliers, e-learning et guides pratiques : découvrez un accompagnement pensé pour apprendre, pratiquer et transmettre."
+      eyebrow={eyebrow}
+      title={<RichTitle text={title} accentClassName="text-[#e5bd42]" />}
+      description={<WideScreenBreaks text={text} />}
     >
       <div className="flex flex-col items-center justify-center gap-4 sm:flex-row sm:gap-6">
         <EmbossedCta href="/formation" className="w-full sm:w-auto sm:min-w-72">
-          Découvrir les formations
+          {primaryButton}
         </EmbossedCta>
         <EmbossedCta
           href="#contact-footer"
           tone="light"
           className="w-full sm:w-auto sm:min-w-72"
         >
-          Nous contacter
+          {secondaryButton}
         </EmbossedCta>
       </div>
     </ClosingCta>

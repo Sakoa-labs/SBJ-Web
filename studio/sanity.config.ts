@@ -18,7 +18,7 @@ export default defineConfig({
     singletons: [
       'guidesBundle',
       'settings',
-      ...pages.map(({ id, title }) => defineSingleton({ documentId: id, schemaType: 'page', title, initialValue: { title } })),
+      ...pages.map(({ id, title, schemaType }) => defineSingleton({ documentId: id, schemaType, title })),
     ],
   },
 })

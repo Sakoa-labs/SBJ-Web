@@ -7,4 +7,7 @@ export const contact = content.contact
 
 export const openingHours: ReadonlyArray<{ days: string; hours: string }> = content.openingHours
 
+// The card next to every FAQ, inviting to write to Sabrina.
+export const faqAside: { title: string; text: string; button: string } = content.faqAside
+
 export const mapsLink = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(contact.mapsQuery)}`

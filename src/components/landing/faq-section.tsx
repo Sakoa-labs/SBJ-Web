@@ -7,38 +7,32 @@ import {
   GoldDivider,
   SectionEyebrow,
 } from '#/components/landing/section-ornaments'
-import { faqs } from '#/data/faq'
+import { RichTitle } from '#/components/ui/rich-text'
+import { faqAside } from '#/data/contact'
 import type { FaqQuestion } from '#/data/faq'
+import type { HomeFaqContent } from '#/data/pages/home'
 import { cn } from '#/lib/utils'
 import lotusOrnament from '#/assets/formation-icons/massage-wellness.png'
-import faqAmbience from '../../../design/section faq/ChatGPT Image 24 août 2026, 21_58_47.png'
 import foliageLeft from '../../../design/section faq/ChatGPT Image 24 août 2026, 22_02_30.png'
 import foliageRight from '../../../design/section faq/ChatGPT Image 24 août 2026, 22_10_40.png'
 
 export type { FaqQuestion }
 
-export function FaqSection() {
+export function FaqSection({ title, intro, questions, photo }: HomeFaqContent) {
   return (
     <FaqLayout
       eyebrow="FAQ"
-      title={
-        <>
-          Questions{' '}
-          <em className="inline-block pb-1 font-normal text-[#d4af37]">
-            fréquentes
-          </em>
-        </>
-      }
+      title={<RichTitle text={title} accentClassName="inline-block pb-1 text-[#d4af37]" />}
       titleClassName="md:whitespace-nowrap"
-      intro="Tout ce que vous souhaitez savoir avant de réserver un soin, de rejoindre une formation ou de découvrir les guides."
-      questions={faqs.home}
+      intro={intro}
+      questions={questions}
       decorations={<FaqFoliage />}
       aside={
         <FaqContactAside
-          image={faqAmbience}
-          imageAlt="Serviettes de soin, fleurs de frangipanier et bougie dans une ambiance apaisante"
-          imageWidth={1122}
-          imageHeight={1402}
+          image={photo.src}
+          imageAlt={photo.alt}
+          imageWidth={photo.width}
+          imageHeight={photo.height}
         />
       }
     />
@@ -258,20 +252,11 @@ export function FaqContactAside({
   imageAlt,
   imageWidth,
   imageHeight,
-  title = (
-    <>
-      <span className="block">Une autre</span>
-      <em className="block pb-1 font-normal text-[#e0a84f]">question&nbsp;?</em>
-    </>
-  ),
-  text = 'Écrivez à Sabrina pour un accompagnement personnalisé.',
 }: {
   image: string
   imageAlt: string
   imageWidth: number
   imageHeight: number
-  title?: ReactNode
-  text?: string
 }) {
   return (
     <FaqAsideCard
@@ -290,15 +275,15 @@ export function FaqContactAside({
         height={256}
       />
       <h3 className="mt-3 text-[clamp(2.6rem,6vw,3.25rem)] font-normal leading-[0.98] tracking-[-0.02em] lg:text-[2.85rem] xl:text-[3.1rem]">
-        {title}
+        <RichTitle text={faqAside.title} accentClassName="pb-1 text-[#e0a84f]" />
       </h3>
       <GoldDivider compact className="mt-5" />
       <p className="mt-5 max-w-[17rem] text-base leading-7 text-[#fff9ec]/90">
-        {text}
+        {faqAside.text}
       </p>
       <EmbossedCta href="/contact" className="mt-6 w-full max-w-[19rem] gap-3">
         <Mail aria-hidden="true" className="size-5" strokeWidth={1.4} />
-        Nous contacter
+        {faqAside.button}
       </EmbossedCta>
     </FaqAsideCard>
   )

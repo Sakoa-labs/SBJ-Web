@@ -5,6 +5,8 @@ import {
   GoldDivider,
   SectionEyebrow,
 } from '#/components/landing/section-ornaments'
+import { RichTitle } from '#/components/ui/rich-text'
+import type { HomeReviewsContent } from '#/data/pages/home'
 import { cn } from '#/lib/utils'
 import { reviews } from '#/data/reviews'
 import type { Review, ReviewSource } from '#/data/reviews'
@@ -124,7 +126,7 @@ function TestimonialCard({ review }: { review: Testimonial }) {
   )
 }
 
-export function TestimonialsSection() {
+export function TestimonialsSection({ eyebrow, title }: HomeReviewsContent) {
   return (
     <section
       id="temoignages"
@@ -167,16 +169,12 @@ export function TestimonialsSection() {
 
       <div className="relative z-10 mx-auto w-full max-w-[88rem]">
         <header className="mx-auto max-w-[72rem] text-center">
-          <SectionEyebrow label="Témoignages" />
+          <SectionEyebrow label={eyebrow} />
           <h2
             id="testimonials-title"
             className="mt-6 text-balance text-[clamp(2.45rem,12vw,2.85rem)] font-normal leading-[1.02] tracking-[-0.025em] sm:text-[clamp(3.8rem,6.5vw,5.5rem)] lg:whitespace-nowrap lg:text-[clamp(4.25rem,5vw,5.35rem)]"
           >
-            Vous en parlez{' '}
-            <em className="inline-block pb-1 font-normal text-[#d4af37]">
-              mieux
-            </em>{' '}
-            que nous
+            <RichTitle text={title} accentClassName="inline-block pb-1 text-[#d4af37]" />
           </h2>
         </header>
 

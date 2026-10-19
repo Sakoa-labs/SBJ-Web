@@ -1,5 +1,7 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 
+import { buttonField, textField, titleField } from './pages/shared.ts'
+
 export const settings = defineType({
   name: 'settings',
   title: 'Coordonnées et horaires',
@@ -46,6 +48,13 @@ export const settings = defineType({
         }),
       ],
       validation: (rule) => rule.required().min(1),
+    }),
+    defineField({
+      name: 'faqAside',
+      title: 'Encadré « Une autre question ? »',
+      type: 'object',
+      description: 'Affiché à côté des questions fréquentes, sur toutes les pages qui en ont.',
+      fields: [titleField(), textField('text', 'Texte'), buttonField('button')],
     }),
   ],
   preview: { prepare: () => ({ title: 'Coordonnées et horaires' }) },

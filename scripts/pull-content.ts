@@ -27,7 +27,11 @@ const query = `{
     promotionPercent, variants[]{ label, minutes, price, booksyId },
     ${image('image')}, "icon": icon.asset->url
   },
-  "pages": *[_type == "page"] { _id, title, faq[]{ question, answer }, gallery[]{ "url": asset->url, alt } },
+  // Page documents are taken whole: their images are resolved below, whatever their place.
+  "pages": *[string::startsWith(_id, "page-")],
+  "assets": *[_type == "sanity.imageAsset"] {
+    _id, url, "width": metadata.dimensions.width, "height": metadata.dimensions.height
+  },
   "guides": *[_type == "guide"] | order(order asc) {
     "slug": slug.current, title, accent, subtitle, description, price, pages, chapters,
     ${image('cover')}, ${image('photo')}, gallery[]{ "url": asset->url, alt }
@@ -39,7 +43,9 @@ const query = `{
   "reviews": *[_type == "review"] | order(order asc) {
     name, service, source, verified, text, "avatar": avatar.asset->url
   },
-  "settings": *[_id == "settings"][0] { email, phone, addressLines, mapsQuery, openingHours[]{ days, hours } }
+  "settings": *[_id == "settings"][0] {
+    email, phone, addressLines, mapsQuery, openingHours[]{ days, hours }, faqAside{ title, text, button }
+  }
 }`
 
 type Photo = { url?: string; alt?: string }
@@ -77,19 +83,52 @@ try {
   throw error
 }
 
-const pages = Object.fromEntries(data.pages.map((page: any) => [page._id.replace(/^page-/, ''), page]))
-const faqPages = ['home', 'massages', 'soins', 'epilation', 'formation']
-const faqs = Object.fromEntries(
-  faqPages.map((key) => {
-    const where = `Page ${pages[key]?.title ?? key}`
-    check(pages[key]?.faq?.length, where, 'Questions fréquentes')
-    for (const item of pages[key]?.faq ?? []) check(text(item.question) && text(item.answer), where, 'Question ou réponse')
-    return [key, pages[key]?.faq ?? []]
+const assets = new Map<string, { url: string; width: number; height: number }>(
+  data.assets.map((asset: any) => [asset._id, asset]),
+)
+
+// Replaces every image of a page document with its URL, description and size, and drops
+// the system fields Sanity adds to documents.
+function resolve(value: unknown, where: string): unknown {
+  if (Array.isArray(value)) return value.map((item) => resolve(item, where))
+  if (!value || typeof value !== 'object') return value
+  const object = value as Record<string, any>
+  if (object._type === 'image') {
+    const asset = assets.get(object.asset?._ref)
+    check(asset, where, 'Photo')
+    return {
+      src: imageUrl(asset?.url ?? '', 2400),
+      alt: object.alt ?? '',
+      width: asset?.width ?? 0,
+      height: asset?.height ?? 0,
+    }
+  }
+  return Object.fromEntries(
+    Object.entries(object)
+      .filter(([key]) => !['_id', '_rev', '_createdAt', '_updatedAt', '_system'].includes(key))
+      .map(([key, item]) => [key, resolve(item, where)]),
+  )
+}
+
+const pages: Record<string, any> = Object.fromEntries(
+  data.pages.map((page: any) => {
+    const key = page._id.replace(/^page-/, '')
+    return [key, resolve(page, `Page ${page.title ?? key}`)]
   }),
 )
 
+// Kept while the FAQ sections move into their page documents.
+const faqs = Object.fromEntries(
+  ['home', 'massages', 'soins', 'epilation', 'formation'].map((key) => [key, pages[key]?.faq ?? []]),
+)
+
 const galleries = Object.fromEntries(
-  ['massages', 'soins', 'epilation'].map((key) => [key, gallery(pages[key]?.gallery, `Page ${pages[key]?.title ?? key}`)]),
+  ['massages', 'soins', 'epilation'].map((key) => {
+    const where = `Page ${pages[key]?.title ?? key}`
+    const items: Array<{ src: string; alt: string }> = pages[key]?.gallery ?? []
+    check(items.length === 2 && items.every((item) => item.src && text(item.alt)), where, 'Photos secondaires (2 photos)')
+    return [key, items.map(({ src, alt }) => ({ src, alt }))]
+  }),
 )
 
 const services = data.services.map((service: any) => {
@@ -186,6 +225,11 @@ const settings = data.settings ?? {}
 check(text(settings.email) && text(settings.phone) && text(settings.mapsQuery), 'Coordonnées', 'E-mail, téléphone ou recherche Google Maps')
 check(settings.addressLines?.length, 'Coordonnées', 'Adresse')
 check(settings.openingHours?.length, 'Coordonnées', 'Horaires')
+check(
+  text(settings.faqAside?.title) && text(settings.faqAside?.text) && text(settings.faqAside?.button),
+  'Coordonnées',
+  'Encadré « Une autre question ? »',
+)
 const contact = {
   email: settings.email,
   phone: settings.phone,
@@ -212,7 +256,17 @@ mkdirSync(new URL('.', output), { recursive: true })
 writeFileSync(
   output,
   JSON.stringify(
-    { services, guides, guidesBundle, reviews, contact, openingHours: settings.openingHours, faqs },
+    {
+      services,
+      guides,
+      guidesBundle,
+      reviews,
+      contact,
+      openingHours: settings.openingHours,
+      faqAside: settings.faqAside,
+      faqs,
+      pages,
+    },
     null,
     2,
   ) + '\n',
