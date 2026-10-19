@@ -9,6 +9,10 @@ import { imagetools } from 'vite-imagetools'
 
 const config = defineConfig({
   resolve: { tsconfigPaths: true },
+  // Prerendering fetches every page from a preview server running in the build process.
+  // On "localhost", Node gives IPv6 only 250 ms before trying IPv4, where nothing listens:
+  // a slow page render on Netlify then failed the build. A fixed IPv4 address avoids it.
+  preview: { host: '127.0.0.1' },
   plugins: [
     devtools({
       // Server and browser logs were relayed back and forth endlessly,
