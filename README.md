@@ -18,13 +18,18 @@ pnpm preview  # prévisualiser le build
 
 ## Contenu (Sanity)
 
-Les prestations, guides, avis, FAQ, coordonnées et horaires se modifient dans le Studio Sanity :
+Tout le contenu se modifie dans le Studio Sanity : prestations, guides, avis, coordonnées et horaires,
+mais aussi les textes et photos de chaque page, l'ordre de leurs sections et les pages légales.
+Le Studio est accessible à cette adresse :
 **https://joiedetre.sanity.studio** (projet `8pst1xci`, dataset public `production`).
 
 - `pnpm dev` et `pnpm build` téléchargent d'abord le contenu publié dans `src/content/content.json`
   (non versionné) via `scripts/pull-content.ts`, qui vérifie aussi qu'aucun champ ne manque.
 - `pnpm content` retélécharge le contenu sans relancer le serveur.
 - Le site reste statique : une publication dans le Studio n'apparaît en ligne qu'après une nouvelle compilation.
+- Chaque page a son document (`page-home`, `page-massages`…) : un haut de page fixe, puis des sections
+  que Sabrina réordonne ou masque. Les titres s'écrivent avec `*mots en doré*` et des retours à la ligne
+  (`RichTitle` dans `src/components/ui/rich-text.tsx`). Les liens et les décors restent dans le code.
 
 Le Studio est dans `studio/`, avec ses propres dépendances :
 
